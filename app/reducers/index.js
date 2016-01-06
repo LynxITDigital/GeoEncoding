@@ -1,5 +1,5 @@
-import address from './address';
+import addressesByGeoEncoding from './address';
 
 export {
-  address
+  addressesByGeoEncoding
 };

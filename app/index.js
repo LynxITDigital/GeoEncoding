@@ -3,17 +3,15 @@
  * https://github.com/facebook/react-native
  */
 'use strict';
-import 'babel/polyfill';
+import 'babel-polyfill';
 
 import { createStore, applyMiddleware } from 'redux';
-// import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk'
 
 import createLogger from 'redux-logger';
 import fetchAddresses from './actions/addressActions';
 import * as rootReducer from './reducers';
 
-// var ThunkMiddleware = require('redux-thunk')
-// var Add = require('./actions/addressActions')
 var React = require('react-native');
 var ProgressBar = require('ProgressBarAndroid');
 
@@ -98,7 +96,7 @@ class GeoEncoding extends React.Component{
       this.setState({isLoading:true});
 
       fetch(query)
-      .then(results => results.json())
+      .then(response => response.json())
       .then(json => this._handleResponse(json.results))
       .catch(error => this.setState({
         isLoading: false,
