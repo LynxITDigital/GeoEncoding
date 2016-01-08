@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
 });
 
 export default class AddressList extends Component {
+
   constructor(props) {
     super(props);
   }
@@ -79,12 +80,7 @@ export default class AddressList extends Component {
 
   render() {
     const { searchString,addresses,fetchAddresses } = this.props;
-    var ds = new ListView.DataSource({ rowHasChanged:(r1,r2) => r1.place_id !== r2.place_id });
-
-    // console.log("searchString :" + searchString);
-    // console.log("addresses :" + addresses);
-    // console.log("fetchAddresses :" + fetchAddresses('city road'));
-
+    
     return (
       <View>
         <View style={styles.inputContainer}>
@@ -102,7 +98,7 @@ export default class AddressList extends Component {
         </View>
         <View style={styles.listContainer}>
           <ListView
-          dataSource={ds.cloneWithRows(addresses)}
+          dataSource={addresses}
           renderRow={this.renderRow.bind(this)} />
         </View>
       </View>
