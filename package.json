@@ -7,12 +7,10 @@
     "clean": "cd node_modules; find . -name .babelrc | grep -v packager | xargs rm"
   },
   "dependencies": {
-    "babel-polyfill": "^6.3.14",
-    "isomorphic-fetch": "^2.2.0",
-    "react": "0.14.3",
     "react-native": "^0.17.0",
-    "react-redux": "3.1.2",
-    "redux": "3.0.5",
+    "react-native-router-flux": "^2.0.5",
+    "react-redux": "^3.1.2",
+    "redux": "^3.0.5",
     "redux-logger": "^2.3.1",
     "redux-thunk": "^1.0.3"
   }

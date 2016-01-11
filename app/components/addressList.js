@@ -7,52 +7,13 @@ import React, {
   TouchableHighlight,
   ListView
 } from 'react-native';
+var Actions = require('react-native-router-flux').Actions;
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    marginTop:40,
-    flexDirection:'row',
-    alignItems: 'center',
-    alignSelf:'stretch',
-    backgroundColor: '#F5FCFF',
-  },
-  listContainer: {
-    marginTop:40,
-    flexDirection:'row',
-    alignItems: 'center',
-    alignSelf:'stretch',
-    backgroundColor: '#F5FCFF',
-  },
-  searchInput: {
-    height: 36,
-    width:300,
-    padding: 4,
-    marginRight: 5,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 8,
-    backgroundColor: '#48BBEC'
-  },
-  button:{
-    height: 36,
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 8,
-    backgroundColor:'#48BBEC',
-    alignSelf:'stretch',
-    justifyContent:'center'
-  },
-  buttonText:{
-    fontSize:18
-  },
-  row:{
-    height: 40,
-    borderWidth:1,
-    borderColor:'#fff',
+// import { createStore, combineReducers } from 'redux';
+// import * as reducers from '../reducers';
+// const reducer = combineReducers(reducers);
+// var store = createStore(reducer);
 
-  }
-});
 
 export default class AddressList extends Component {
 
@@ -68,19 +29,37 @@ export default class AddressList extends Component {
     this.props.fetchAddresses(this.props.searchString);
   }
 
+  onRowPressed(id){
+      console.log(id);
+      this.props.navigator.push({
+        title: 'Results',
+        component: SearchResults,
+        passProps: {rowData: id}
+      });
+  }
 
   renderRow(rowData){
     var address = rowData.formatted_address;
     return(
-      <View style={styles.row}>
-      <Text>{address}</Text>
-      </View>
+      <TouchableHighlight onPress={()=>this.onRowPressed(rowData)}
+          underlayColor='#dddddd'>
+        <View style={styles.row}>
+        <Text>{address}</Text>
+        </View>
+      </TouchableHighlight>
     )
   }
 
   render() {
     const { searchString,addresses,fetchAddresses } = this.props;
-    
+
+    // var state = store.getState();
+    // var searchString = state.addressesByGeoEncoding.searchString;
+    // var addresses = state.addressesByGeoEncoding.addresses;
+    // var fetchAddresses = this.props.fetchAddresses;
+
+    console.log("ADDRESS LIST :");
+
     return (
       <View>
         <View style={styles.inputContainer}>
@@ -104,6 +83,50 @@ export default class AddressList extends Component {
       </View>
     );
   }
-
-
 }
+
+  const styles = StyleSheet.create({
+    inputContainer: {
+      marginTop:40,
+      flexDirection:'row',
+      alignItems: 'center',
+      alignSelf:'stretch',
+      backgroundColor: '#F5FCFF',
+    },
+    listContainer: {
+      marginTop:40,
+      flexDirection:'row',
+      alignItems: 'center',
+      alignSelf:'stretch',
+      backgroundColor: '#F5FCFF',
+    },
+    searchInput: {
+      height: 36,
+      width:300,
+      padding: 4,
+      marginRight: 5,
+      fontSize: 18,
+      borderWidth: 1,
+      borderColor: '#000',
+      borderRadius: 8,
+      backgroundColor: '#48BBEC'
+    },
+    button:{
+      height: 36,
+      borderWidth: 1,
+      borderColor: '#000',
+      borderRadius: 8,
+      backgroundColor:'#48BBEC',
+      alignSelf:'stretch',
+      justifyContent:'center'
+    },
+    buttonText:{
+      fontSize:18
+    },
+    row:{
+      height: 40,
+      borderWidth:1,
+      borderColor:'#fff',
+
+    }
+  });

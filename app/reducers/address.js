@@ -5,6 +5,7 @@ var ds = new ListView.DataSource({ rowHasChanged:(r1,r2) => r1.place_id !== r2.p
 const initialState = {isLoading:false, searchString: '153 city road',addresses:ds.cloneWithRows([])};
 
 export default function addressesByGeoEncoding(state = initialState, action = {}){
+  console.log("Receiver : " + action);
   switch (action.type) {
     case types.CHANGE_SEARCH_TEXT:
         return Object.assign({},state, { searchString: action.searchString});
