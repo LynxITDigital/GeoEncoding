@@ -34,6 +34,21 @@ export function resetState(){
   }
 }
 
+function getDetials(routerAction){
+  return{
+    type: types.ROW_PRESS,
+    routerAction: routerAction
+  }
+
+}
+
+export function rowPress(routerAction){
+  return dispatch=>{
+    dispatch(getDetials(routerAction))
+    // routerAction()
+  }
+}
+
 export function changeSearchText(searchString){
     return dispatch=>{
       dispatch(updateSearchText(searchString))

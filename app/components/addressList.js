@@ -50,7 +50,10 @@ export default class AddressList extends Component {
 
   onRowPressed(rowData){
       console.log(rowData);
-      Actions.details({data:rowData});
+      var routerActoin = function(){
+        Actions.details({data:rowData});
+      }
+      this.props.actions.rowPress(routerActoin)
   }
 
   renderRow(rowData){
