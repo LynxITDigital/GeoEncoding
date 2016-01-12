@@ -16,14 +16,15 @@ import AddressList from '../components/addressList';
 import AddressDetails from '../components/addressDetails';
 
 const mapStateToProps = state => ({
-  state: state.addressesByGeoEncoding,
+  addresses : state.addressesByGeoEncoding.addresses,
+  searchString : state.addressesByGeoEncoding.searchString
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    ...addressActions,
-  }, dispatch),
-  dispatch,
+    ...addressActions
+  }, dispatch)
 });
 
 const defaultSchema = {
@@ -48,24 +49,20 @@ class GeoEncodingApp extends Component {
 //   }
 
    render(){
-     const { state, dispatch } = this.props;
-     console.log("state :" + state);
+    //  const { state, dispatch } = this.props;
+    //  console.log("GeoEncodingApp Render cached row count :" + state.addresses._cachedRowCount);
 
-
-
-     var boundCreators = bindActionCreators(addressActions, dispatch);
+    //  var boundCreators = bindActionCreators(addressActions, dispatch);
 
      return(<Router hideNavBar={true} >
          <Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom}/>
          <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
          <Schema name="withoutAnimation"/>
 
-         <Route name="details" component={AddressDetails} title="Details" type="modal"/>
-         <Route name="launch" component={connect(mapStateToProps)(AddressList)}
-                     searchString={state.searchString}
-                     addresses={state.addresses}
-                     {...boundCreators}
-                     wrapRouter={false} title="Geo Encoding" hideNavBar={true}  initial={true}/>
+         <Route name="details" component={AddressDetails} title="Details"/>
+         <Route name="launch" component={connect(mapStateToProps,mapDispatchToProps)(AddressList)}
+
+                     wrapRouter={true} title="Geo Encoding" hideNavBar={false}  initial={true}/>
      </Router>
    );
    }

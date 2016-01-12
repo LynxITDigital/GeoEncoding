@@ -22,20 +22,16 @@ export default class AddressList extends Component {
   }
 
   onSearchTextChanged(event){
-    this.props.changeSearchText(event.nativeEvent.text);
+    this.props.actions.changeSearchText(event.nativeEvent.text);
   }
 
   onFindPressed(){
-    this.props.fetchAddresses(this.props.searchString);
+    this.props.actions.fetchAddresses(this.props.searchString);
   }
 
-  onRowPressed(id){
-      console.log(id);
-      this.props.navigator.push({
-        title: 'Results',
-        component: SearchResults,
-        passProps: {rowData: id}
-      });
+  onRowPressed(rowData){
+      console.log(rowData);
+      Actions.details({data:rowData});
   }
 
   renderRow(rowData){
@@ -51,7 +47,11 @@ export default class AddressList extends Component {
   }
 
   render() {
-    const { searchString,addresses,fetchAddresses } = this.props;
+
+
+    const { searchString,addresses } = this.props;
+  console.log("LIST : " + searchString);
+
 
     // var state = store.getState();
     // var searchString = state.addressesByGeoEncoding.searchString;
@@ -87,7 +87,7 @@ export default class AddressList extends Component {
 
   const styles = StyleSheet.create({
     inputContainer: {
-      marginTop:40,
+      marginTop:80,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch',
