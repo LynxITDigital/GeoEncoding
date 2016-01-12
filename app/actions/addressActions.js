@@ -22,6 +22,18 @@ function updateSearchText(searchString){
   }
 }
 
+function reset(){
+  return{
+    type: types.RESET_STATE
+  }
+}
+export function resetState(){
+  return dispatch=>{
+    dispatch(reset())
+
+  }
+}
+
 export function changeSearchText(searchString){
     return dispatch=>{
       dispatch(updateSearchText(searchString))

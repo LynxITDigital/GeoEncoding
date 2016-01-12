@@ -13,6 +13,8 @@ export default function addressesByGeoEncoding(state = initialState, action = {}
         return Object.assign({},state, { isLoading:true});
     case types.RECEIVE_ADDRESS:
       return Object.assign({},state, { isLoading:false, addresses: ds.cloneWithRows(action.addresses)});
+    case types.RESET_STATE:
+      return Object.assign({},state, initialState);
     default:
       return state;
   }

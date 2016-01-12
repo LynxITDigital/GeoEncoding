@@ -59,10 +59,9 @@ class GeoEncodingApp extends Component {
          <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
          <Schema name="withoutAnimation"/>
 
-         <Route name="details" component={AddressDetails} title="Details"/>
+         <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details"/>
          <Route name="launch" component={connect(mapStateToProps,mapDispatchToProps)(AddressList)}
-
-                     wrapRouter={true} title="Geo Encoding" hideNavBar={false}  initial={true}/>
+                     title="Geo Encoding" hideNavBar={false}  initial={true}/>
      </Router>
    );
    }
