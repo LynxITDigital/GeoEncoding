@@ -16,15 +16,6 @@ export default function configureStore(initialState) {
 
       console.log('state after dispatch', getState())
 
-      // function replayAsync() {
-      //   return dispatch => {
-      //     setTimeout(() => {
-      //       // Yay! Can invoke sync or async actions with `dispatch`
-      //       next(action);
-      //     }, 1000);
-      //   };
-      // }
-
       var replay = {action:action,next:next};
       globals.replayCache.push(replay);
       // This will likely be the action itself, unless

@@ -42,7 +42,6 @@ export default class AddressList extends Component {
         var dispatch = action.next;
 
          setTimeout(() => {
-           // Yay! Can invoke sync or async actions with `dispatch`
            dispatch(action.action);
          }, 300 * timeoutIndex);
       }
