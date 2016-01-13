@@ -7,14 +7,13 @@ import globals from './globals'
 export default function configureStore(initialState) {
 
   function logger({ getState }) {
-    console.log("GetStae : " + getState )
     return (next) => (action) => {
-      console.log('will dispatch', action)
+      console.log('Middleware - will dispatch action :', action)
 
       // Call the next dispatch method in the middleware chain.
       let returnValue = next(action)
 
-      console.log('state after dispatch', getState())
+      console.log('Middleware - state after dispatch :', getState())
 
       var replay = {action:action,next:next};
       globals.replayCache.push(replay);

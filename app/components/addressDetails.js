@@ -12,6 +12,10 @@ MapView
 } = React
 
 class AddressDetails extends Component {
+  onTitlePress(){
+    console.log("onTitlePress : "  + this.props.route);
+    this.props.route.parent.pop(1);
+  }
    render(){
 
     const rowData =  this.props.data;
@@ -40,7 +44,7 @@ class AddressDetails extends Component {
     return (
      <View style={styles.container}>
        <View style={styles.heading}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title} onPress={this.onTitlePress.bind(this)}>{title}</Text>
          <View style={styles.separator}/>
        </View>
        <Text style={styles.description}>{latLong}</Text>

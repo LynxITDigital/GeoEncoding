@@ -37,7 +37,7 @@ export default class AddressList extends Component {
     var timeoutIndex = 0
     globals.replayCache.map(function(action){
       if( action.action.type !== 'RESET_STATE'){
-        console.log("Replay Action : " + action.action.type);
+        console.log("Run Replay Action : " + action.action.type);
         timeoutIndex++;
         var dispatch = action.next;
 
@@ -49,11 +49,10 @@ export default class AddressList extends Component {
   }
 
   onRowPressed(rowData){
-      console.log(rowData);
-      var routerActoin = function(){
+      var routerAction = function(){
         Actions.details({data:rowData});
       }
-      this.props.actions.rowPress(routerActoin)
+      this.props.actions.rowPress(routerAction)
   }
 
   renderRow(rowData){
@@ -69,18 +68,8 @@ export default class AddressList extends Component {
   }
 
   render() {
-
-
     const { searchString,addresses } = this.props;
-  console.log("LIST : " + searchString);
-
-
-    // var state = store.getState();
-    // var searchString = state.addressesByGeoEncoding.searchString;
-    // var addresses = state.addressesByGeoEncoding.addresses;
-    // var fetchAddresses = this.props.fetchAddresses;
-
-    console.log("ADDRESS LIST :");
+    console.log("Render Address List with : " + searchString);
 
     return (
       <View>
@@ -135,12 +124,14 @@ export default class AddressList extends Component {
       padding: 4,
       marginRight: 5,
       fontSize: 18,
+      color: 'gray',
       borderWidth: 1,
       borderColor: '#000',
-      borderRadius: 8,
-      backgroundColor: '#48BBEC'
+      borderRadius: 8
+
     },
     button:{
+      marginLeft : 10,
       height: 36,
       borderWidth: 1,
       borderColor: '#000',
@@ -150,7 +141,8 @@ export default class AddressList extends Component {
       justifyContent:'center'
     },
     buttonText:{
-      fontSize:18
+      fontSize:18,
+      color:'brown'
     },
     row:{
       height: 40,

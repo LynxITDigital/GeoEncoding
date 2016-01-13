@@ -8,7 +8,7 @@ function requestPosts(url) {
 }
 
 function receivePosts(results) {
-  console.log("Receive posts :" + results);
+  console.log("Action - receive posts :" + results);
   return {
     type: types.RECEIVE_ADDRESS,
     addresses: results,
@@ -49,6 +49,23 @@ export function rowPress(routerAction){
   }
 }
 
+function routePop(fnPop, num){
+  return{
+    type: types.ROUTE_POP,
+    num : num,
+    fnPop : fnPop
+  }
+}
+
+export function onRoutePop(fnPop, num){
+
+  console.log("Actions - onRoutePop :" + num);
+
+  return dispatch=>{
+    dispatch(routePop(fnPop, num))
+  }
+}
+
 export function changeSearchText(searchString){
     return dispatch=>{
       dispatch(updateSearchText(searchString))
@@ -58,7 +75,7 @@ export function changeSearchText(searchString){
 
 export function fetchAddresses(searchString){
 
-    console.log("fetchAddresses para : " + searchString);
+    console.log("Action - fetchAddresses with searchString : " + searchString);
 
     var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(searchString);
     return dispatch=>{
@@ -70,7 +87,7 @@ export function fetchAddresses(searchString){
         dispatch(receivePosts(json.results))
       )
       .catch((error) => {
-        console.log("FETCH ERROR " + error);
+        console.log("Action - FETCH ERROR " + error);
       })
     };
 }
