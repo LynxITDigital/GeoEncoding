@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware,combineReducers, compose } from 'redux';
 import {routerReducer} from 'react-native-redux-router';
 import thunk from 'redux-thunk';
-import devTools from 'remote-redux-devtools';
 import * as reducers from '../reducers';
 import globals from './globals'
 
@@ -29,8 +28,7 @@ export default function configureStore(initialState) {
   }
 
   const finalCreateStore = compose(
-    applyMiddleware(thunk, logger),
-    devTools()
+    applyMiddleware(thunk, logger)
   )(createStore);
 
   const reducer = combineReducers(reducers);

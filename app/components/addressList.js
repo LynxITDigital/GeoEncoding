@@ -11,11 +11,8 @@ import React, {
 } from 'react-native';
 // var Actions = require('react-native-router-flux').Actions;
 var {Actions} = require('react-native-redux-router');
+var RefreshableListView = require('react-native-refreshable-listview')
 
-// import { createStore, combineReducers } from 'redux';
-// import * as reducers from '../reducers';
-// const reducer = combineReducers(reducers);
-// var store = createStore(reducer);
 
 import globals from '../store/globals';
 
@@ -99,11 +96,13 @@ export default class AddressList extends Component {
 
         </View>
         <View style={styles.listContainer}>
-          <ListView
-          dataSource={addresses}
-          renderRow={this.renderRow.bind(this)}
-
+          <RefreshableListView
+            dataSource={addresses}
+            renderRow={this.renderRow.bind(this)}
+            loadData={this.onFindPressed.bind(this)}
+            refreshDescription="Refreshing articles"
           />
+
         </View>
       </View>
     );
