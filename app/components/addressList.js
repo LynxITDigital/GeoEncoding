@@ -5,9 +5,12 @@ import React, {
   Text,
   TextInput,
   TouchableHighlight,
-  ListView
+  ListView,
+  ScrollView,
+  RecyclerViewBackedScrollView
 } from 'react-native';
-var Actions = require('react-native-router-flux').Actions;
+// var Actions = require('react-native-router-flux').Actions;
+var {Actions} = require('react-native-redux-router');
 
 // import { createStore, combineReducers } from 'redux';
 // import * as reducers from '../reducers';
@@ -15,6 +18,7 @@ var Actions = require('react-native-router-flux').Actions;
 // var store = createStore(reducer);
 
 import globals from '../store/globals';
+
 
 
 export default class AddressList extends Component {
@@ -43,16 +47,14 @@ export default class AddressList extends Component {
 
          setTimeout(() => {
            dispatch(action.action);
-         }, 300 * timeoutIndex);
+         }, 500 * timeoutIndex);
       }
     })
   }
 
   onRowPressed(rowData){
-      var routerAction = function(){
-        Actions.details({data:rowData});
-      }
-      this.props.actions.rowPress(routerAction)
+      console.log("RowPressed : " + this.props);
+      Actions.details({data:rowData});
   }
 
   renderRow(rowData){
@@ -60,8 +62,11 @@ export default class AddressList extends Component {
     return(
       <TouchableHighlight onPress={()=>this.onRowPressed(rowData)}
           underlayColor='#dddddd'>
+<View>
         <View style={styles.row}>
         <Text>{address}</Text>
+        </View>
+        <View style={styles.separator}/>
         </View>
       </TouchableHighlight>
     )
@@ -96,7 +101,9 @@ export default class AddressList extends Component {
         <View style={styles.listContainer}>
           <ListView
           dataSource={addresses}
-          renderRow={this.renderRow.bind(this)} />
+          renderRow={this.renderRow.bind(this)}
+
+          />
         </View>
       </View>
     );
@@ -104,15 +111,18 @@ export default class AddressList extends Component {
 }
 
   const styles = StyleSheet.create({
+    scrollView: {
+    height: 600,
+  },
     inputContainer: {
-      marginTop:80,
+      marginTop:10,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch',
       backgroundColor: '#F5FCFF',
     },
     listContainer: {
-      marginTop:40,
+      marginTop:20,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch',
@@ -120,34 +130,38 @@ export default class AddressList extends Component {
     },
     searchInput: {
       height: 36,
-      width:250,
+      width:220,
       padding: 4,
+      marginLeft : 10,
       marginRight: 5,
       fontSize: 18,
       color: 'gray',
       borderWidth: 1,
-      borderColor: '#000',
+      borderColor: 'gray',
       borderRadius: 8
 
     },
     button:{
-      marginLeft : 10,
+      marginLeft : 5,
+      padding :5,
       height: 36,
       borderWidth: 1,
       borderColor: '#000',
       borderRadius: 8,
-      backgroundColor:'#48BBEC',
+      backgroundColor:'#097591',
       alignSelf:'stretch',
       justifyContent:'center'
     },
     buttonText:{
       fontSize:18,
-      color:'brown'
+      color:'white'
     },
     row:{
-      height: 40,
-      borderWidth:1,
-      borderColor:'#fff',
+      padding :10,
+      height: 50,
 
+    },separator:{
+      height:1,
+      backgroundColor:'gray'
     }
   });

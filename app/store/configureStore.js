@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware,combineReducers, compose } from 'redux';
+import {routerReducer} from 'react-native-redux-router';
 import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
 import * as reducers from '../reducers';
@@ -8,18 +9,22 @@ export default function configureStore(initialState) {
 
   function logger({ getState }) {
     return (next) => (action) => {
-      console.log('Middleware - will dispatch action :', action)
 
-      // Call the next dispatch method in the middleware chain.
-      let returnValue = next(action)
+      if(action){
+        console.log('Middleware - will dispatch action :', action)
 
-      console.log('Middleware - state after dispatch :', getState())
+        // Call the next dispatch method in the middleware chain.
+        let returnValue = next(action)
 
-      var replay = {action:action,next:next};
-      globals.replayCache.push(replay);
-      // This will likely be the action itself, unless
-      // a middleware further in chain changed it.
-      return returnValue
+        console.log('Middleware - state after dispatch :', getState())
+
+        var replay = {action:action,next:next};
+        globals.replayCache.push(replay);
+        // This will likely be the action itself, unless
+        // a middleware further in chain changed it.
+        return returnValue
+      }
+      return
     }
   }
 
@@ -31,13 +36,13 @@ export default function configureStore(initialState) {
   const reducer = combineReducers(reducers);
   const store = finalCreateStore(reducer, initialState);
 
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers');
-      store.replaceReducer(nextReducer);
-    });
-  }
+  // if (module.hot) {
+  //   // Enable Webpack hot module replacement for reducers
+  //   module.hot.accept('../reducers', () => {
+  //     const nextReducer = require('../reducers');
+  //     store.replaceReducer(nextReducer);
+  //   });
+  // }
 
   return store;
 }

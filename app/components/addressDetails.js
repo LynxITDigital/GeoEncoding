@@ -14,7 +14,7 @@ MapView
 class AddressDetails extends Component {
   onTitlePress(){
     console.log("onTitlePress : "  + this.props.route);
-    this.props.route.parent.pop(1);
+    this.props.routes.pop();
   }
    render(){
 
@@ -64,7 +64,6 @@ class AddressDetails extends Component {
 var styles = StyleSheet.create({
   container: {
     flex:1,
-    marginTop: 65,
     // flexDirection:'column'
   },
   heading: {
