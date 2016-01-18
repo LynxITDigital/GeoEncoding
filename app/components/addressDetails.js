@@ -8,7 +8,8 @@ Image,
 View,
 Text,
 Component,
-MapView
+MapView,
+PropTypes
 } = React
 
 class AddressDetails extends Component {
@@ -59,6 +60,11 @@ class AddressDetails extends Component {
    );
 
    }
+}
+
+AddressDetails.propTypes = {
+  data : PropTypes.object,
+  routes : PropTypes.objectOf(PropTypes.func)
 }
 
 var styles = StyleSheet.create({

@@ -7,7 +7,7 @@ import React, {
   TouchableHighlight,
   ListView,
   ScrollView,
-  RecyclerViewBackedScrollView
+  PropTypes
 } from 'react-native';
 // var Actions = require('react-native-router-flux').Actions;
 var {Actions} = require('react-native-redux-router');
@@ -15,7 +15,6 @@ var RefreshableListView = require('react-native-refreshable-listview')
 
 
 import globals from '../store/globals';
-
 
 
 export default class AddressList extends Component {
@@ -107,6 +106,11 @@ export default class AddressList extends Component {
       </View>
     );
   }
+}
+AddressList.propTypes = {
+  searchString : PropTypes.string,
+  addresses : PropTypes.object,
+  actions : PropTypes.objectOf(PropTypes.func)
 }
 
   const styles = StyleSheet.create({
