@@ -4,7 +4,32 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "clean": "cd node_modules; find . -name .babelrc | grep -v packager | xargs rm"
+    "clean": "cd node_modules; find . -name .babelrc | grep -v packager | xargs rm",
+    "test": "jest --verbose",
+    "test-debug": "node debug --harmony ./node_modules/jest-cli/bin/jest.js --runInBand reducers-address-test.js",
+    "test-chrome": "node-debug --nodejs --harmony ./node_modules/jest-cli/bin/jest.js —runInBand reducers-address-test.js"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/react-native/jestSupport/preprocessor.js",
+    "setupEnvScriptFile": "<rootDir>/node_modules/react-native/jestSupport/env.js",
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
   },
   "dependencies": {
     "react-native": "^0.17.0",
@@ -19,6 +44,13 @@
     "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
+    "babel-jest": "^6.0.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "jest-cli": "^0.8.2",
+    "react-addons-test-utils": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-tools": "^0.13.3",
     "remote-redux-devtools": "0.0.6"
   }
 }
