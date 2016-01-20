@@ -11,8 +11,7 @@ function receivePosts(results) {
   console.log("Action - receive posts :" + results);
   return {
     type: types.RECEIVE_ADDRESS,
-    addresses: results,
-    receivedAt: Date.now()
+    addresses: results
   };
 }
 function updateSearchText(searchString){
@@ -71,7 +70,6 @@ export function changeSearchText(searchString){
       dispatch(updateSearchText(searchString))
     };
 }
-
 
 export function fetchAddresses(searchString){
 
