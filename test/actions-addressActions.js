@@ -1,9 +1,9 @@
-import configuerMockStore from 'redux-mock-store'
-import nock from 'nock'
-import thunk from 'redux-thunk'
-import * as actionTypes from '../app/actions/actionTypes'
-import * as actions from '../app/actions/addressActions'
-import * as responseMock from './mock/response'
+var configuerMockStore = require('redux-mock-store')
+var nock = require('nock')
+var thunk = require('redux-thunk')
+var actionTypes = require('../app/actions/actionTypes')
+var actions = require('../app/actions/addressActions')
+var responseMock = require('./mock/response')
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 

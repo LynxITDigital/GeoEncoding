@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+var types = require('./actionTypes');
 
 function requestPosts(url) {
   return {
@@ -8,7 +8,6 @@ function requestPosts(url) {
 }
 
 function receivePosts(results) {
-  console.log("Action - receive posts :" + results);
   return {
     type: types.RECEIVE_ADDRESS,
     addresses: results
@@ -26,12 +25,6 @@ function reset(){
     type: types.RESET_STATE
   }
 }
-export function resetState(){
-  return dispatch=>{
-    dispatch(reset())
-
-  }
-}
 
 function getDetials(routerAction){
   return{
@@ -39,13 +32,6 @@ function getDetials(routerAction){
     routerAction: routerAction
   }
 
-}
-
-export function rowPress(routerAction){
-  return dispatch=>{
-    dispatch(getDetials(routerAction))
-    // routerAction()
-  }
 }
 
 function routePop(fnPop, num){
@@ -56,25 +42,33 @@ function routePop(fnPop, num){
   }
 }
 
-export function onRoutePop(fnPop, num){
+module.exports.resetState = function(){
+  return dispatch=>{
+    dispatch(reset())
 
-  console.log("Actions - onRoutePop :" + num);
+  }
+}
 
+module.exports.rowPress = function(routerAction){
+  return dispatch=>{
+    dispatch(getDetials(routerAction))
+    // routerAction()
+  }
+}
+
+module.exports.onRoutePop = function(fnPop, num){
   return dispatch=>{
     dispatch(routePop(fnPop, num))
   }
 }
 
-export function changeSearchText(searchString){
+module.exports.changeSearchText = function (searchString){
     return dispatch=>{
       dispatch(updateSearchText(searchString))
     };
 }
 
-export function fetchAddresses(searchString){
-
-    console.log("Action - fetchAddresses with searchString : " + searchString);
-
+module.exports.fetchAddresses = function(searchString){
     var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(searchString);
     return dispatch=>{
       dispatch(requestPosts(url))

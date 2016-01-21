@@ -1,4 +1,4 @@
-export var response = {results :[
+module.exports.response = {results :[
 {
 address_components: [
 {
@@ -72,7 +72,7 @@ types: [
 }
 
 
-export var response2 = {results :[
+module.exports.response2 = {results :[
 {
 address_components: [
 {
