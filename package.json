@@ -5,9 +5,10 @@
   "scripts": {
     "start": "react-native start",
     "clean": "cd node_modules; find . -name .babelrc | grep -v packager | xargs rm",
-    "test": "mocha --compilers js:babel-register",
+    "test": "jest --verbose",
     "xxxtest": "mocha --reporter spec --compilers js:babel-core/register --recursive",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
@@ -24,24 +25,21 @@
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
-    "babel-jest": "^6.0.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-2": "^6.3.13",
-    "babel-register": "^6.4.3",
-    "chai": "^3.4.1",
-    "es6-promise": "^3.0.2",
-    "expect": "^1.13.4",
-    "jest-cli": "^0.8.2",
-    "mocha": "^2.3.4",
-    "nock": "^5.2.1",
-    "proxyquire": "^1.7.3",
-    "react-addons-test-utils": "^0.14.6",
-    "react-dom": "^0.14.6",
-    "react-tools": "^0.13.3",
-    "redux-mock-store": "0.0.6",
-    "remote-redux-devtools": "0.0.6",
-    "sinon": "^1.17.2",
-    "sinon-chai": "^2.8.0"
+    "indent": "0.0.1",
+    "inspect-react-element": "^1.0.1",
+    "jest-cli": "0.8.2",
+    "object-matches": "^1.0.0",
+    "react": "^0.13.3",
+    "react-shallow-renderer-helpers": "^1.2.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "jestSupport/scriptPreprocess.js",
+    "setupTestFrameworkScriptFile": "jestSupport/customMatchers.js",
+    "unmockedModulePathPatterns": [
+      "react"
+    ],
+    "testFileExtensions": [
+      "spec.js"
+    ]
   }
 }

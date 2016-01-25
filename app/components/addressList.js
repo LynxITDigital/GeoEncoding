@@ -13,11 +13,9 @@ import React, {
 var {Actions} = require('react-native-redux-router');
 var RefreshableListView = require('react-native-refreshable-listview')
 
-
 import globals from '../store/globals';
 
-
-export default class AddressList extends Component {
+class AddressList extends View {
 
   constructor(props) {
     super(props);
@@ -37,7 +35,6 @@ export default class AddressList extends Component {
     var timeoutIndex = 0
     globals.replayCache.map(function(action){
       if( action.action.type !== 'RESET_STATE'){
-        console.log("Run Replay Action : " + action.action.type);
         timeoutIndex++;
         var dispatch = action.next;
 
@@ -49,7 +46,6 @@ export default class AddressList extends Component {
   }
 
   onRowPressed(rowData){
-      console.log("RowPressed : " + this.props);
       Actions.details({data:rowData});
   }
 
@@ -70,8 +66,6 @@ export default class AddressList extends Component {
 
   render() {
     const { searchString,addresses } = this.props;
-    console.log("Render Address List with : " + searchString);
-
     return (
       <View>
         <View style={styles.inputContainer}>
@@ -81,37 +75,16 @@ export default class AddressList extends Component {
           onChange={this.onSearchTextChanged.bind(this)}
           placeholder="Search location"/>
 
-          <TouchableHighlight
-          style={styles.button}
-          onPress={this.onFindPressed.bind(this)}>
-            <Text style={styles.buttonText}>Find</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight
-          style={styles.button}
-          onPress={this.onReplayPressed.bind(this)}>
-            <Text style={styles.buttonText}>Replay</Text>
-          </TouchableHighlight>
-
-        </View>
-        <View style={styles.listContainer}>
-          <RefreshableListView
-            dataSource={addresses}
-            renderRow={this.renderRow.bind(this)}
-            loadData={this.onFindPressed.bind(this)}
-            refreshDescription="Refreshing articles"
-          />
-
         </View>
       </View>
     );
   }
 }
-AddressList.propTypes = {
-  searchString : PropTypes.string,
-  addresses : PropTypes.object,
-  actions : PropTypes.objectOf(PropTypes.func)
-}
+// AddressList.propTypes = {
+//   searchString : PropTypes.string,
+//   addresses : PropTypes.object,
+//   actions : PropTypes.objectOf(PropTypes.func)
+// }
 
   const styles = StyleSheet.create({
     scrollView: {
@@ -168,3 +141,4 @@ AddressList.propTypes = {
       backgroundColor:'gray'
     }
   });
+module.exports = AddressList
