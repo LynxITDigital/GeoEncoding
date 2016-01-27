@@ -9,9 +9,8 @@ import React, {
   ScrollView,
   PropTypes
 } from 'react-native';
-// var Actions = require('react-native-router-flux').Actions;
-var {Actions} = require('react-native-redux-router');
 var RefreshableListView = require('react-native-refreshable-listview')
+
 
 import globals from '../store/globals';
 
@@ -46,13 +45,15 @@ class AddressList extends View {
   }
 
   onRowPressed(rowData){
-      Actions.details({data:rowData});
+      console.log(this.props);
+      this.props.navActions.details({data:rowData});
+
   }
 
   renderRow(rowData){
     var address = rowData.formatted_address;
     return(
-      <TouchableHighlight onPress={()=>this.onRowPressed(rowData)}
+      <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
           underlayColor='#dddddd'>
 <View>
         <View style={styles.row}>
@@ -75,8 +76,28 @@ class AddressList extends View {
           onChange={this.onSearchTextChanged.bind(this)}
           placeholder="Search location"/>
 
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this.onFindPressed.bind(this)}>
+            <Text style={styles.buttonText}>Find</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this.onReplayPressed.bind(this)}>
+            <Text style={styles.buttonText}>Replay</Text>
+          </TouchableHighlight>
+
+          </View>
+          <View style={styles.listContainer}>
+          <RefreshableListView
+            dataSource={addresses}
+            renderRow={this.renderRow.bind(this)}
+            loadData={this.onFindPressed.bind(this)}
+            refreshDescription="Refreshing articles"
+          />
+          </View>
         </View>
-      </View>
     );
   }
 }

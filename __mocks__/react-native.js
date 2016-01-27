@@ -10,10 +10,16 @@ ReactNative.StyleSheet = {
 };
 
 class View extends React.Component {}
+class TouchableWithoutFeedback extends React.Component {}
 class Text extends React.Component {}
+class TextInput extends React.Component {}
+class ListView extends React.Component {}
 
 ReactNative.View = View;
+ReactNative.TouchableWithoutFeedback = TouchableWithoutFeedback;
 ReactNative.Text = Text;
-ReactNative.TouchableWithoutFeedback = View;
+ReactNative.TextInput = TextInput;
+ReactNative.ListView = ListView;
+
 
 module.exports = ReactNative;

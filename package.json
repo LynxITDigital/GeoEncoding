@@ -8,6 +8,7 @@
     "test": "jest --verbose",
     "xxxtest": "mocha --reporter spec --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
+    "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
     "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache"
   },
   "dependencies": {

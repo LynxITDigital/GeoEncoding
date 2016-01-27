@@ -1,5 +1,5 @@
 const React = require('react-native');
-const { Text, View, TouchableWithoutFeedback } = React;
+const { Text, View, TouchableHighlight } = React;
 const Banner = require.requireActual('../../app/components/Banner');
 
 const shallowHelpers = require('react-shallow-renderer-helpers');
