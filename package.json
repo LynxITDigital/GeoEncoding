@@ -12,6 +12,7 @@
     "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache"
   },
   "dependencies": {
+    "lodash": "^4.0.1",
     "react-native": "^0.17.0",
     "react-native-button": "^1.2.1",
     "react-native-maps": "^0.2.3",
