@@ -92,9 +92,9 @@ class GeoEncodingApp extends Component {
     //  var boundCreators = bindActionCreators(addressActions, dispatch);
 
      return(<Router>
-         <Schema name="modal" sceneConfig={Animations.FloatFromBottom} navBar={NavBarModal}/>
-         <Schema name="default" sceneConfig={Animations.FloatFromRight} navBar={NavBar}/>
-         <Schema name="right" sceneConfig={Animations.FloatFromRight} navBar={NavBarBack}/>
+         <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal}/>
+         <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
+         <Schema name="right" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBarBack}/>
          <Schema name="withoutAnimation"/>
 
          <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="right"/>
