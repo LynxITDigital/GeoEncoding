@@ -42,62 +42,13 @@ class GeoEncodingApp extends Component {
   constructor(props) {
     super(props);
   }
-// render() {
-//     const { state, dispatch } = this.props;
-//
-//     console.log("state :" + state);
-//     // let boundActionCreators = bindActionCreators(addressActions, dispatch)
-//     return (
-//       <AddressList
-//       searchString={state.searchString}
-//       addresses={state.addresses}
-//         {...bindActionCreators(addressActions, dispatch)}
-//         {...bindActionCreators(Actions, dispatch)} />
-//     );
-//   }
-
-  // render(){
-  //      const { state, dispatch } = this.props;
-  //      console.log("GeoEncodingApp Render :" + state);
-  //
-  //   return(<Router>
-  //       <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal}/>
-  //       <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
-  //       <Schema name="withoutAnimation" navBar={NavBar}/>
-  //       <Schema name="tab" navBar={NavBar}/>
-  //
-  //       <Route name="launch" component={Launch} initial={true} hideNavBar={true} title="Launch"/>
-  //
-  //   </Router>);
-  // }
-
-  // <Router>
-  //     <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal}/>
-  //     <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
-  //     <Schema name="withoutAnimation" navBar={NavBar}/>
-  //     <Schema name="tab" navBar={NavBar}/>
-  //
-  //     <Route name="launch" component={Launch} initial={true} hideNavBar={true} title="Launch"/>
-  //     <Route name="register" component={Register} title="Register"/>
-  //     <Route name="home" component={Home} title="Home" type="replace"/>
-  //     <Route name="login" component={Login} schema="modal"/>
-  //     <Route name="register2" component={Register} schema="withoutAnimation"/>
-  //     <Route name="error" component={Error} schema="popup"/>
-  // </Router>
-
    render(){
-    //  const { state, dispatch } = this.props;
-    //  console.log("GeoEncodingApp Render :" + state);
-
-    //  var boundCreators = bindActionCreators(addressActions, dispatch);
-
      return(<Router>
-         <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal}/>
+         <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBarModal}/>
          <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
-         <Schema name="right" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBarBack}/>
          <Schema name="withoutAnimation"/>
 
-         <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="right"/>
+         <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
          <Route name="launch" component={connect(mapStateToProps,mapDispatchToProps)(AddressList)} title="Geo Encoding" hideNavBar={false} initial={true}/>
      </Router>
    );
