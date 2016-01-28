@@ -82,12 +82,6 @@ class AddressList extends View {
             <Text style={styles.buttonText}>Find</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight
-          style={styles.button}
-          onPress={this.onReplayPressed.bind(this)}>
-            <Text style={styles.buttonText}>Replay</Text>
-          </TouchableHighlight>
-
           </View>
           <View style={styles.listContainer}>
           <RefreshableListView
@@ -143,9 +137,9 @@ class AddressList extends View {
       padding :5,
       height: 36,
       borderWidth: 1,
-      borderColor: '#000',
+      borderColor: '#48BBEC',
       borderRadius: 8,
-      backgroundColor:'#097591',
+      backgroundColor:'#48BBEC',
       alignSelf:'stretch',
       justifyContent:'center'
     },
