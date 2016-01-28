@@ -1,18 +1,18 @@
 'use strict';
 
 var React = require('react-native');
-
+var MapBoxView = require('react-native-mapbox-gl');
 var {
 StyleSheet,
 Image,
 View,
 Text,
 Component,
-MapView,
 PropTypes
 } = React
 
 class AddressDetails extends Component {
+  mixins:[MapBoxView.Mixin];
   onTitlePress(){
     console.log("onTitlePress : "  + this.props.route);
     this.props.routes.pop();
@@ -25,6 +25,10 @@ class AddressDetails extends Component {
     var title = rowData.formatted_address;
     var latLong = 'Lat : ' + lat + ' : Long :' + lng;
     // var latLong = 'Lat - xxx : Long - xxx ';
+    var center = {
+      latitude: -32.940371,
+      longitude: 151.742358
+    }
 
     var region = {
         latitude: lat,
@@ -35,10 +39,11 @@ class AddressDetails extends Component {
 
     var markers = [
                     {
-                    latitude: lat,
-                    longitude: lng,
+                    coordinates:[lat,lng],
                     title: title,
-                    subtitle: title
+                    subtitle: title,
+                    type:'point',
+                    id:'marker'
                     }
                   ];
 
@@ -50,10 +55,14 @@ class AddressDetails extends Component {
        </View>
        <Text style={styles.description}>{latLong}</Text>
 
-       <MapView style={styles.map}
-         region = {region}
-
+       <MapBoxView style={styles.map}
+         direction = {0}
+         rotateEnabled={true}
+         showUserLocation={true}
+         accessToken={'pk.eyJ1IjoicmVldHVwZXRlciIsImEiOiJjaWp4b3dmMHUxNzk4dm9raWNtOWtxemM1In0.BTALbIWw8khnomnKJULRdg'}
+         styleURL={'mapbox://styles/reetupeter/cijxrwa6400f1qtkql7drtsug'}
          annotations={markers}
+         centerCoordinate={center}
        />
 
      </View>
