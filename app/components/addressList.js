@@ -9,6 +9,7 @@ import React, {
   ScrollView,
   PropTypes
 } from 'react-native';
+import _ from 'lodash';
 var RefreshableListView = require('react-native-refreshable-listview')
 
 
@@ -22,6 +23,14 @@ class AddressList extends View {
 
   onSearchTextChanged(event){
     this.props.actions.changeSearchText(event.nativeEvent.text);
+    this.onFindPressed();
+    /*
+    var debouncedFetch = function(){
+        return _.debounce(this.onFindPressed(), 100);
+    }
+    console.log(debouncedFetch);
+    debouncedFetch();
+    */
   }
 
   onFindPressed(){
@@ -45,7 +54,7 @@ class AddressList extends View {
   }
 
   onRowPressed(rowData){
-      console.log(this.props);
+      //console.log(this.props);
       this.props.navActions.details({data:rowData});
 
   }
@@ -75,12 +84,6 @@ class AddressList extends View {
           value= {searchString}
           onChange={this.onSearchTextChanged.bind(this)}
           placeholder="Search location"/>
-
-          <TouchableHighlight
-          style={styles.button}
-          onPress={this.onFindPressed.bind(this)}>
-            <Text style={styles.buttonText}>Find</Text>
-          </TouchableHighlight>
 
           </View>
           <View style={styles.listContainer}>
@@ -120,11 +123,11 @@ class AddressList extends View {
       backgroundColor: '#F5FCFF',
     },
     searchInput: {
+      flex: 1,
       height: 36,
-      width:220,
       padding: 4,
       marginLeft : 10,
-      marginRight: 5,
+      marginRight: 10,
       fontSize: 18,
       color: 'gray',
       borderWidth: 1,
