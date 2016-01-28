@@ -2,15 +2,22 @@
 
 var React = require('react-native');
 
+var MapView = require('react-native-maps');
+
 var {
 StyleSheet,
 Image,
 View,
 Text,
 Component,
-MapView,
 PropTypes
 } = React
+
+const LATITUDE = 37.78825;
+const LONGITUDE = -122.4324;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * 1;
+const SPACE = 0.01;
 
 class AddressDetails extends Component {
   onTitlePress(){
@@ -41,20 +48,20 @@ class AddressDetails extends Component {
                     subtitle: title
                     }
                   ];
-
+                          console.log(MapView);
     return (
      <View style={styles.container}>
        <View style={styles.heading}>
-      <Text style={styles.title} onPress={this.onTitlePress.bind(this)}>{title}</Text>
-         <View style={styles.separator}/>
+         <Text style={styles.title} onPress={this.onTitlePress.bind(this)}>{title}</Text>
+         <View style={styles.separator}></View>
        </View>
        <Text style={styles.description}>{latLong}</Text>
 
-       <MapView style={styles.map}
-         region = {region}
-
-         annotations={markers}
-       />
+         <MapView
+           ref="map"
+           style={styles.map}
+           initialRegion={region}
+         />
 
      </View>
    );
