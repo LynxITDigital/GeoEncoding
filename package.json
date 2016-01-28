@@ -12,7 +12,6 @@
     "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache"
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
     "react-native": "^0.17.0",
     "react-native-button": "^1.2.1",
     "react-native-navbar": "^0.8.0",
@@ -28,6 +27,7 @@
     "babel-core": "^6.4.5",
     "indent": "0.0.1",
     "inspect-react-element": "^1.0.1",
+    "isomorphic-fetch": "^2.2.1",
     "jest-cli": "0.8.2",
     "object-matches": "^1.0.0",
     "react": "^0.13.3",
