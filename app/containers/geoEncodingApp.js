@@ -21,6 +21,7 @@ import Launch from '../components/launch';
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
+  isLoading : state.addressesByGeoEncoding.isLoading,
   searchString : state.addressesByGeoEncoding.searchString,
   routes : state.routes
 });

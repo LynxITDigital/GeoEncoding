@@ -1,4 +1,5 @@
 import React, {
+  ActivityIndicatorIOS,
   StyleSheet,
   Component,
   View,
@@ -67,6 +68,25 @@ class AddressList extends View {
 
   render() {
     const { searchString,addresses } = this.props;
+
+    var spinner = this.props.isLoading ?
+      ( <ActivityIndicatorIOS
+          style={styles.activityIdicator}
+          hidden='true'
+          size='large'/> ) :
+      ( <View/> );
+
+    var listView = this.props.isLoading ?
+      ( <View/> ) :
+      ( <View style={styles.listContainer}>
+          <RefreshableListView
+            dataSource={addresses}
+            renderRow={this.renderRow.bind(this)}
+            loadData={this.onFindPressed.bind(this)}
+            refreshDescription="Refreshing articles"
+          />
+      </View> );
+
     return (
       <View>
         <View style={styles.inputContainer}>
@@ -89,14 +109,9 @@ class AddressList extends View {
           </TouchableHighlight>
 
           </View>
-          <View style={styles.listContainer}>
-          <RefreshableListView
-            dataSource={addresses}
-            renderRow={this.renderRow.bind(this)}
-            loadData={this.onFindPressed.bind(this)}
-            refreshDescription="Refreshing articles"
-          />
-          </View>
+          {spinner}
+
+          {listView}
         </View>
     );
   }
@@ -111,6 +126,9 @@ class AddressList extends View {
     scrollView: {
     height: 600,
   },
+    activityIdicator: {
+      marginTop:20,
+    },
     inputContainer: {
       marginTop:10,
       flexDirection:'row',
