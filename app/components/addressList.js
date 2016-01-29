@@ -117,15 +117,13 @@ class AddressList extends View {
       marginTop:10,
       flexDirection:'row',
       alignItems: 'center',
-      alignSelf:'stretch',
-      backgroundColor: '#F5FCFF',
+      alignSelf:'stretch'
     },
     listContainer: {
       marginTop:20,
       flexDirection:'row',
       alignItems: 'center',
-      alignSelf:'stretch',
-      backgroundColor: '#F5FCFF',
+      alignSelf:'stretch'
     },
     searchInput: {
       flex: 1,
@@ -137,8 +135,8 @@ class AddressList extends View {
       color: 'gray',
       borderWidth: 1,
       borderColor: 'gray',
-      borderRadius: 8
-
+      borderRadius: 8,
+      backgroundColor: '#F5FCFF'
     },
     button:{
       marginLeft : 5,

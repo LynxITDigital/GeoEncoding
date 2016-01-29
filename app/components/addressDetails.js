@@ -89,7 +89,6 @@ var styles = StyleSheet.create({
     // flexDirection:'column'
   },
   heading: {
-    backgroundColor: '#F8F8F8',
   },
   separator: {
     height: 1,
