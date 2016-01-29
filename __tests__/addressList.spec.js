@@ -11,13 +11,13 @@ describe('AddressList', function() {
     it('should render TextInput placeholder', () => {
       shallowRenderer.render(() => <AddressList />);
       let output = shallowRenderer.getRenderOutput();
-      expect("Search location").toBe(output.props.children[0].props.children[0].props.placeholder);
+      expect("Search location").toBe(output.props.children[0].props.children.props.placeholder);
     });
 
     it('should render searchString property', () => {
       shallowRenderer.render(() => <AddressList searchString="melbourne"/>);
       let output = shallowRenderer.getRenderOutput();
-      expect("melbourne").toBe(output.props.children[0].props.children[0].props.value);
+      expect("melbourne").toBe(output.props.children[0].props.children.props.value);
     });
 
 });
