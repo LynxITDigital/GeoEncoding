@@ -7,7 +7,8 @@ import React, {
   TouchableHighlight,
   ListView,
   ScrollView,
-  PropTypes
+  PropTypes,
+  Image
 } from 'react-native';
 // var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
@@ -61,15 +62,19 @@ class AddressList extends View {
 
   renderRow(rowData){
     var address = rowData.formatted_address;
+    var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
+    console.log('WIGHEGIEHIEOGHWOHIEGOIW');
+    console.log(imageURI);
     return(
       <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
           underlayColor='#dddddd'>
-<View>
-        <View style={styles.row}>
-        <Text>{address}</Text>
-        </View>
-        <View style={styles.separator}/>
-        </View>
+          <View>
+                <View style={styles.row}>
+                    <Text style={styles.address}>{address}</Text>
+                    <Image style = {styles.thumb} source = {{uri: imageURI}}/>
+                </View>
+                <View style={styles.separator}/>
+          </View>
       </TouchableHighlight>
     )
   }
@@ -152,11 +157,18 @@ class AddressList extends View {
     },
     row:{
       padding :10,
-      height: 50,
+      flexDirection: 'column'
 
     },separator:{
       height:1,
       backgroundColor:'gray'
+  },
+  thumb: {
+        height: 100,
+        marginTop: 10
+    },
+    address: {
+        fontSize: 10
     }
   });
 module.exports = AddressList
