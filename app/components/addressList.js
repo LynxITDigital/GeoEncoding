@@ -9,7 +9,7 @@ import React, {
   ScrollView,
   PropTypes
 } from 'react-native';
-import _ from 'lodash';
+// var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
 
 
