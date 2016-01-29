@@ -30,7 +30,7 @@ class AddressDetails extends Component {
     const { lat, lng } = rowData.geometry.location;
 
     var title = rowData.formatted_address;
-    var latLong = 'Lat : ' + lat + ' : Long :' + lng;
+    var latLong = 'Lat : ' + lat + '\nLong :' + lng;
     // var latLong = 'Lat - xxx : Long - xxx ';
 
     var region = {
@@ -38,7 +38,12 @@ class AddressDetails extends Component {
         longitude: lng,
         latitudeDelta: 0.01,
         longitudeDelta: 0.01
-      }
+    };
+
+    var latlng = {
+        latitude: lat,
+        longitude: lng,
+    };
 
     var markers = [
                     {
@@ -48,7 +53,7 @@ class AddressDetails extends Component {
                     subtitle: title
                     }
                   ];
-                          console.log(MapView);
+                          //console.log(MapView);
     return (
      <View style={styles.container}>
        <View style={styles.heading}>
@@ -61,7 +66,11 @@ class AddressDetails extends Component {
            ref="map"
            style={styles.map}
            initialRegion={region}
-         />
+         >
+           <MapView.Marker
+               coordinate = {latlng}
+               title = {title}/>
+         </MapView>
 
      </View>
    );
@@ -88,12 +97,12 @@ var styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    margin: 5,
+    margin: 10,
     color: '#656565'
   },
   description: {
-    fontSize: 18,
-    margin: 5,
+    fontSize: 16,
+    margin: 10,
     color: '#656565'
   },
   map: {
