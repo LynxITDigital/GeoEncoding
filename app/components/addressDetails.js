@@ -5,25 +5,35 @@ var React = require('react-native');
 var MapView = require('react-native-maps');
 
 var {
-StyleSheet,
-Image,
-View,
-Text,
-Component,
-PropTypes
+    StyleSheet,
+    Image,
+    View,
+    Text,
+    Component,
+    TouchableHighlight,
+    PropTypes,
+    LinkingIOS
 } = React
 
+/*
 const LATITUDE = 37.78825;
 const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * 1;
 const SPACE = 0.01;
+*/
 
 class AddressDetails extends Component {
   onTitlePress(){
     console.log("onTitlePress : "  + this.props.route);
     this.props.routes.pop();
   }
+
+  onDirectionPressed(){
+      var url = 'http://maps.apple.com/?daddr=' + this.props.data.geometry.location.lat + ',' + this.props.data.geometry.location.lng + '&dirflg=d';
+      LinkingIOS.openURL(url);
+  }
+
    render(){
 
     const rowData =  this.props.data;
@@ -45,15 +55,6 @@ class AddressDetails extends Component {
         longitude: lng,
     };
 
-    var markers = [
-                    {
-                    latitude: lat,
-                    longitude: lng,
-                    title: title,
-                    subtitle: title
-                    }
-                  ];
-                          //console.log(MapView);
     return (
      <View style={styles.container}>
        <View style={styles.heading}>
@@ -71,6 +72,12 @@ class AddressDetails extends Component {
                coordinate = {latlng}
                title = {title}/>
          </MapView>
+
+         <TouchableHighlight style = {styles.button}
+                    underlayColor = '#99d9f4'
+                    onPress = {this.onDirectionPressed.bind(this)}>
+                    <Text style = {styles.buttonText}>Direction</Text>
+          </TouchableHighlight>
 
      </View>
    );
@@ -105,11 +112,30 @@ var styles = StyleSheet.create({
     color: '#656565'
   },
   map: {
-   height: 350,
-   margin: 10,
+   height: 300,
+   marginRight: 10,
+   marginLeft: 10,
+   marginBottom: 10,
    borderWidth: 1,
    borderColor: '#000000',
- }
+ },
+ buttonText: {
+        fontSize: 18,
+        color: 'white',
+        alignSelf: 'center'
+    },
+ button: {
+    height: 36,
+    flexDirection: 'row',
+    backgroundColor: '#48BBEC',
+    borderColor: '48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginLeft: 10,
+    marginRight: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+}
 });
 
 

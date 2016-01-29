@@ -63,8 +63,6 @@ class AddressList extends View {
   renderRow(rowData){
     var address = rowData.formatted_address;
     var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
-    console.log('WIGHEGIEHIEOGHWOHIEGOIW');
-    console.log(imageURI);
     return(
       <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
           underlayColor='#dddddd'>
