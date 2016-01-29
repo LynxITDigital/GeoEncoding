@@ -17,12 +17,6 @@ before_install:
   - brew reinstall xctool
   - brew reinstall watchman
   - npm install
-  - gem install xcpretty
-  - gem install cocoapods
-  - pod install --project-directory=ios
-
-before_script:
-  - npm run compile:test
 
 script:
   - npm test
