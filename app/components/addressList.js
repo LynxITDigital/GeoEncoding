@@ -8,11 +8,12 @@ import React, {
   ListView,
   ScrollView,
   PropTypes,
-  Image
+  Image,
+  AsyncStorage
 } from 'react-native';
 // var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
-
+const STORAGE_KEY = '@GeoEncoding:address'
 
 import globals from '../store/globals';
 
@@ -22,8 +23,26 @@ class AddressList extends View {
     super(props);
   }
 
+  componentDidMount() {
+      this.loadAddress().done();
+  }
+
+  async loadAddress() {
+      try {
+          let value = await AsyncStorage.getItem(STORAGE_KEY);
+          this.props.actions.changeSearchText(value);
+      } catch(error) {
+          console.log(error);
+      }
+  }
+
   onSearchTextChanged(event){
     this.props.actions.changeSearchText(event.nativeEvent.text);
+    try {
+        AsyncStorage.setItem(STORAGE_KEY, event.nativeEvent.text);
+    } catch (error){
+        console.log(error.message);
+    }
     this.onFindPressed();
     /*
     var debouncedFetch = function(){
