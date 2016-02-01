@@ -89,14 +89,14 @@ class AddressList extends View {
           placeholder="Search location"/>
 
           </View>
-          <View style={styles.listContainer}>
+          <ScrollView style={styles.listContainer}>
           <RefreshableListView
             dataSource={addresses}
             renderRow={this.renderRow.bind(this)}
             loadData={this.onFindPressed.bind(this)}
             refreshDescription="Refreshing articles"
           />
-          </View>
+          </ScrollView>
         </View>
     );
   }
@@ -108,9 +108,6 @@ class AddressList extends View {
 // }
 
   const styles = StyleSheet.create({
-    scrollView: {
-    height: 600,
-  },
     inputContainer: {
       marginTop:10,
       flexDirection:'row',
@@ -119,9 +116,8 @@ class AddressList extends View {
     },
     listContainer: {
       marginTop:20,
-      flexDirection:'row',
-      alignItems: 'center',
-      alignSelf:'stretch'
+      flexDirection:'column',
+      height: 600
     },
     searchInput: {
       flex: 1,
