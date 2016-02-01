@@ -11,7 +11,7 @@ import React, {
   Image,
   AsyncStorage
 } from 'react-native';
-// var _ = require('lodash');
+var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
 const STORAGE_KEY = '@GeoEncoding:address'
 
@@ -25,6 +25,7 @@ class AddressList extends View {
 
   componentDidMount() {
       this.loadAddress().done();
+      this.debouncedFetch = _.debounce(this.props.actions.fetchAddresses, 500);
   }
 
   async loadAddress() {
@@ -37,20 +38,20 @@ class AddressList extends View {
   }
 
   onSearchTextChanged(event){
+    // Fire change text action
     this.props.actions.changeSearchText(event.nativeEvent.text);
+
+    // Store value in AsyncStorage
     try {
         AsyncStorage.setItem(STORAGE_KEY, event.nativeEvent.text);
     } catch (error){
         console.log(error.message);
     }
-    this.onFindPressed();
-    /*
-    var debouncedFetch = function(){
-        return _.debounce(this.onFindPressed(), 100);
-    }
-    console.log(debouncedFetch);
-    debouncedFetch();
-    */
+
+    // Call debounced function
+    event.persist()
+    var address = this.props.searchString;
+    this.debouncedFetch(address);
   }
 
   onFindPressed(){
