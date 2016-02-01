@@ -164,7 +164,7 @@ class AddressList extends View {
         marginTop: 10
     },
     address: {
-        fontSize: 10
+        fontSize: 14
     }
   });
 module.exports = AddressList
