@@ -13,6 +13,8 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import org.pgsqlite.SQLitePluginPackage;
+
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
   
   private ReactInstanceManager mReactInstanceManager;
@@ -29,6 +31,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
     .setJSMainModuleName("index.android")
     .addPackage(new MainReactPackage())
     .addPackage(new AirPackage())
+    .addPackage(new SQLitePluginPackage(this))   // register SQLite Plugin here
     .setUseDeveloperSupport(BuildConfig.DEBUG)
     .setInitialLifecycleState(LifecycleState.RESUMED)
     .build();

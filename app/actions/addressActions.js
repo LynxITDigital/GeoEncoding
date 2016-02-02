@@ -1,4 +1,5 @@
 var types = require('./actionTypes');
+var queryFavourites = require('../database/database');
 
 function requestPosts(url) {
   return {
@@ -13,6 +14,25 @@ function receivePosts(results) {
     addresses: results
   };
 }
+
+
+function requestFavDB() {
+  return {
+    type: types.REQUEST_FAV_DB
+  };
+}
+
+
+
+function receiveFavDB(results) {
+  return {
+    type: types.RECEIVE_FAV_DB,
+    addresses: results
+  };
+}
+
+
+
 function updateSearchText(searchString){
   return{
     type: types.CHANGE_SEARCH_TEXT,
@@ -80,6 +100,27 @@ module.exports.fetchAddresses = function(searchString){
       )
       .catch((error) => {
         console.log("Action - FETCH ERROR " + error);
+      })
+    };
+}
+
+
+module.exports.fetchFavourites = function(db){
+
+console.log("FETCHING FAVS");
+    return dispatch=>{
+      dispatch(requestFavDB())
+
+      return db.getFavourites().then((tx, result) => {
+          console.log('FETCHED FAVS');
+          console.log(db.getFav());
+          //console.log(favourites);
+          console.log(db.favourites);
+
+          dispatch(receiveFavDB(db.getFav()));
+      })
+      .catch((error) => {
+        console.log("Action - DB ERROR " + error);
       })
     };
 }

@@ -4,6 +4,8 @@ import {ListView} from 'react-native';
 var ds = new ListView.DataSource({ rowHasChanged:(r1,r2) => r1.place_id !== r2.place_id });
 var initialState = {isLoading:false, searchString: '', addresses:ds.cloneWithRows([])};
 
+
+
 export default function addressesByGeoEncoding(state = initialState, action = {}){
   console.log("Receiver executed for action : " + action.type);
   switch (action.type) {
@@ -12,6 +14,10 @@ export default function addressesByGeoEncoding(state = initialState, action = {}
     case types.REQUEST_ADDRESS:
         return Object.assign({},state, { isLoading:true});
     case types.RECEIVE_ADDRESS:
+      return Object.assign({},state, { isLoading:false, addresses: ds.cloneWithRows(action.addresses)});
+    case types.REQUEST_FAV_DB:
+        return Object.assign({},state, { isLoading:true});
+    case types.RECEIVE_FAV_DB:
       return Object.assign({},state, { isLoading:false, addresses: ds.cloneWithRows(action.addresses)});
     case types.RESET_STATE:
       return Object.assign({},state, initialState);

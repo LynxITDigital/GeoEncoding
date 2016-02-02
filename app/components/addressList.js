@@ -15,12 +15,16 @@ var RefreshableListView = require('react-native-refreshable-listview');
 var { createAnimatableComponent, View } = require('react-native-animatable');
 const STORAGE_KEY = '@GeoEncoding:address'
 
+
+import Database from '../database/database';
+
 import globals from '../store/globals';
 
 class AddressList extends View {
 
   constructor(props) {
     super(props);
+    Database.loadDB();
   }
 
   componentDidMount() {
@@ -77,7 +81,10 @@ class AddressList extends View {
   onRowPressed(rowData){
       //console.log(this.props);
       this.props.navActions.details({data:rowData});
+  }
 
+  onFavPressed(address) {
+    Database.insertAddress(address);
   }
 
   renderRow(rowData){
@@ -90,6 +97,10 @@ class AddressList extends View {
                 <View style={styles.row}>
                     <Text style={styles.address}>{address}</Text>
                     <Image style = {styles.thumb} source = {{uri: imageURI}}/>
+                    <Text style={styles.button}
+                            onPress={this.onFavPressed.bind(this, address)}>
+                            Add to Favourites
+                    </Text>
                 </View>
                 <View style={styles.separator}/>
           </View>
@@ -97,7 +108,16 @@ class AddressList extends View {
     )
   }
 
+  renderFav(rowData) {
+    return(
+    <View>
+        <Text style={styles.address}>{rowData.address}</Text>
+    </View>
+   );
+  }
+
   render() {
+    console.log("RENDERING")
     const { searchString,addresses } = this.props;
     return (
       <View>
