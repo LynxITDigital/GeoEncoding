@@ -22,14 +22,10 @@ class NavBarBase extends React.Component {
        return <NavigationBar style={styles.navBar}
                              titleColor='white'
                              buttonsColor='white'
-                             statusBar= {{style:'light-content', hidden: true}}
                              title= {{title:this.props.title, tintColor: '#fff'}}
                              prevTitle={this.props.initial ? " " : null}
                              leftButton = {this.props.leftButton ? this.props.leftButton : {title:''}}
                              rightButton = {this.props.rightButton ? this.props.rightButton : {title:''}}
-
-
-
            />
    }
 }
