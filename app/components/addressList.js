@@ -1,18 +1,18 @@
 import React, {
   StyleSheet,
   Component,
-  View,
+  ScrollView,
   Text,
   TextInput,
   TouchableHighlight,
   ListView,
-  ScrollView,
   PropTypes,
   Image,
   AsyncStorage
 } from 'react-native';
 var _ = require('lodash');
-var RefreshableListView = require('react-native-refreshable-listview')
+var RefreshableListView = require('react-native-refreshable-listview');
+var { createAnimatableComponent, View } = require('react-native-animatable');
 const STORAGE_KEY = '@GeoEncoding:address'
 
 import globals from '../store/globals';
@@ -54,7 +54,7 @@ class AddressList extends View {
     this.debouncedFetch(address);
   }
 
-  onFindPressed(){
+  updateList(){
     this.props.actions.fetchAddresses(this.props.searchString);
   }
 
@@ -86,7 +86,7 @@ class AddressList extends View {
     return(
       <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
           underlayColor='#dddddd'>
-          <View>
+          <View animation="fadeIn" duration={800} delay={200}>
                 <View style={styles.row}>
                     <Text style={styles.address}>{address}</Text>
                     <Image style = {styles.thumb} source = {{uri: imageURI}}/>
@@ -113,7 +113,7 @@ class AddressList extends View {
           <RefreshableListView
             dataSource={addresses}
             renderRow={this.renderRow.bind(this)}
-            loadData={this.onFindPressed.bind(this)}
+            loadData={this.updateList.bind(this)}
             refreshDescription="Refreshing articles"
           />
           </ScrollView>
