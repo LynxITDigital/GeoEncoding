@@ -96,10 +96,11 @@ class Favourites extends View {
    );
   }
 
+
   render() {
     const { searchString,addresses } = this.props;
     return (
-      <View>
+        <View style={styles.container}>
           <View style={styles.listContainer}>
             <ListView
               dataSource={addresses}
@@ -120,8 +121,11 @@ class Favourites extends View {
     scrollView: {
     height: 600,
   },
-    listContainer: {
+  container: {
       marginTop:80,
+  },
+    listContainer: {
+      marginTop:10,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch',

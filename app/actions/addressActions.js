@@ -115,7 +115,7 @@ console.log("FETCHING FAVS");
           console.log('FETCHED FAVS');
           console.log(db.getFav());
           //console.log(favourites);
-          console.log(db.favourites);
+          //console.log(db.favourites);
 
           dispatch(receiveFavDB(db.getFav()));
       })

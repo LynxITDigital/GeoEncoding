@@ -149,7 +149,7 @@ class AddressList extends Component {
 
   const styles = StyleSheet.create({
     inputContainer: {
-      marginTop:10,
+      marginTop:80,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch'
