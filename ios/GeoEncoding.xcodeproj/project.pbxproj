@@ -153,9 +153,6 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		AA4139C81C60545900F46F0D /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		AEB5B0721C6029CD0008344F /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
-		AEB5B0841C6033360008344F /* Sample.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Sample.MP4; path = ../../../../Downloads/Sample.MP4; sourceTree = "<group>"; };
-		AEB5B0871C6033D20008344F /* Sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Sample.mp4; path = ../../../../Downloads/Sample.mp4; sourceTree = "<group>"; };
-		AEB5B0891C6034720008344F /* Sample2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Sample2.mp4; path = ../../../../Downloads/Sample2.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,9 +319,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				AEB5B0891C6034720008344F /* Sample2.mp4 */,
-				AEB5B0871C6033D20008344F /* Sample.mp4 */,
-				AEB5B0841C6033360008344F /* Sample.MP4 */,
 				13B07FAE1A68108700A75B9A /* GeoEncoding */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* GeoEncodingTests */,
