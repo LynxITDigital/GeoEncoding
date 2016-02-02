@@ -8,7 +8,7 @@ npm install
 ```
 
 # CodePush
-Now you can update your app remotely without going through app store using CodePush. Currently it work for iOS only.
+Now you can update your app remotely without going through app store using CodePush. It works with both iOS and Android.
 
 To bundle
 ```shell
