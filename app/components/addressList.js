@@ -17,7 +17,7 @@ const STORAGE_KEY = '@GeoEncoding:address'
 
 import globals from '../store/globals';
 
-class AddressList extends View {
+class AddressList extends Component {
 
   constructor(props) {
     super(props);
