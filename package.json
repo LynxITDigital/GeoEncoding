@@ -16,6 +16,7 @@
     "react-native": "^0.17.0",
     "react-native-animatable": "^0.5.0",
     "react-native-button": "^1.2.1",
+    "react-native-code-push": "^1.6.0-beta",
     "react-native-maps": "^0.2.3",
     "react-native-navbar": "git://github.com/NyanWinKyaw/react-native-navbar#master",
     "react-native-redux-router": "git://github.com/Proyoyo/react-native-redux-router#master",
