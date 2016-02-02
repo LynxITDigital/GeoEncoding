@@ -4,6 +4,7 @@ import com.AirMaps.AirPackage;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
 import com.facebook.react.LifecycleState;
@@ -15,32 +16,39 @@ import com.facebook.soloader.SoLoader;
 
 import org.pgsqlite.SQLitePluginPackage;
 
-public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
-  
+import com.microsoft.codepush.react.CodePush;
+import android.support.v4.app.FragmentActivity;
+
+
+public class MainActivity extends FragmentActivity implements DefaultHardwareBackBtnHandler {
+
   private ReactInstanceManager mReactInstanceManager;
   private ReactRootView mReactRootView;
-  
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    CodePush codePush = new CodePush("9OcY7WuRIwcigP2x6H5z8bTZPLN94yXS9p7Fg", this, BuildConfig.DEBUG);
+
     mReactRootView = new ReactRootView(this);
-    
     mReactInstanceManager = ReactInstanceManager.builder()
     .setApplication(getApplication())
-    .setBundleAssetName("index.android.bundle")
+    // .setBundleAssetName("index.android.bundle")
+    .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
     .setJSMainModuleName("index.android")
     .addPackage(new MainReactPackage())
     .addPackage(new AirPackage())
     .addPackage(new SQLitePluginPackage(this))   // register SQLite Plugin here
+    .addPackage(codePush.getReactPackage())
     .setUseDeveloperSupport(BuildConfig.DEBUG)
     .setInitialLifecycleState(LifecycleState.RESUMED)
     .build();
-    
+
     mReactRootView.startReactApplication(mReactInstanceManager, "GeoEncoding", null);
-    
+
     setContentView(mReactRootView);
   }
-  
+
   @Override
   public boolean onKeyUp(int keyCode, KeyEvent event) {
     if (keyCode == KeyEvent.KEYCODE_MENU && mReactInstanceManager != null) {
@@ -49,7 +57,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
     }
     return super.onKeyUp(keyCode, event);
   }
-  
+
   @Override
   public void onBackPressed() {
     if (mReactInstanceManager != null) {
@@ -58,25 +66,25 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
       super.onBackPressed();
     }
   }
-  
+
   @Override
   public void invokeDefaultOnBackPressed() {
     super.onBackPressed();
   }
-  
+
   @Override
   protected void onPause() {
     super.onPause();
-    
+
     if (mReactInstanceManager != null) {
       mReactInstanceManager.onPause();
     }
   }
-  
+
   @Override
   protected void onResume() {
     super.onResume();
-    
+
     if (mReactInstanceManager != null) {
       mReactInstanceManager.onResume(this, this);
     }

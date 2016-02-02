@@ -58,7 +58,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -77,5 +77,5 @@ dependencies {
     compile 'com.facebook.react:react-native:0.17.+'
     compile project(':AirMaps')
     compile project(':react-native-sqlite-storage')
-    compile project(':react-native-sqlite-storage')
+    compile project(':react-native-code-push')
 }
