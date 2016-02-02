@@ -18,6 +18,7 @@ import * as addressActions from '../actions/addressActions';
 import AddressList from '../components/addressList';
 import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
+import VideoPage from '../components/videoPage';
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
@@ -50,6 +51,7 @@ class GeoEncodingApp extends Component {
 
          <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
          <Route name="launch" component={connect(mapStateToProps,mapDispatchToProps)(AddressList)} title="Geo Encoding" hideNavBar={false} initial={true}/>
+         <Route name="video" component={VideoPage} hideNavBar={false} title="Video"/>
      </Router>
    );
    }
