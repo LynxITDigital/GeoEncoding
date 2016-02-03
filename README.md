@@ -15,7 +15,7 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [x] Travis
 - [x] Video Player
 - [x] Network request
-- [ ] Toast notification (When adding an address to Favourites)
+- [x] Toast notification (When adding an address to Favourites)
 - [ ] Network download
 - [ ] Network upload
 - [ ] Barcode scanner
