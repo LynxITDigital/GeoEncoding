@@ -1,5 +1,5 @@
 const React = require('react-native');
-const { Text,TextInput, View, TouchableWithoutFeedback } = React;
+const { Text,TextInput, TouchableWithoutFeedback, View } = React;
 const AddressList = require.requireActual('../app/components/addressList');
 const shallowHelpers = require('react-shallow-renderer-helpers');
 const shallowRenderer = shallowHelpers.createRenderer();
