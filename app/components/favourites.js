@@ -51,8 +51,12 @@ class Favourites extends View {
       this.props.navActions.details({data:rowData});
   }
 
-  onRemovePressed(address) {
-    Database.removeAddress(address);
+  onRemovePressed(addressID) {
+    Database.removeAddress(addressID)
+    .then(() => {
+      console.log("DELETED.  LOADING FAVS");
+        this.props.actions.fetchFavourites(Database);
+    });
   }
 
   renderRow(rowData){
@@ -82,10 +86,10 @@ class Favourites extends View {
           underlayColor='#dddddd'>
           <View>
             <View>
-                <Text style={styles.address}>ADDRESS: {rowData}</Text>
+                <Text style={styles.address}>{rowData.id}: {rowData.address}</Text>
 
                 <Text style={styles.button}
-                        onPress={this.onRemovePressed.bind(this, rowData)}>
+                        onPress={this.onRemovePressed.bind(this, rowData.id)}>
                         Remove From Favourites
                         </Text>
             </View>
