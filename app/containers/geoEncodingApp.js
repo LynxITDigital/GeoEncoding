@@ -26,16 +26,25 @@ import VideoPage from '../components/videoPage';
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
+  favourites : state.addressesByGeoEncoding.favourites,
   searchString : state.addressesByGeoEncoding.searchString,
-  routes : state.routes
+  routes : state.routes,
+  routerState: state.router.routerState
 });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    ...addressActions
+    ...addressActions,
+  }, dispatch),
+  routerActions:  bindActionCreators({
+    ...routerActions,
   }, dispatch),
   navActions: Actions
 });
+
+
+
+
 
 const defaultSchema = {
   statusStyle: 'light-content',
@@ -58,22 +67,28 @@ class GeoEncodingApp extends Component {
     super(props);
   }
    render(){
-     return(<Router hideNavBar={true}>
+     console.log("HERE");
+     return(<Router hideNavBar={true}
+       onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
+       onPop={()=>{this.props.routerActions.onPop(); return true}}
+       onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
+       >
          <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBarModal}/>
          <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
-         <Schema name="tab" type="switch" icon={TabIcon} />
+         <Schema name="tab" icon={TabIcon} type="replace" hideNavBar={true} />
          <Schema name="withoutAnimation"/>
 
-         <Route name="tabbar" hideNavBar={true}
-           onPush={(route)=>{routerActions.onPush(route.name, this.props.routerState); return true}}
-           onPop={()=>{routerActions.onPop(this.props.routerState); return true}}>
-             <Router hideNavBar={true} footer={TabBar} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}} >
+         <Route name="tabbar" hideNavBar={true}>
+             <Router hideNavBar={true} footer={TabBar} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}
+                     onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
+                     onPop={()=>{this.props.routerActions.onPop(); return true}}
+                     onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
+             >
                <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" hideNavBar={false} initial={true}/>
                <Route name="favourites" schema="tab" component={favComp} title="Favourites" hideNavBar={false}  />
                <Route name="video" schema="tab" component={VideoPage} hideNavBar={false} title="Video"/>
              </Router>
           </Route>
-          <Route name="favourites2" schema="tab" component={favComp} title="Favourites2" hideNavBar={false}  />
           <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
 
 
@@ -84,8 +99,8 @@ class GeoEncodingApp extends Component {
 }
 
 
-export default connect(state => ({
-  state: state.addressesByGeoEncoding
-}), mapDispatchToProps)(GeoEncodingApp);
+// export default connect((state) => (
+//   {addressesByGeoEncoding: state.addressesByGeoEncoding,
+//   router: Object.assign({},state,{router:state.router}).router}), mapDispatchToProps)(GeoEncodingApp);
 
-// export default connect(mapStateToProps, mapDispatchToProps)(GeoEncodingApp);
+ export default connect(mapStateToProps, mapDispatchToProps)(GeoEncodingApp);

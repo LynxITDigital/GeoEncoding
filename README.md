@@ -2,6 +2,25 @@
 
 A react-native example for ListView, MapView, ImageView, NavigationBar, react-redux which runs on both iOS and Android
 
+#Features
+- [x] Listview
+- [x] Imageview
+- [x] Mapview
+- [x] Redux
+- [x] Router
+- [x] Jest tests
+- [x] Sqlite
+- [x] Tabbar
+- [x] CodePush
+- [x] Travis
+- [x] Video Player
+- [x] Network request
+- [ ] Toast notification (When adding an address to Favourites)
+- [ ] Network download
+- [ ] Network upload
+- [ ] Barcode scanner
+
+
 Install node modeules
 ```shell
 npm install

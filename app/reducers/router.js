@@ -1,25 +1,31 @@
 var React = require('react-native');
-import {ON_PUSH, ON_POP} from '../actions/routerActions';
+var _ = require('underscore')
+
+import {ON_PUSH, ON_POP, ON_REPLACE} from '../actions/routerActions';
 const initialState = {
-  routerState: ['geoLocationSearch']
+  routerState: ['launch'],
+  count: 1
 }
 
 function router(state = initialState, action) {
   switch (action.type) {
     case ON_PUSH:
-      var newRouterState = action.routerState
-      newRouterState.push(action.route)
-      return {
-        ...state,
-        routerState: newRouterState
-      };
+
+      var newRouterState = _.clone(state.routerState);
+      newRouterState.push(action.route);
+      var newCount = state.count + 1;
+
+      return Object.assign({}, state, {routerState: newRouterState, count: newCount});
     case ON_POP:
-    var newRouterState = action.routerState
-    newRouterState = newRouterState.slice(0, -1)
-      return {
-        ...state,
-        routerState: newRouterState
-      };
+      var newRouterState = _.clone(state.routerState);
+      newRouterState = newRouterState.slice(0,-1);
+      var newCount = state.count + 1;
+
+      return Object.assign({}, state, {routerState: newRouterState, count: newCount});
+    case ON_REPLACE:
+      var newCount = state.count + 1;
+
+      return Object.assign({}, state, {routerState: [action.route], count: newCount});
     default:
       return state;
     }
