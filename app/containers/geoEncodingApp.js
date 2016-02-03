@@ -26,8 +26,10 @@ import VideoPage from '../components/videoPage';
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
+  favourites : state.addressesByGeoEncoding.favourites,
   searchString : state.addressesByGeoEncoding.searchString,
-  routes : state.routes
+  routes : state.routes,
+//  routerState: state.router.routerState
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -58,7 +60,10 @@ class GeoEncodingApp extends Component {
     super(props);
   }
    render(){
-     return(<Router hideNavBar={true}>
+     console.log("HERE");
+     return(<Router hideNavBar={true}
+       onPush={(route)=>{routerActions.onPush(route.name, this.props.routerState); return true}}
+       onPop={()=>{routerActions.onPop(this.props.routerState); return true}}>
          <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBarModal}/>
          <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
          <Schema name="tab" type="switch" icon={TabIcon} />
@@ -66,7 +71,7 @@ class GeoEncodingApp extends Component {
 
          <Route name="tabbar" hideNavBar={true}
            onPush={(route)=>{routerActions.onPush(route.name, this.props.routerState); return true}}
-           onPop={()=>{routerActions.onPop(this.props.routerState); return true}}>
+           onPop={()=>{routerActions.onPop(this.props.routerState); return true}} >
              <Router hideNavBar={true} footer={TabBar} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}} >
                <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" hideNavBar={false} initial={true}/>
                <Route name="favourites" schema="tab" component={favComp} title="Favourites" hideNavBar={false}  />
@@ -84,8 +89,6 @@ class GeoEncodingApp extends Component {
 }
 
 
-export default connect(state => ({
-  state: state.addressesByGeoEncoding
-}), mapDispatchToProps)(GeoEncodingApp);
+export default connect(mapStateToProps, mapDispatchToProps)(GeoEncodingApp);
 
 // export default connect(mapStateToProps, mapDispatchToProps)(GeoEncodingApp);

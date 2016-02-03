@@ -98,12 +98,12 @@ class Favourites extends View {
 
 
   render() {
-    const { searchString,addresses } = this.props;
+    const { favourites } = this.props;
     return (
         <View style={styles.container}>
           <View style={styles.listContainer}>
             <ListView
-              dataSource={addresses}
+              dataSource={favourites}
               renderRow={this.renderFav.bind(this)}
               />
           </View>
