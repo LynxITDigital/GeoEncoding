@@ -9,7 +9,9 @@ import React, {
   PropTypes,
   Image,
   AsyncStorage,
-  TouchableOpacity
+  TouchableOpacity,
+  ToastAndroid,
+  Platform
 } from 'react-native';
 var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview');
@@ -93,8 +95,13 @@ class AddressList extends Component {
   }
 
   onFavPressed(address) {
-    this.setState({isVisible: true});
-    Database.insertAddress(address);
+      if(Platform.OS ==='ios') {
+          this.setState({isVisible: true});
+      }
+      else {
+          ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
+      }
+      Database.insertAddress(address);
   }
 
   renderRow(rowData){
