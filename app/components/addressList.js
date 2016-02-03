@@ -8,11 +8,15 @@ import React, {
   ListView,
   PropTypes,
   Image,
-  AsyncStorage
+  AsyncStorage,
+  TouchableOpacity,
+  ToastAndroid,
+  Platform
 } from 'react-native';
 var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview');
 var { createAnimatableComponent, View } = require('react-native-animatable');
+import Toast from './toast.ios';
 const STORAGE_KEY = '@GeoEncoding:address'
 
 
@@ -25,6 +29,9 @@ class AddressList extends Component {
   constructor(props) {
     super(props);
     Database.loadDB();
+
+    // Local state to show/hide Toast box
+    this.state = {isVisible: false};
   }
 
   componentDidMount() {
@@ -39,6 +46,10 @@ class AddressList extends Component {
       } catch(error) {
           console.log(error);
       }
+  }
+
+  hideTopToast() {
+      this.setState({isVisible: false});
   }
 
   onSearchTextChanged(event){
@@ -84,7 +95,13 @@ class AddressList extends Component {
   }
 
   onFavPressed(address) {
-    Database.insertAddress(address);
+      if(Platform.OS ==='ios') {
+          this.setState({isVisible: true});
+      }
+      else {
+          ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
+      }
+      Database.insertAddress(address);
   }
 
   renderRow(rowData){
@@ -117,25 +134,29 @@ class AddressList extends Component {
   }
 
   render() {
-    console.log("RENDERING")
     const { searchString,addresses } = this.props;
+    console.log(this.state.isVisible);
     return (
-      <View>
-        <View style={styles.inputContainer}>
-          <TextInput
-          style={styles.searchInput}
-          value= {searchString}
-          onChange={this.onSearchTextChanged.bind(this)}
-          placeholder="Search location"/>
-
-          </View>
+        <View>
+            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
+                <TouchableOpacity onPress = { () => {} }>
+                    <Text style = {styles.toastText}>Added to favourites</Text>
+                </TouchableOpacity>
+            </Toast>
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.searchInput}
+                    value= {searchString}
+                    onChange={this.onSearchTextChanged.bind(this)}
+                    placeholder="Search location"/>
+            </View>
           <ScrollView style={styles.listContainer}>
-          <RefreshableListView
-            dataSource={addresses}
-            renderRow={this.renderRow.bind(this)}
-            loadData={this.updateList.bind(this)}
-            refreshDescription="Refreshing articles"
-          />
+              <RefreshableListView
+                dataSource={addresses}
+                renderRow={this.renderRow.bind(this)}
+                loadData={this.updateList.bind(this)}
+                refreshDescription="Refreshing articles"
+              />
           </ScrollView>
         </View>
     );
@@ -153,6 +174,12 @@ class AddressList extends Component {
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch'
+    },
+    toastText: {
+        color: '#777777',
+        padding: 15,
+        backgroundColor: 'transparent',
+        fontSize: 14
     },
     listContainer: {
       marginTop:20,
