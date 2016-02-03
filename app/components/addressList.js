@@ -173,12 +173,9 @@ class AddressList extends Component {
       backgroundColor: '#F5FCFF'
     },
     button:{
-      marginLeft : 5,
       padding :5,
-      height: 36,
-      borderWidth: 1,
-      borderColor: '#48BBEC',
-      borderRadius: 8,
+      height: 26,
+      color: 'white',
       backgroundColor:'#48BBEC',
       alignSelf:'stretch',
       justifyContent:'center'
