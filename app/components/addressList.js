@@ -197,7 +197,7 @@ class AddressList extends Component {
       borderWidth: 1,
       borderColor: 'gray',
       borderRadius: 8,
-      backgroundColor: '#F00'
+      backgroundColor: '#F5FCFF'
     },
     button:{
       padding :5,
