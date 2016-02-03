@@ -15,7 +15,7 @@ class VideoPage extends Component {
     render() {
         return (
             <View style = {styles.container}>
-                <Video source = {{uri: "Insert Title Here"}}
+                <Video source = {{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
                     rate = {1.0}
                     volume = {0.0}
                     muted = {false}

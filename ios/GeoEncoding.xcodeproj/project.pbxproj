@@ -27,6 +27,8 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AA4139DA1C60549400F46F0D /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4139CE1C60545900F46F0D /* libCodePush.a */; };
 		AEB5B0831C6029E90008344F /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB5B0801C6029CD0008344F /* libRCTVideo.a */; };
+		AEB5B1381C61855C0008344F /* libRNOverlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB5B1361C6185410008344F /* libRNOverlay.a */; };
+		AEB5B13F1C6185D00008344F /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB5B13E1C6185C80008344F /* libRNBlur.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTVideo;
 		};
+		AEB5B1351C6185410008344F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEB5B1241C6185410008344F /* RNOverlay.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNOverlay;
+		};
+		AEB5B13D1C6185C80008344F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEB5B1391C6185C80008344F /* RNBlur.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A68BD7BC1BC31318005F02DF;
+			remoteInfo = RNBlur;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +180,8 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		AA4139C81C60545900F46F0D /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		AEB5B0721C6029CD0008344F /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		AEB5B1241C6185410008344F /* RNOverlay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNOverlay.xcodeproj; path = "../node_modules/react-native-overlay/RNOverlay.xcodeproj"; sourceTree = "<group>"; };
+		AEB5B1391C6185C80008344F /* RNBlur.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +196,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEB5B13F1C6185D00008344F /* libRNBlur.a in Frameworks */,
+				AEB5B1381C61855C0008344F /* libRNOverlay.a in Frameworks */,
 				2B684C231C6058BE00BA4E6D /* libSQLite.a in Frameworks */,
 				AA4139DA1C60549400F46F0D /* libCodePush.a in Frameworks */,
 				AEB5B0831C6029E90008344F /* libRCTVideo.a in Frameworks */,
@@ -312,6 +332,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AEB5B1391C6185C80008344F /* RNBlur.xcodeproj */,
+				AEB5B1241C6185410008344F /* RNOverlay.xcodeproj */,
 				2B684C1D1C6058B500BA4E6D /* SQLite.xcodeproj */,
 				AA4139C81C60545900F46F0D /* CodePush.xcodeproj */,
 				AEB5B0721C6029CD0008344F /* RCTVideo.xcodeproj */,
@@ -341,9 +363,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				AEB5B0891C6034720008344F /* Sample2.mp4 */,
-				AEB5B0871C6033D20008344F /* Sample.mp4 */,
-				AEB5B0841C6033360008344F /* Sample.MP4 */,
 				2B34CFE41C5EFBF600249A20 /* libsqlite3.0.tbd */,
 				13B07FAE1A68108700A75B9A /* GeoEncoding */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -383,6 +402,22 @@
 			isa = PBXGroup;
 			children = (
 				AEB5B0801C6029CD0008344F /* libRCTVideo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEB5B1251C6185410008344F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEB5B1361C6185410008344F /* libRNOverlay.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEB5B13A1C6185C80008344F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEB5B13E1C6185C80008344F /* libRNBlur.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -509,6 +544,14 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = AEB5B13A1C6185C80008344F /* Products */;
+					ProjectRef = AEB5B1391C6185C80008344F /* RNBlur.xcodeproj */;
+				},
+				{
+					ProductGroup = AEB5B1251C6185410008344F /* Products */;
+					ProjectRef = AEB5B1241C6185410008344F /* RNOverlay.xcodeproj */;
+				},
+				{
 					ProductGroup = 2B684C1E1C6058B500BA4E6D /* Products */;
 					ProjectRef = 2B684C1D1C6058B500BA4E6D /* SQLite.xcodeproj */;
 				},
@@ -618,6 +661,20 @@
 			fileType = archive.ar;
 			path = libRCTVideo.a;
 			remoteRef = AEB5B07F1C6029CD0008344F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AEB5B1361C6185410008344F /* libRNOverlay.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNOverlay.a;
+			remoteRef = AEB5B1351C6185410008344F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AEB5B13E1C6185C80008344F /* libRNBlur.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBlur.a;
+			remoteRef = AEB5B13D1C6185C80008344F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
