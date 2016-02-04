@@ -5,9 +5,9 @@
 	<key>App Store</key>
 	<dict>
 		<key>HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 		<key>USER_HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
@@ -28,7 +28,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CodePushDeploymentKey</key>
-	<string>9OcY7WuRIwcigP2x6H5z8bTZPLN94yXS9p7Fg</string>
+	<string>1x3tMgfkfvyfobZMOTVYg4lW7r444yXS9p7Fg</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -41,9 +41,9 @@
 	<key>Run_Device</key>
 	<dict>
 		<key>HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 		<key>USER_HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
