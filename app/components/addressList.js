@@ -97,6 +97,7 @@ class AddressList extends Component {
   onFavPressed(address) {
       if(Platform.OS ==='ios') {
           this.setState({isVisible: true});
+          setTimeout(this.hideTopToast.bind(this), 2000);
       }
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
@@ -142,7 +143,7 @@ class AddressList extends Component {
     return (
         <View>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
-                <TouchableOpacity onPress = { () => {} }>
+                <TouchableOpacity onPress = {this.hideTopToast.bind(this)}>
                     <Text style = {styles.toastText}>Added to favourites</Text>
                 </TouchableOpacity>
             </Toast>

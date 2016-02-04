@@ -25,12 +25,6 @@ class Toast extends Component {
                     <View style = {styles.content}>
                         {this.props.children}
                     </View>
-
-                    <TouchableOpacity onPress = {this.props.onDismiss}>
-                        <View style = {styles.dismissButton}>
-                            <Text style = {styles.dismissButtonText}>Okay</Text>
-                        </View>
-                    </TouchableOpacity>
                 </BlurView>
             </Overlay>
         );
