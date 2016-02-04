@@ -143,9 +143,9 @@ class AddressList extends Component {
     return (
         <View style={{flex:1}}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
-                <TouchableOpacity onPress = {this.hideTopToast.bind(this)}>
+                <View>
                     <Text style = {styles.toastText}>Added to favourites</Text>
-                </TouchableOpacity>
+                </View>
             </Toast>
             <View style={styles.inputContainer}>
                 <TextInput
