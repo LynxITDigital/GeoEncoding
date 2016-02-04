@@ -19,7 +19,7 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [ ] Network download
 - [ ] Network upload
 - [ ] Barcode scanner
-- [ ] Custom splash screen
+- [x] Custom splash screen
 
 
 Install node modeules
