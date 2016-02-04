@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "RCTRootView.h"
 #import "CodePush.h"
+#import "RCTSplashScreen.h"
 
 @implementation AppDelegate
 
@@ -43,14 +44,14 @@
 //#ifdef DEBUG
 //  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
 //#else
-  jsCodeLocation = [CodePush bundleURL];
+  //jsCodeLocation = [CodePush bundleURL];
 //#endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"GeoEncoding"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
-
+  [RCTSplashScreen show:rootView];
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;

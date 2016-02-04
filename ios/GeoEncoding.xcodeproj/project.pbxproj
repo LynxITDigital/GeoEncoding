@@ -26,6 +26,7 @@
 		829B69D4B1404C56B4394F33 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C0A18A451D47CBBD7B000F /* libAirMaps.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AA4139DA1C60549400F46F0D /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4139CE1C60545900F46F0D /* libCodePush.a */; };
+		AE2989A51C62C73C0052E0FD /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE29899C1C62C72B0052E0FD /* libRCTSplashScreen.a */; };
 		AEB5B0831C6029E90008344F /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB5B0801C6029CD0008344F /* libRCTVideo.a */; };
 		AEB5B1381C61855C0008344F /* libRNOverlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB5B1361C6185410008344F /* libRNOverlay.a */; };
 		AEB5B13F1C6185D00008344F /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB5B13E1C6185C80008344F /* libRNBlur.a */; };
@@ -130,6 +131,13 @@
 			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
 			remoteInfo = AirMaps;
 		};
+		AE29899B1C62C72B0052E0FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE29898F1C62C72B0052E0FD /* RCTSplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTSplashScreen;
+		};
 		AEB5B07F1C6029CD0008344F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AEB5B0721C6029CD0008344F /* RCTVideo.xcodeproj */;
@@ -179,6 +187,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		AA4139C81C60545900F46F0D /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/CodePush.xcodeproj"; sourceTree = "<group>"; };
+		AE29898F1C62C72B0052E0FD /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSplashScreen.xcodeproj; path = "../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		AEB5B0721C6029CD0008344F /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		AEB5B1241C6185410008344F /* RNOverlay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNOverlay.xcodeproj; path = "../node_modules/react-native-overlay/RNOverlay.xcodeproj"; sourceTree = "<group>"; };
 		AEB5B1391C6185C80008344F /* RNBlur.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
@@ -196,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2989A51C62C73C0052E0FD /* libRCTSplashScreen.a in Frameworks */,
 				AEB5B13F1C6185D00008344F /* libRNBlur.a in Frameworks */,
 				AEB5B1381C61855C0008344F /* libRNOverlay.a in Frameworks */,
 				2B684C231C6058BE00BA4E6D /* libSQLite.a in Frameworks */,
@@ -332,6 +342,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AE29898F1C62C72B0052E0FD /* RCTSplashScreen.xcodeproj */,
 				AEB5B1391C6185C80008344F /* RNBlur.xcodeproj */,
 				AEB5B1241C6185410008344F /* RNOverlay.xcodeproj */,
 				2B684C1D1C6058B500BA4E6D /* SQLite.xcodeproj */,
@@ -394,6 +405,14 @@
 			isa = PBXGroup;
 			children = (
 				AAE3F81B1C59DA4B00F711F7 /* libAirMaps.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE2989901C62C72B0052E0FD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE29899C1C62C72B0052E0FD /* libRCTSplashScreen.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -522,6 +541,10 @@
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
+				},
+				{
+					ProductGroup = AE2989901C62C72B0052E0FD /* Products */;
+					ProjectRef = AE29898F1C62C72B0052E0FD /* RCTSplashScreen.xcodeproj */;
 				},
 				{
 					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
@@ -654,6 +677,13 @@
 			fileType = archive.ar;
 			path = libAirMaps.a;
 			remoteRef = AAE3F81A1C59DA4B00F711F7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AE29899C1C62C72B0052E0FD /* libRCTSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTSplashScreen.a;
+			remoteRef = AE29899B1C62C72B0052E0FD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		AEB5B0801C6029CD0008344F /* libRCTVideo.a */ = {
@@ -814,6 +844,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/AirMaps/**",
 					"$(SRCROOT)/../node_modules/react-native-code-push/**",
+					"$(SRCROOT)/../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen",
 				);
 				INFOPLIST_FILE = GeoEncoding/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -838,6 +869,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/AirMaps/**",
 					"$(SRCROOT)/../node_modules/react-native-code-push/**",
+					"$(SRCROOT)/../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen",
 				);
 				INFOPLIST_FILE = GeoEncoding/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
