@@ -141,7 +141,7 @@ class AddressList extends Component {
     const { searchString,addresses } = this.props;
     console.log(this.state.isVisible);
     return (
-        <View>
+        <View style={{flex:1}}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
                 <TouchableOpacity onPress = {this.hideTopToast.bind(this)}>
                     <Text style = {styles.toastText}>Added to favourites</Text>
@@ -160,6 +160,7 @@ class AddressList extends Component {
                 renderRow={this.renderRow.bind(this)}
                 loadData={this.updateList.bind(this)}
                 refreshDescription="Refreshing articles"
+                automaticallyAdjustContentInsets = {false}
               />
           </ScrollView>
         </View>
@@ -186,9 +187,10 @@ class AddressList extends Component {
         fontSize: 14
     },
     listContainer: {
+      flex:1,
       marginTop:20,
       flexDirection:'column',
-      height: 600
+      marginBottom:50
     },
     searchInput: {
       flex: 1,
