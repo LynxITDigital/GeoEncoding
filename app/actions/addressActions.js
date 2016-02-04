@@ -72,18 +72,48 @@ module.exports.changeSearchText = function (searchString){
 }
 
 
-module.exports.fetchAddresses = function(searchString){
+function checkFav(database, address, index, json, jsonData) {
+  return new Promise((resolve, reject) => {
+              database.isFav(address)
+              .then((results) => {
+                  if(results[0].rows.length > 0) {
+                    jsonData.push(Object.assign({}, json.results[index], {isFav: true}));
+                  } else {
+                    jsonData.push(Object.assign({}, json.results[index], {isFav: false}));
+                  }
+                  resolve();
+                })
+              .catch((error) => {
+                console.error("Action - FETCH ERROR " + error);
+                reject();
+              })
+          });
+}
+
+module.exports.fetchAddresses = function(searchString, database){
     var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(searchString);
     return dispatch=>{
       dispatch(requestPosts(url))
 
+      var jsonData;
       return fetch(url)
-      .then(response=>response.json())
-      .then(json=>
-        dispatch(receivePosts(json.results))
-      )
+      .then(response =>
+            response.json()
+          )
+      .then((json) => {
+        jsonData = [];
+        var promises = [];
+        for(i in json.results) {
+          var address = json.results[i].formatted_address;
+          promises.push(checkFav(database, address, i, json, jsonData));
+        }
+        Promise.all(promises).then(() => {
+              dispatch(receivePosts(jsonData));
+        });
+      })
       .catch((error) => {
-        console.log("Action - FETCH ERROR " + error);
+        console.error("Action - FETCH ERROR " + error);
+
       })
     };
 }

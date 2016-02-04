@@ -45,19 +45,29 @@ var Database = {
   },
 
   insertAddress(address) {
-      db.executeSql("INSERT INTO Favourites(address) VALUES(?)", [address]);
+      return new Promise((resolve, reject) => {
+          db.executeSql("INSERT INTO Favourites(address) VALUES(?)", [address]).then(() => {
+              resolve();
+          }
+          );
+        });
   },
 
   removeAddress(id) {
-      return db.transaction((tx) => {
+      return new Promise((resolve, reject) => {
+          db.transaction((tx) => {
                 tx.executeSql("DELETE FROM Favourites WHERE id=?", [id])
-
-                })
+              })
+              .then(() => {
+                resolve();
+              });
+            });
 
   },
 
-  removeAddressDB(id) {
-      return db.executeSql("DELETE FROM Favourites WHERE id=?", [id])
+  removeFavourite(address) {
+
+      return db.executeSql("DELETE FROM Favourites WHERE address=?", [address])
         .catch((error) => {
           console.log("CAUGHT ERROR");
           console.log(error);
@@ -89,6 +99,10 @@ var Database = {
 
   getFav() {
     return favourites;
+  },
+
+  isFav(address) {
+      return db.executeSql("SELECT id FROM favourites WHERE address = ?", [address]);
   }
 
 };
