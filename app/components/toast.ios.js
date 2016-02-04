@@ -17,7 +17,7 @@ class Toast extends Component {
         } else {
             positionStyle = styles.bottom;
         }
-        console.log(this.props);
+        // console.log(this.props);
 
         return (
             <Overlay isVisible = {this.props.isVisible} aboveStatusBar = {false}>

@@ -22,9 +22,6 @@ class VideoPage extends Component {
                     paused = {false}
                     resizeMode = "cover"
                     repeat = {true}
-                    onLoadStart={console.log("Loaded")}
-                    onEnd={console.log("Ended")}
-                    onError={console.log("Error")}
                     style = {styles.backgroundVideo} />
             </View>
         )

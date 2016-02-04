@@ -7,7 +7,7 @@ var initialState = {isLoading:false, searchString: '', addresses:ds.cloneWithRow
 
 
 export default function addressesByGeoEncoding(state = initialState, action = {}){
-  console.log("Receiver executed for action : " + action.type);
+  // console.log("Receiver executed for action : " + action.type);
   switch (action.type) {
     case types.CHANGE_SEARCH_TEXT:
         return Object.assign({},state, { searchString: action.searchString});
@@ -25,7 +25,7 @@ export default function addressesByGeoEncoding(state = initialState, action = {}
       action.routerAction()
       return state;
     case types.ROUTE_POP:
-      console.log("POP : " +  action);
+      // console.log("POP : " +  action);
       action.fnPop();
       return state;
     default:

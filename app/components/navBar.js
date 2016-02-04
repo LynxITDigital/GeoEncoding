@@ -18,7 +18,7 @@ class NavBarBase extends React.Component {
    }
    render() {
        var Actions = this.props.routes;
-       console.log("Props : " + this.props);
+       // console.log("Props : " + this.props);
        return <NavigationBar style={styles.navBar}
                              titleColor='white'
                              buttonsColor='white'

@@ -69,7 +69,7 @@ class GeoEncodingApp extends Component {
     super(props);
   }
    render(){
-     console.log("HERE");
+     // console.log("HERE");
      return(<Router hideNavBar={true}
        onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
        onPop={()=>{this.props.routerActions.onPop(); return true}}

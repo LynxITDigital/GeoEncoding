@@ -44,7 +44,7 @@ class AddressList extends Component {
           let value = await AsyncStorage.getItem(STORAGE_KEY);
           this.props.actions.changeSearchText(value);
       } catch(error) {
-          console.log(error);
+          // console.log(error);
       }
   }
 
@@ -60,7 +60,7 @@ class AddressList extends Component {
     try {
         AsyncStorage.setItem(STORAGE_KEY, event.nativeEvent.text);
     } catch (error){
-        console.log(error.message);
+        // console.log(error.message);
     }
 
     // Call debounced function
@@ -90,7 +90,7 @@ class AddressList extends Component {
   }
 
   onRowPressed(rowData){
-      //console.log(this.props);
+      //// console.log(this.props);
       this.props.navActions.details({data:rowData});
   }
 
@@ -139,7 +139,7 @@ class AddressList extends Component {
 
   render() {
     const { searchString,addresses } = this.props;
-    console.log(this.state.isVisible);
+    // console.log(this.state.isVisible);
     return (
         <View style={{flex:1}}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>

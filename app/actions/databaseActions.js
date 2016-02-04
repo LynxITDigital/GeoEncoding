@@ -37,20 +37,20 @@ function dbUpdated(results) {
 
 module.exports.insertFavourites = function(db){
 
-console.log("FETCHING FAVS");
+// console.log("FETCHING FAVS");
     return dispatch=>{
       dispatch(requestFavDB())
 
       return db.getFavourites().then((tx, result) => {
-          console.log('FETCHED FAVS');
-          console.log(db.getFav());
-          //console.log(favourites);
-          //console.log(db.favourites);
+          // console.log('FETCHED FAVS');
+          // console.log(db.getFav());
+          //// console.log(favourites);
+          //// console.log(db.favourites);
 
           dispatch(receiveFavDB(db.getFav()));
       })
       .catch((error) => {
-        console.log("Action - DB ERROR " + error);
+        // console.log("Action - DB ERROR " + error);
       })
     };
 }
@@ -60,7 +60,7 @@ console.log("FETCHING FAVS");
 
 module.exports.removeFavourites = function(db, id){
 
-console.log("REMOVING FAVS");
+// console.log("REMOVING FAVS");
     return dispatch=>{
       
         return db.removeAddress(id)
@@ -68,7 +68,7 @@ console.log("REMOVING FAVS");
             dispatch(dbUpdated());
           })
           .catch((error) => {
-            console.log("Action - DB REMOVE ERROR " + error);
+            // console.log("Action - DB REMOVE ERROR " + error);
           })
     };
 }
@@ -78,20 +78,20 @@ console.log("REMOVING FAVS");
 
 module.exports.fetchFavourites = function(db){
 
-console.log("FETCHING FAVS");
+// console.log("FETCHING FAVS");
     return dispatch=>{
       dispatch(requestFavDB())
 
       return db.getFavourites().then((tx, result) => {
-          console.log('FETCHED FAVS');
-          console.log(db.getFav());
-          //console.log(favourites);
-          //console.log(db.favourites);
+          // console.log('FETCHED FAVS');
+          // console.log(db.getFav());
+          //// console.log(favourites);
+          //// console.log(db.favourites);
 
           dispatch(receiveFavDB(db.getFav()));
       })
       .catch((error) => {
-        console.log("Action - DB ERROR " + error);
+        // console.log("Action - DB ERROR " + error);
       })
     };
 }

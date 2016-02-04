@@ -25,7 +25,7 @@ const SPACE = 0.01;
 
 class AddressDetails extends Component {
   onTitlePress(){
-    console.log("onTitlePress : "  + this.props.route);
+    // console.log("onTitlePress : "  + this.props.route);
     this.props.routes.pop();
   }
 

@@ -30,7 +30,7 @@ class Favourites extends View {
   componentDidMount() {
     Database.loadDB().then((db) => {
       //this.loadFavourites();
-      console.log(Database);
+      // console.log(Database);
         this.props.actions.fetchFavourites(Database);
     });
   }
@@ -39,7 +39,7 @@ class Favourites extends View {
     var favs = Database.getFavourites();
     this.favDataSource.cloneWithRows(favs);
       /*.then( (result) => {
-        console.log(result)
+        // console.log(result)
         dataSource: this.dataSource.cloneWithRows(result[0].rows);
       } )
       .done();*/
@@ -47,14 +47,14 @@ class Favourites extends View {
 
 
   onRowPressed(rowData){
-      //console.log(this.props);
+      //// console.log(this.props);
       this.props.navActions.details({data:rowData});
   }
 
   onRemovePressed(addressID) {
     Database.removeAddress(addressID)
     .then(() => {
-      console.log("DELETED.  LOADING FAVS");
+      // console.log("DELETED.  LOADING FAVS");
         this.props.actions.fetchFavourites(Database);
     });
   }

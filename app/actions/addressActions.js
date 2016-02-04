@@ -83,7 +83,7 @@ module.exports.fetchAddresses = function(searchString){
         dispatch(receivePosts(json.results))
       )
       .catch((error) => {
-        console.log("Action - FETCH ERROR " + error);
+        // console.log("Action - FETCH ERROR " + error);
       })
     };
 }
