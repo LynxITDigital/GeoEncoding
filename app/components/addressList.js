@@ -113,7 +113,10 @@ class AddressList extends Component {
           <View animation="fadeIn" duration={800} delay={200}>
                 <View style={styles.row}>
                     <Text style={styles.address}>{address}</Text>
-                    <Image style = {styles.thumb} source = {{uri: imageURI}}/>
+                    <Image style = {styles.thumb}
+                           source = {{uri: imageURI}}
+                           defaultSource = {require('../../assets/loading_streetview.png')}
+                           loadingIndicatorSource = {require('../../assets/loading_streetview.png')} />
                     <Text style={styles.button}
                             onPress={this.onFavPressed.bind(this, address)}>
                             Add to Favourites
