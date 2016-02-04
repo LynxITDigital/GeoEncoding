@@ -18,7 +18,7 @@ import Database from '../database/database';
 
 import globals from '../store/globals';
 
-class Favourites extends View {
+class Favourites extends Component {
 
   constructor(props) {
     super(props);
