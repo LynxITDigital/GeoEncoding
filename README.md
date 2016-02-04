@@ -19,6 +19,7 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [ ] Network download
 - [ ] Network upload
 - [ ] Barcode scanner
+- [ ] Custom splash screen
 
 
 Install node modeules
@@ -38,3 +39,11 @@ To release
 ```shell
 code-push release GeoEncoding main.jsbundle 1.0.0 --deploymentName Production
 ```
+# Run Scheme and debug in Chrome
+* OPTION 1
+Run with Scheme "GeoEncoding DEBUG" to load jscode from Packager and be able to debug in Chrome
+
+* OPTION 2
+Run with Scheme "GeoEncoding RELEASE" to load jscode from optimised/minified jsbundle on disk (performed by CodePush)
+Under this mode, jsbundle within GeoEncoding.app is generated during "Bundle React Native code and images" build phase;
+and you will LOSE the ability to debug in Chrome

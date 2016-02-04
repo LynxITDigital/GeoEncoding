@@ -15,10 +15,10 @@ export default function addressesByGeoEncoding(state = initialState, action = {}
         return Object.assign({},state, { isLoading:true});
     case types.RECEIVE_ADDRESS:
       return Object.assign({},state, { isLoading:false, addresses: ds.cloneWithRows(action.addresses)});
-    case types.REQUEST_FAV_DB:
+    case types.REQUEST_DB_DATA:
         return Object.assign({},state, { isLoading:true});
-    case types.RECEIVE_FAV_DB:
-      return Object.assign({},state, { isLoading:false, favourites: ds.cloneWithRows(action.addresses)});
+    case types.RECEIVE_DB_DATA:
+      return Object.assign({},state, { isLoading:false, favourites: ds.cloneWithRows(action.results)});
     case types.RESET_STATE:
       return Object.assign({},state, initialState);
     case types.ROW_PRESS:

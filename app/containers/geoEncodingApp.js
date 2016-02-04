@@ -17,6 +17,7 @@ var {NavBar,NavBarBack, NavBarModal} = require('../components/navBar');
 //import TabBar from '../components/tabBar';
 
 import * as addressActions from '../actions/addressActions';
+import * as databaseActions from '../actions/databaseActions';
 import * as routerActions from '../actions/routerActions';
 import AddressList from '../components/addressList';
 import Favourites from '../components/favourites';
@@ -35,6 +36,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     ...addressActions,
+    ...databaseActions
   }, dispatch),
   routerActions:  bindActionCreators({
     ...routerActions,

@@ -45,20 +45,36 @@ var Database = {
   },
 
   insertAddress(address) {
-      db.executeSql("INSERT INTO Favourites(address) VALUES('" + address + "')");
+      db.executeSql("INSERT INTO Favourites(address) VALUES(?)", [address]);
+  },
+
+  removeAddress(id) {
+      return db.transaction((tx) => {
+                tx.executeSql("DELETE FROM Favourites WHERE id=?", [id])
+
+                })
+
+  },
+
+  removeAddressDB(id) {
+      return db.executeSql("DELETE FROM Favourites WHERE id=?", [id])
+        .catch((error) => {
+          console.log("CAUGHT ERROR");
+          console.log(error);
+        });
   },
 
 
   queryFavourites(tx) {
 
       console.log('QUERYING FAVS');
-      return tx.executeSql('SELECT address FROM favourites').then(([tx,results]) => {
+      return tx.executeSql('SELECT id, address FROM favourites').then(([tx,results]) => {
         var len = results.rows.length;
         favourites = [];
         for (let i = 0; i < len; i++) {
             let row = results.rows.item(i);
             console.log(`Address: ${row.address}`);
-            favourites.push(row.address);
+            favourites.push({id: row.id, address: row.address});
         }
         return favourites;
     }).catch((error) => {
