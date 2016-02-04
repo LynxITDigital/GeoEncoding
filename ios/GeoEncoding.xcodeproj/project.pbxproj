@@ -23,7 +23,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2B34CFE51C5EFBF600249A20 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B34CFE41C5EFBF600249A20 /* libsqlite3.0.tbd */; };
 		2B684C231C6058BE00BA4E6D /* libSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B684C221C6058B500BA4E6D /* libSQLite.a */; };
-		829B69D4B1404C56B4394F33 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C0A18A451D47CBBD7B000F /* libAirMaps.a */; };
+		553A46E61C641A9B00E57EC5 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE3F81B1C59DA4B00F711F7 /* libAirMaps.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AA4139DA1C60549400F46F0D /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4139CE1C60545900F46F0D /* libCodePush.a */; };
 		AE2989A51C62C73C0052E0FD /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE29899C1C62C72B0052E0FD /* libRCTSplashScreen.a */; };
@@ -180,7 +180,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GeoEncoding/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GeoEncoding/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		23C0A18A451D47CBBD7B000F /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		2B34CFE41C5EFBF600249A20 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2B684C1D1C6058B500BA4E6D /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../node_modules/react-native-sqlite-storage/src/ios/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		3C6F312A61614D7E8C45D1B8 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553A46E61C641A9B00E57EC5 /* libAirMaps.a in Frameworks */,
 				AE2989A51C62C73C0052E0FD /* libRCTSplashScreen.a in Frameworks */,
 				AEB5B13F1C6185D00008344F /* libRNBlur.a in Frameworks */,
 				AEB5B1381C61855C0008344F /* libRNOverlay.a in Frameworks */,
@@ -222,7 +222,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				829B69D4B1404C56B4394F33 /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
