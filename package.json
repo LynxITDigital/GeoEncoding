@@ -12,6 +12,7 @@
     "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache"
   },
   "dependencies": {
+    "@remobile/react-native-splashscreen": "^1.0.3",
     "lodash": "^4.1.0",
     "react-native": "^0.17.0",
     "react-native-animatable": "^0.5.0",

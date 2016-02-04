@@ -11,3 +11,5 @@ project(':react-native-sqlite-storage').projectDir = new File(rootProject.projec
 include ':react-native-code-push'
 project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
 
+include ':react-native-splashscreen'
+project(':react-native-splashscreen').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-splashscreen/android')
