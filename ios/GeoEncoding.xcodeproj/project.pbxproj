@@ -512,7 +512,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = T7MURUAQGN;
+						DevelopmentTeam = 46KCSDR4G7;
 					};
 				};
 			};
@@ -882,7 +882,7 @@
 					"-lz",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.GeoEncoding;
-				PRODUCT_NAME = GeoEncoding;
+				PRODUCT_NAME = LynxReact;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -909,7 +909,7 @@
 					"-lz",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.GeoEncoding;
-				PRODUCT_NAME = GeoEncoding;
+				PRODUCT_NAME = LynxReact;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -1072,7 +1072,7 @@
 					"-lz",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.GeoEncoding;
-				PRODUCT_NAME = GeoEncoding;
+				PRODUCT_NAME = LynxReact;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug_Device;
@@ -1173,7 +1173,7 @@
 					"-lz",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.GeoEncoding;
-				PRODUCT_NAME = GeoEncoding;
+				PRODUCT_NAME = LynxReact;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Run_Device;
