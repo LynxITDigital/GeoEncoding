@@ -2,7 +2,7 @@ import * as types from '../actions/actionTypes';
 import {ListView} from 'react-native';
 
 var ds = new ListView.DataSource({ rowHasChanged:(r1,r2) => r1.place_id !== r2.place_id });
-var initialState = {isLoading:false, searchString: '', addresses:ds.cloneWithRows([]), favourites:ds.cloneWithRows([])};
+var initialState = {isLoading:false, isLoadingDB: false, searchString: '', addresses:ds.cloneWithRows([]), favourites:ds.cloneWithRows([])};
 
 
 
@@ -16,9 +16,9 @@ export default function addressesByGeoEncoding(state = initialState, action = {}
     case types.RECEIVE_ADDRESS:
       return Object.assign({},state, { isLoading:false, addresses: ds.cloneWithRows(action.addresses)});
     case types.REQUEST_DB_DATA:
-        return Object.assign({},state, { isLoading:true});
+        return Object.assign({},state, { });
     case types.RECEIVE_DB_DATA:
-      return Object.assign({},state, { isLoading:false, favourites: ds.cloneWithRows(action.results)});
+      return Object.assign({},state, { favourites: ds.cloneWithRows(action.results)});
     case types.RESET_STATE:
       return Object.assign({},state, initialState);
     case types.ROW_PRESS:

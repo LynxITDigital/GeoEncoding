@@ -108,7 +108,7 @@ class AddressList extends Component {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
       }
       Database.insertAddress(rowData.formatted_address).then(() => {
-        this.updateList();
+
       });
 
       //rowData.isFav = true;
@@ -120,7 +120,7 @@ class AddressList extends Component {
       Database.removeFavourite(rowData.formatted_address)
       .then(() => {
         console.log("DELETED.  LOADING FAVS");
-          this.updateList();
+
       });
     }
 
@@ -136,11 +136,11 @@ class AddressList extends Component {
                     <View style={styles.rowAddress}>
                         <Text style={styles.address}>{address}</Text>
 
-                          <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
-                        <Image style={styles.fav}
-                               source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
-                               />
-                               </TouchableHighlight>
+                        <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
+                            <Image style={styles.fav}
+                            source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
+                            />
+                        </TouchableHighlight>
                     </View>
                     <Image style = {styles.thumb}
                            source = {{uri: imageURI}}
@@ -163,6 +163,19 @@ class AddressList extends Component {
 
   render() {
     const { searchString,addresses } = this.props;
+
+    var scroll = !this.props.isLoading ?
+    (<ScrollView style={styles.listContainer}>
+                <RefreshableListView
+                    dataSource={addresses}
+                    renderRow={this.renderRow.bind(this)}
+                    loadData={this.updateList.bind(this)}
+                    refreshDescription="Refreshing articles"
+                    automaticallyAdjustContentInsets = {false}
+                />
+            </ScrollView>):
+    ( <View/> );
+
     if(Platform.OS ==='ios') {
         var spinner = this.props.isLoading ?
         ( <Spinner
@@ -199,15 +212,7 @@ class AddressList extends Component {
                     placeholder="Search location"/>
             </View>
             {spinner}
-          <ScrollView style={styles.listContainer}>
-              <RefreshableListView
-                dataSource={addresses}
-                renderRow={this.renderRow.bind(this)}
-                loadData={this.updateList.bind(this)}
-                refreshDescription="Refreshing articles"
-                automaticallyAdjustContentInsets = {false}
-              />
-          </ScrollView>
+            {scroll}
         </View>
     );
   }
@@ -236,7 +241,6 @@ class AddressList extends Component {
         fontSize: 14
     },
     spinner: {
-        flex: 1,
         marginTop: 40,
         alignSelf: 'center'
     },
