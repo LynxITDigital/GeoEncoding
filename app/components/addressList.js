@@ -16,6 +16,8 @@ import React, {
 var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview');
 var { createAnimatableComponent, View } = require('react-native-animatable');
+var Spinner = require('react-native-spinkit');
+var Overlay = require('react-native-overlay');
 import Toast from './toast.ios';
 const STORAGE_KEY = '@GeoEncoding:address'
 
@@ -161,9 +163,28 @@ class AddressList extends Component {
 
   render() {
     const { searchString,addresses } = this.props;
-    // console.log(this.state.isVisible);
+    if(Platform.OS ==='ios') {
+        var spinner = this.props.isLoading ?
+        ( <Spinner
+            style = {styles.spinner}
+            isVisible = {true}
+            size = {50}
+            type = 'Pulse'
+            color = '#4da6ff' />):
+        ( <View/> );
+    } else {
+        var spinner = this.props.isLoading ?
+        ( <Spinner
+            style = {styles.spinner}
+            isVisible = {true}
+            size = {50}
+            type = 'ThreeBounce'
+            color = '#4da6ff' />):
+        ( <View/> );
+    }
+    // console.log(this.props.isLoading);
     return (
-        <View style={{flex:1}}>
+        <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
                 <View>
                     <Text style = {styles.toastText}>Added to favourites</Text>
@@ -177,6 +198,7 @@ class AddressList extends Component {
                     onSubmitEditing={this.onSearchTextChanged.bind(this)}
                     placeholder="Search location"/>
             </View>
+            {spinner}
           <ScrollView style={styles.listContainer}>
               <RefreshableListView
                 dataSource={addresses}
@@ -197,6 +219,10 @@ class AddressList extends Component {
 // }
 
   const styles = StyleSheet.create({
+    pageContainer: {
+        flex: 1,
+        flexDirection: 'column'
+    },
     inputContainer: {
       marginTop:80,
       flexDirection:'row',
@@ -208,6 +234,11 @@ class AddressList extends Component {
         padding: 15,
         backgroundColor: 'transparent',
         fontSize: 14
+    },
+    spinner: {
+        flex: 1,
+        marginTop: 40,
+        alignSelf: 'center'
     },
     listContainer: {
       flex:1,

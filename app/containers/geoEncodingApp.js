@@ -30,7 +30,8 @@ const mapStateToProps = state => ({
   favourites : state.addressesByGeoEncoding.favourites,
   searchString : state.addressesByGeoEncoding.searchString,
   routes : state.routes,
-  routerState: state.router.routerState
+  routerState: state.router.routerState,
+  isLoading: state.addressesByGeoEncoding.isLoading
 });
 
 const mapDispatchToProps = (dispatch) => ({
