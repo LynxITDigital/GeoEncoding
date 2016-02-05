@@ -208,7 +208,6 @@ class AddressList extends Component {
                     style={styles.searchInput}
                     value= {searchString}
                     onChange={this.onSearchTextChanged.bind(this)}
-                    onSubmitEditing={this.onSearchTextChanged.bind(this)}
                     placeholder="Search location"/>
             </View>
             {spinner}
