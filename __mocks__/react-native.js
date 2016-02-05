@@ -17,7 +17,7 @@ class ListView extends React.Component {}
 class Easing extends React.Component {}
 class Animated extends React.Component {}
 class requireNativeComponent extends React.Component {}
-
+class Platform extends React.Component {}
 
 ReactNative.View = View;
 ReactNative.TouchableWithoutFeedback = TouchableWithoutFeedback;
@@ -31,6 +31,7 @@ ReactNative.Easing.inOut = () => {};
 ReactNative.Animated = Animated;
 ReactNative.Animated.createAnimatedComponent = () => {};
 ReactNative.requireNativeComponent = () => {};
+ReactNative.Platform = Platform;
 
 
 module.exports = ReactNative;
