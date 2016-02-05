@@ -31,7 +31,8 @@ const mapStateToProps = state => ({
   searchString : state.addressesByGeoEncoding.searchString,
   routes : state.routes,
   routerState: state.router.routerState,
-  isLoading: state.addressesByGeoEncoding.isLoading
+  isLoading: state.addressesByGeoEncoding.isLoading,
+  isEmpty: state.addressesByGeoEncoding.isEmpty
 });
 
 const mapDispatchToProps = (dispatch) => ({

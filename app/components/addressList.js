@@ -164,7 +164,7 @@ class AddressList extends Component {
   render() {
     const { searchString,addresses } = this.props;
 
-    var scroll = !this.props.isLoading ?
+    var scroll = !this.props.isLoading && !this.props.isEmpty ?
     (<ScrollView style={styles.listContainer}>
                 <RefreshableListView
                     dataSource={addresses}
@@ -174,6 +174,12 @@ class AddressList extends Component {
                     automaticallyAdjustContentInsets = {false}
                 />
             </ScrollView>):
+    ( <View/> );
+
+    var empty = !this.props.isLoading && this.props.isEmpty ?
+    (<View style = {styles.emptyContainer}>
+        <Text style = {styles.noResultText}>Search result not found!</Text>
+    </View>):
     ( <View/> );
 
     if(Platform.OS ==='ios') {
@@ -195,7 +201,7 @@ class AddressList extends Component {
             color = '#4da6ff' />):
         ( <View/> );
     }
-    // console.log(this.props.isLoading);
+    console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
@@ -212,6 +218,7 @@ class AddressList extends Component {
             </View>
             {spinner}
             {scroll}
+            {empty}
         </View>
     );
   }
@@ -248,6 +255,12 @@ class AddressList extends Component {
       marginTop:20,
       flexDirection:'column',
       marginBottom:50
+    },
+    emptyContainer: {
+      flex: 1,
+      marginTop: 50,
+      marginBottom: 50,
+      alignSelf: 'center'
     },
     searchInput: {
       flex: 1,
@@ -300,6 +313,10 @@ class AddressList extends Component {
       alignSelf: 'center',
       width: 25,
       height: 25
-    }
+  },
+  noResultText: {
+      fontSize: 24,
+      color: 'gray'
+  }
   });
 module.exports = AddressList

@@ -14,6 +14,11 @@ function receivePosts(results) {
   };
 }
 
+function receiveEmpty() {
+    return {
+        type: types.RECEIVE_EMPTY
+    };
+}
 
 
 function updateSearchText(searchString){
@@ -103,13 +108,19 @@ module.exports.fetchAddresses = function(searchString, database){
       .then((json) => {
         jsonData = [];
         var promises = [];
-        for(i in json.results) {
-          var address = json.results[i].formatted_address;
-          promises.push(checkFav(database, address, i, json, jsonData));
+        if(json.status == "OK"){
+            for(i in json.results) {
+              var address = json.results[i].formatted_address;
+              promises.push(checkFav(database, address, i, json, jsonData));
+            }
+
+            Promise.all(promises).then(() => {
+                  dispatch(receivePosts(jsonData));
+            });
+        } else {
+            dispatch(receiveEmpty());
         }
-        Promise.all(promises).then(() => {
-              dispatch(receivePosts(jsonData));
-        });
+
       })
       .catch((error) => {
         // console.log("Action - FETCH ERROR " + error);
