@@ -66,11 +66,14 @@ class AddressList extends Component {
     // Call debounced function
     event.persist()
     var address = this.props.searchString;
-    this.debouncedFetch(address);
+    this.debouncedFetch(address, Database);
   }
 
   updateList(){
-    this.props.actions.fetchAddresses(this.props.searchString);
+    //this.props.actions.fetchAddresses(this.props.searchString);
+
+    var address = this.props.searchString;
+    this.debouncedFetch(address, Database);
   }
 
   onReplayPressed(){
@@ -94,7 +97,7 @@ class AddressList extends Component {
       this.props.navActions.details({data:rowData});
   }
 
-  onFavPressed(address) {
+  onFavPressed(rowData) {
       if(Platform.OS ==='ios') {
           this.setState({isVisible: true});
           setTimeout(this.hideTopToast.bind(this), 2000);
@@ -102,10 +105,25 @@ class AddressList extends Component {
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
       }
-      Database.insertAddress(address);
+      Database.insertAddress(rowData.formatted_address).then(() => {
+        this.updateList();
+      });
+
+      //rowData.isFav = true;
+
   }
 
-  renderRow(rowData){
+
+  onRemovePressed(rowData) {
+      Database.removeFavourite(rowData.formatted_address)
+      .then(() => {
+        console.log("DELETED.  LOADING FAVS");
+          this.updateList();
+      });
+    }
+
+
+  renderRow(rowData, i){
     var address = rowData.formatted_address;
     var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
     return(
@@ -113,15 +131,19 @@ class AddressList extends Component {
           underlayColor='#dddddd'>
           <View animation="fadeIn" duration={800} delay={200}>
                 <View style={styles.row}>
-                    <Text style={styles.address}>{address}</Text>
+                    <View style={styles.rowAddress}>
+                        <Text style={styles.address}>{address}</Text>
+
+                          <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
+                        <Image style={styles.fav}
+                               source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
+                               />
+                               </TouchableHighlight>
+                    </View>
                     <Image style = {styles.thumb}
                            source = {{uri: imageURI}}
                            defaultSource = {require('../../assets/loading_streetview.png')}
                            loadingIndicatorSource = {require('../../assets/loading_streetview.png')} />
-                    <Text style={styles.button}
-                            onPress={this.onFavPressed.bind(this, address)}>
-                            Add to Favourites
-                    </Text>
                 </View>
                 <View style={styles.separator}/>
           </View>
@@ -230,8 +252,20 @@ class AddressList extends Component {
         height: 100,
         marginTop: 10
     },
+    rowAddress:{
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'space-between'
+
+    },
     address: {
-        fontSize: 14
+        fontSize: 14,
+        alignSelf: 'center'
+    },
+    fav: {
+      alignSelf: 'center',
+      width: 25,
+      height: 25
     }
   });
 module.exports = AddressList
