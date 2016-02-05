@@ -47,3 +47,8 @@ Run with Scheme "GeoEncoding DEBUG" to load jscode from Packager and be able to 
 Run with Scheme "GeoEncoding RELEASE" to load jscode from optimised/minified jsbundle on disk (performed by CodePush)
 Under this mode, jsbundle within GeoEncoding.app is generated during "Bundle React Native code and images" build phase;
 and you will LOSE the ability to debug in Chrome
+
+#Screenshots
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/HomePage.png)
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/DetailPage.png)
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/VideoPlayer.png)
