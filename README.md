@@ -16,10 +16,11 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [x] Video Player
 - [x] Network request
 - [x] Toast notification (When adding an address to Favourites)
+- [x] Custom splash screen
 - [ ] Network download
 - [ ] Network upload
 - [ ] Barcode scanner
-- [x] Custom splash screen
+- [ ] Location update (background)
 
 
 Install node modeules
