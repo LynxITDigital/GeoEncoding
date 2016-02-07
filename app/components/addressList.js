@@ -184,21 +184,24 @@ class AddressList extends Component {
 
     if(Platform.OS ==='ios') {
         var spinner = this.props.isLoading ?
-        ( <Spinner
-            style = {styles.spinner}
+        ( <View style = {styles.spinner}>
+            <Spinner
             isVisible = {true}
             size = {50}
             type = 'Pulse'
-            color = '#4da6ff' />):
+            color = '#4da6ff' />
+          </View>):
         ( <View/> );
     } else {
         var spinner = this.props.isLoading ?
-        ( <Spinner
+        ( <View style = {styles.spinner}>
+            <Spinner
             style = {styles.spinner}
             isVisible = {true}
             size = {50}
             type = 'ThreeBounce'
-            color = '#4da6ff' />):
+            color = '#4da6ff' />
+          </View>):
         ( <View/> );
     }
     //console.log(this.props.isEmpty);

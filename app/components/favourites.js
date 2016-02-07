@@ -59,39 +59,19 @@ class Favourites extends Component {
     });
   }
 
-  renderRow(rowData){
-    var address = rowData.formatted_address;
-    var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
-    return(
-      <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
-          underlayColor='#dddddd'>
-          <View>
-                <View style={styles.row}>
-                    <Text style={styles.address}>{address}</Text>
-                    <Image style = {styles.thumb} source = {{uri: imageURI}}/>
-                    <Text style={styles.button}
-                            onPress={this.onFavPressed.bind(this, address)}>
-                            Add to Favourites
-                    </Text>
-                </View>
-                <View style={styles.separator}/>
-          </View>
-      </TouchableHighlight>
-    )
-  }
-
   renderFav(rowData) {
     return(
       <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
           underlayColor='#dddddd'>
           <View>
-            <View>
+            <View style = {styles.addressContainer}>
                 <Text style={styles.address}>{rowData.id}: {rowData.address}</Text>
-
-                <Text style={styles.button}
-                        onPress={this.onRemovePressed.bind(this, rowData.id)}>
-                        Remove From Favourites
-                        </Text>
+                <View style = {styles.buttonContainer}>
+                    <Text style={styles.button}
+                            onPress={this.onRemovePressed.bind(this, rowData.id)}>
+                            Remove From Favourites
+                            </Text>
+                </View>
             </View>
             <View style={styles.separator}/>
 
@@ -148,15 +128,18 @@ class Favourites extends Component {
       backgroundColor: '#F5FCFF'
     },
     button:{
-      margin : 5,
-      padding :5,
-      height: 30,
-      borderWidth: 1,
-      borderColor: '#48BBEC',
-      borderRadius: 8,
       backgroundColor:'#48BBEC',
-      alignSelf:'stretch',
-      justifyContent:'center'
+      fontSize:14,
+      color:'white'
+    },
+    addressContainer: {
+        margin: 5,
+        padding: 5
+    },
+    buttonContainer: {
+        padding: 5,
+        marginTop: 5,
+        backgroundColor: '#48BBEC'
     },
     buttonText:{
       fontSize:18,
