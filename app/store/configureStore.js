@@ -31,7 +31,7 @@ export default function configureStore(initialState) {
   }
 
   const finalCreateStore = compose(
-    applyMiddleware(thunk, loggerMiddleWare)
+    applyMiddleware(thunk)
   )(createStore);
 
   const reducer = combineReducers(reducers);

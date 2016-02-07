@@ -119,7 +119,7 @@ class AddressList extends Component {
   onRemovePressed(rowData) {
       Database.removeFavourite(rowData.formatted_address)
       .then(() => {
-        console.log("DELETED.  LOADING FAVS");
+        //console.log("DELETED.  LOADING FAVS");
 
       });
     }
@@ -201,7 +201,7 @@ class AddressList extends Component {
             color = '#4da6ff' />):
         ( <View/> );
     }
-    console.log(this.props.isEmpty);
+    //console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
