@@ -136,7 +136,7 @@ class AddressList extends Component {
                     <View style={styles.rowAddress}>
                         <Text style={styles.address}>{address}</Text>
 
-                        <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
+                        <TouchableHighlight style = {styles.favTouchable} onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
                             <Image style={styles.fav}
                             source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
                             />
@@ -307,7 +307,10 @@ class AddressList extends Component {
     },
     address: {
         fontSize: 14,
-        alignSelf: 'center'
+        flex: 9
+    },
+    favTouchable: {
+        flex: 1
     },
     fav: {
       alignSelf: 'center',
