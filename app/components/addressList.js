@@ -55,6 +55,11 @@ class AddressList extends Component {
       try {
           let value = await AsyncStorage.getItem(STORAGE_KEY);
           this.props.actions.changeSearchText(value);
+
+          let rowCount = this.props.addresses.getRowCount()
+          if(!this.props.isEmpty && rowCount === 0){
+            this.debouncedFetch(this.props.searchString, Database);
+          }
       } catch(error) {
           // console.log(error);
       }
