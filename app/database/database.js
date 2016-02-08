@@ -82,7 +82,7 @@ var Database = {
 
 
   getFavourites() {
-      console.log('QUERYING FAVS');
+      // console.log('QUERYING FAVS');
       return new Promise((resolve, reject) => {
         db.executeSql('SELECT id, address FROM favourites')
           .then((results) => {
@@ -90,17 +90,17 @@ var Database = {
               favourites = [];
               for (let i = 0; i < len; i++) {
                   let row = results[0].rows.item(i);
-                  console.log(`Address: ${row.address}`);
+                  // console.log(`Address: ${row.address}`);
                   favourites.push({id: row.id, address: row.address});
               }
               resolve(favourites);
         }).catch((error) => {
-            console.log(error);
+            // console.log(error);
             reject(error);
         });
     });
   },
-  
+
 
   isFav(address) {
       return db.executeSql("SELECT id FROM favourites WHERE address = ?", [address]);

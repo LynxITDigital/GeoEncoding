@@ -51,7 +51,9 @@ class AddressList extends Component {
   }
 
   hideTopToast() {
-      this.setState({isVisible: false});
+      if(this.props.routerState[0] == 'launch'){
+          this.setState({isVisible: false});
+      }
   }
 
   onSearchTextChanged(event){
