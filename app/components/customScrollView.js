@@ -27,7 +27,7 @@ export default class CustomScrollView extends Component {
     }
 
     componentWillUpdate() {
-        this.fadeOut();
+        // this.fadeOut();
     }
 
     render() {
