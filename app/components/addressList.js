@@ -33,7 +33,7 @@ class AddressList extends Component {
     Database.loadDB();
 
     // Local state to show/hide Toast box
-    this.state = {isVisible: false};
+    this.state = {toastText: '',isVisible: false};
   }
 
   componentDidMount() {
@@ -101,6 +101,7 @@ class AddressList extends Component {
 
   onFavPressed(rowData, i) {
       if(Platform.OS ==='ios') {
+          this.setState({toastText: "Added to favourites"});
           this.setState({isVisible: true});
           setTimeout(this.hideTopToast.bind(this), 2000);
       }
@@ -112,7 +113,15 @@ class AddressList extends Component {
   }
 
   onRemovePressed(rowData, i) {
-    this.props.actions.unFavourite(Database, rowData.formatted_address, i);
+      if(Platform.OS ==='ios') {
+          this.setState({toastText: "Removed from favourites"});
+          this.setState({isVisible: true});
+          setTimeout(this.hideTopToast.bind(this), 2000);
+      }
+      else {
+          ToastAndroid.show('Removed from favourites', ToastAndroid.SHORT);
+      }
+      this.props.actions.unFavourite(Database, rowData.formatted_address, i);
   }
 
 
@@ -202,7 +211,7 @@ class AddressList extends Component {
         <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
                 <View>
-                    <Text style = {styles.toastText}>Added to favourites</Text>
+                    <Text style = {styles.toastText}>{this.state.toastText}</Text>
                 </View>
             </Toast>
             <View style={styles.inputContainer}>
