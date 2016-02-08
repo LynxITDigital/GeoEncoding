@@ -11,8 +11,6 @@ import { connect } from 'react-redux/native';
 // } from 'react-native-router-redux';
 
 import {Router, Route, Schema, Animations, TabBar, Actions} from 'react-native-router-flux'
-//import {Router, Route, Animations, Schema, TabBar, Actions} from 'react-native-redux-router';
-var {NavBar,NavBarBack, NavBarModal} = require('../components/navBar');
 
 //import TabBar from '../components/tabBar';
 
@@ -77,8 +75,8 @@ class GeoEncodingApp extends Component {
        onPop={()=>{this.props.routerActions.onPop(); return true}}
        onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
        >
-         <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBarModal}/>
-         <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
+         <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight}/>
+         <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
          <Schema name="tab" icon={TabIcon} type="replace" hideNavBar={true} />
          <Schema name="withoutAnimation"/>
 
