@@ -79,4 +79,5 @@ dependencies {
     compile project(':react-native-sqlite-storage')
     compile project(':react-native-code-push')
     compile project(':react-native-splashscreen')
+    compile project(':react-native-fs')
 }
