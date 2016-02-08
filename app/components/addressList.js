@@ -81,8 +81,7 @@ class AddressList extends Component {
 
     // Call debounced function
     event.persist()
-    var address = this.props.searchString;
-    this.debouncedFetch(address, Database);
+    this.updateList();
   }
 
   updateList(){
