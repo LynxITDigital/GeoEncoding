@@ -57,7 +57,7 @@ class AddressList extends Component {
           this.props.actions.changeSearchText(value);
 
           let rowCount = this.props.addresses.getRowCount()
-          if(!this.props.isEmpty && rowCount === 0){
+          if(!this.props.isEmpty && this.props.searchString !== null && rowCount === 0){
             this.debouncedFetch(this.props.searchString, Database);
           }
       } catch(error) {
