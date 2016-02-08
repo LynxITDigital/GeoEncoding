@@ -67,39 +67,40 @@ var Database = {
 
   removeFavourite(address) {
 
-      return db.executeSql("DELETE FROM Favourites WHERE address=?", [address])
-        .catch((error) => {
-          // console.log("CAUGHT ERROR");
-          // console.log(error);
+      return new Promise((resolve, reject) => {
+          db.executeSql("DELETE FROM Favourites WHERE address=?", [address])
+            .then(() => {
+              resolve();
+            })
+            .catch((error) => {
+              // console.log("CAUGHT ERROR");
+              // console.log(error);
+              reject();
+            });
         });
   },
 
 
-  queryFavourites(tx) {
-
-      // console.log('QUERYING FAVS');
-      return tx.executeSql('SELECT id, address FROM favourites').then(([tx,results]) => {
-        var len = results.rows.length;
-        favourites = [];
-        for (let i = 0; i < len; i++) {
-            let row = results.rows.item(i);
-            // console.log(`Address: ${row.address}`);
-            favourites.push({id: row.id, address: row.address});
-        }
-        return favourites;
-    }).catch((error) => {
-        // console.log(error);
+  getFavourites() {
+      console.log('QUERYING FAVS');
+      return new Promise((resolve, reject) => {
+        db.executeSql('SELECT id, address FROM favourites')
+          .then((results) => {
+              var len = results[0].rows.length;
+              favourites = [];
+              for (let i = 0; i < len; i++) {
+                  let row = results[0].rows.item(i);
+                  console.log(`Address: ${row.address}`);
+                  favourites.push({id: row.id, address: row.address});
+              }
+              resolve(favourites);
+        }).catch((error) => {
+            console.log(error);
+            reject(error);
+        });
     });
   },
-
-  getFavourites() {
-    // console.log("FAVE");
-      return db.transaction(this.queryFavourites);
-  },
-
-  getFav() {
-    return favourites;
-  },
+  
 
   isFav(address) {
       return db.executeSql("SELECT id FROM favourites WHERE address = ?", [address]);

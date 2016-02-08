@@ -38,45 +38,29 @@ class Favourites extends Component {
   loadFavourites() {
     var favs = Database.getFavourites();
     this.favDataSource.cloneWithRows(favs);
-      /*.then( (result) => {
-        // console.log(result)
-        dataSource: this.dataSource.cloneWithRows(result[0].rows);
-      } )
-      .done();*/
   }
 
-
-  onRowPressed(rowData){
-      //// console.log(this.props);
-      this.props.navActions.details({data:rowData});
+  onRemovePressed(addressID, i) {
+    this.props.actions.removeFavourite(Database, addressID, i, this.props.addresses._dataBlob.s1);
   }
 
-  onRemovePressed(addressID) {
-    Database.removeAddress(addressID)
-    .then(() => {
-      // console.log("DELETED.  LOADING FAVS");
-        this.props.actions.fetchFavourites(Database);
-    });
-  }
-
-  renderFav(rowData) {
+  renderFav(rowData, i, j) {
     return(
-      <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
-          underlayColor='#dddddd'>
           <View>
-            <View style = {styles.addressContainer}>
-                <Text style={styles.address}>{rowData.id}: {rowData.address}</Text>
-                <View style = {styles.buttonContainer}>
-                    <Text style={styles.button}
-                            onPress={this.onRemovePressed.bind(this, rowData.id)}>
-                            Remove From Favourites
-                            </Text>
+            <View style={styles.rowAddress}>
+            <View style={styles.addressWrap}>
+                <Text style={styles.address}>
+                {rowData.id}: {rowData.address}</Text>
                 </View>
+                <TouchableHighlight onPress={this.onRemovePressed.bind(this, rowData.id, j)} underlayColor='#fff'>
+                  <Image style={styles.button}
+                         source={require('../../assets/ic_stat_delete.png')}
+                  />
+                </TouchableHighlight>
             </View>
             <View style={styles.separator}/>
 
       </View>
-  </TouchableHighlight>
    );
   }
 
@@ -106,59 +90,36 @@ class Favourites extends Component {
     height: 600,
   },
   container: {
-      marginTop:80,
+      marginTop:70,
   },
     listContainer: {
-      marginTop:10,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch',
     },
-    searchInput: {
-      flex: 1,
-      height: 36,
-      padding: 4,
-      marginLeft : 10,
-      marginRight: 10,
-      fontSize: 18,
-      color: 'gray',
-      borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 8,
-      backgroundColor: '#F5FCFF'
-    },
-    button:{
-      backgroundColor:'#48BBEC',
-      fontSize:14,
-      color:'white'
-    },
-    addressContainer: {
-        margin: 5,
-        padding: 5
-    },
-    buttonContainer: {
-        padding: 5,
-        marginTop: 5,
-        backgroundColor: '#48BBEC'
-    },
-    buttonText:{
-      fontSize:18,
-      color:'white'
-    },
-    row:{
-      padding :10,
-      flexDirection: 'column'
-
-    },separator:{
+    separator:{
       height:1,
       backgroundColor:'gray'
   },
-  thumb: {
-        height: 100,
-        marginTop: 10
+  addressWrap: {
+    flexWrap: 'wrap',
+    flex: 9
+  },
+  rowAddress:{
+      padding: 5,
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'space-between',
+
     },
     address: {
-        fontSize: 14
-    }
+        fontSize: 14,
+    },
+    button: {
+      alignSelf: 'center',
+      width: 20,
+      height: 20,
+      flex: 1
+  },
   });
 module.exports = Favourites

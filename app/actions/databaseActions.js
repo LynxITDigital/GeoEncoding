@@ -1,4 +1,5 @@
 var types = require('./actionTypes');
+var addressActions = require('./addressActions');
 
 
 function requestFavDB() {
@@ -14,17 +15,24 @@ function receiveFavDB(results) {
   };
 }
 
-function insertFavDB(address) {
+function insertFavDB(index) {
   return {
-    type: types.REQUEST_DB_INSERT,
-    address
+    type: types.DB_FAV_ADDED,
+    index
   };
 }
 
-function removeFavDB(results) {
+function unFav(index) {
   return {
-    type: types.REQUEST_DB_DELETE,
-    results
+    type: types.DB_UNFAV,
+    index
+  };
+}
+
+function removeFav(index) {
+  return {
+    type: types.DB_FAV_REMOVED,
+    index
   };
 }
 
@@ -34,38 +42,48 @@ function dbUpdated(results) {
   }
 }
 
-
-module.exports.insertFavourites = function(db){
-
-// console.log("FETCHING FAVS");
+module.exports.insertFavourites = function(db, address, index){
     return dispatch=>{
-      dispatch(requestFavDB())
+      return db.insertAddress(address).then(() => {
+              dispatch(insertFavDB(index));
+            })
+            .catch((error) => {
+                // console.log("Action - DB ERROR " + error);
+            })
+    };
+}
 
-      return db.getFavourites().then((tx, result) => {
-          // console.log('FETCHED FAVS');
-          // console.log(db.getFav());
-          //// console.log(favourites);
-          //// console.log(db.favourites);
-
-          dispatch(receiveFavDB(db.getFav()));
-      })
-      .catch((error) => {
-        // console.log("Action - DB ERROR " + error);
-      })
+/**
+ Called by AddressList - needs to remove favourite and update 'addresses' array
+ */
+module.exports.unFavourite = function(db, address, index){
+    return dispatch=>{
+      return db.removeFavourite(address).then(() => {
+              dispatch(unFav(index));
+            })
+            .catch((error) => {
+                // console.log("Action - DB ERROR " + error);
+            })
     };
 }
 
 
 
 
-module.exports.removeFavourites = function(db, id){
+/**
+Called from Favourites - needs to remove from DB and 'favourites' array
+*/
+module.exports.removeFavourite = function(db, id, index, searchAddresses){
 
 // console.log("REMOVING FAVS");
     return dispatch=>{
-      
+
         return db.removeAddress(id)
           .then((tx, result) => {
-            dispatch(dbUpdated());
+            dispatch(removeFav(index));
+            if(searchAddresses) {
+              addressActions.checkAllFav(searchAddresses, db, dispatch);
+            }
           })
           .catch((error) => {
             // console.log("Action - DB REMOVE ERROR " + error);
@@ -82,13 +100,8 @@ module.exports.fetchFavourites = function(db){
     return dispatch=>{
       dispatch(requestFavDB())
 
-      return db.getFavourites().then((tx, result) => {
-          // console.log('FETCHED FAVS');
-          // console.log(db.getFav());
-          //// console.log(favourites);
-          //// console.log(db.favourites);
-
-          dispatch(receiveFavDB(db.getFav()));
+      return db.getFavourites().then((favourites) => {
+          dispatch(receiveFavDB(favourites));
       })
       .catch((error) => {
         // console.log("Action - DB ERROR " + error);
