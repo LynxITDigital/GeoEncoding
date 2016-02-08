@@ -3,6 +3,8 @@ var { Animated, Component } = React;
 
 var AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
+// var _ = require('lodash');
+
 export default class CustomScrollView extends Component {
     constructor(props) {
         super(props);
@@ -11,13 +13,21 @@ export default class CustomScrollView extends Component {
         };
     }
 
-    componentWillUnmount() {
-        // console.log('UNMOUNT')
+    /*
+    componentDidMount() {
+        this.debouncedFade = _.debounce(this.fadeOut, 50);
+    } */
+
+    fadeOut() {
         Animated.timing(
             this.state.fadeAnim,
             {toValue: 0,
-            duration: 1000,},
+            duration: 500,},
         ).start();
+    }
+
+    componentWillUpdate() {
+        this.fadeOut();
     }
 
     render() {
