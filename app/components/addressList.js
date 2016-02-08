@@ -119,7 +119,7 @@ class AddressList extends Component {
   onRemovePressed(rowData) {
       Database.removeFavourite(rowData.formatted_address)
       .then(() => {
-        console.log("DELETED.  LOADING FAVS");
+        //console.log("DELETED.  LOADING FAVS");
 
       });
     }
@@ -136,7 +136,7 @@ class AddressList extends Component {
                     <View style={styles.rowAddress}>
                         <Text style={styles.address}>{address}</Text>
 
-                        <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
+                        <TouchableHighlight style = {styles.favTouchable} onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
                             <Image style={styles.fav}
                             source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
                             />
@@ -184,24 +184,27 @@ class AddressList extends Component {
 
     if(Platform.OS ==='ios') {
         var spinner = this.props.isLoading ?
-        ( <Spinner
-            style = {styles.spinner}
+        ( <View style = {styles.spinner}>
+            <Spinner
             isVisible = {true}
             size = {50}
             type = 'Pulse'
-            color = '#4da6ff' />):
+            color = '#4da6ff' />
+          </View>):
         ( <View/> );
     } else {
         var spinner = this.props.isLoading ?
-        ( <Spinner
+        ( <View style = {styles.spinner}>
+            <Spinner
             style = {styles.spinner}
             isVisible = {true}
             size = {50}
             type = 'ThreeBounce'
-            color = '#4da6ff' />):
+            color = '#4da6ff' />
+          </View>):
         ( <View/> );
     }
-    console.log(this.props.isEmpty);
+    //console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
@@ -307,7 +310,10 @@ class AddressList extends Component {
     },
     address: {
         fontSize: 14,
-        alignSelf: 'center'
+        flex: 9
+    },
+    favTouchable: {
+        flex: 1
     },
     fav: {
       alignSelf: 'center',
