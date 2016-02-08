@@ -20,9 +20,7 @@
     "react-native-button": "^1.2.1",
     "react-native-code-push": "^1.6.0-beta",
     "react-native-maps": "^0.2.3",
-    "react-native-navbar": "git://github.com/NyanWinKyaw/react-native-navbar#master",
     "react-native-overlay": "^0.4.1",
-    "react-native-redux-router": "git://github.com/Proyoyo/react-native-redux-router#master",
     "react-native-refreshable-listview": "^1.3.0",
     "react-native-router-flux": "^2.1.4",
     "react-native-spinkit": "0.0.6",
@@ -36,7 +34,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel-core": "^6.4.5",
+    "babel-core": "6.4.5",
     "indent": "0.0.1",
     "inspect-react-element": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",
