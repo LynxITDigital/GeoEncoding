@@ -34,6 +34,16 @@ class AddressList extends Component {
 
     // Local state to show/hide Toast box
     this.state = {toastText: '',isVisible: false};
+
+    // Early binding
+    this.onSearchTextChanged = this.onSearchTextChanged.bind(this)
+    this.hideTopToast = this.hideTopToast.bind(this)
+    this.onRowPressed = this.onRowPressed.bind(this)
+    this.onRemovePressed = this.onRemovePressed.bind(this)
+    this.hideTopToast = this.hideTopToast.bind(this)
+    this.onFavPressed = this.onFavPressed.bind(this)
+    this.renderRow = this.renderRow.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   componentDidMount() {
@@ -105,7 +115,7 @@ class AddressList extends Component {
       if(Platform.OS ==='ios') {
           this.setState({toastText: "Added to favourites"});
           this.setState({isVisible: true});
-          setTimeout(this.hideTopToast.bind(this), 2000);
+          setTimeout(this.hideTopToast, 2000);
       }
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
@@ -118,7 +128,7 @@ class AddressList extends Component {
       if(Platform.OS ==='ios') {
           this.setState({toastText: "Removed from favourites"});
           this.setState({isVisible: true});
-          setTimeout(this.hideTopToast.bind(this), 2000);
+          setTimeout(this.hideTopToast, 2000);
       }
       else {
           ToastAndroid.show('Removed from favourites', ToastAndroid.SHORT);
@@ -172,8 +182,8 @@ class AddressList extends Component {
     (<ScrollView style={styles.listContainer}>
                 <RefreshableListView
                     dataSource={addresses}
-                    renderRow={this.renderRow.bind(this)}
-                    loadData={this.updateList.bind(this)}
+                    renderRow={this.renderRow}
+                    loadData={this.updateList}
                     refreshDescription="Refreshing articles"
                     automaticallyAdjustContentInsets = {false}
                 />
@@ -211,7 +221,7 @@ class AddressList extends Component {
     //console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
-            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
+            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast} position = 'top'>
                 <View>
                     <Text style = {styles.toastText}>{this.state.toastText}</Text>
                 </View>
@@ -220,7 +230,7 @@ class AddressList extends Component {
                 <TextInput
                     style={styles.searchInput}
                     value= {searchString}
-                    onChange={this.onSearchTextChanged.bind(this)}
+                    onChange={this.onSearchTextChanged}
                     placeholder="Search location"/>
             </View>
             {spinner}

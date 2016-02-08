@@ -25,6 +25,9 @@ class Favourites extends Component {
     this.favDataSource = new ListView.DataSource( {
         rowHasChanged: (row1, row2) => row1 !== row2
     });
+
+    // Early binding
+    this.renderFav = this.renderFav.bind(this)
   }
 
   componentDidMount() {
@@ -72,7 +75,7 @@ class Favourites extends Component {
           <View style={styles.listContainer}>
             <ListView
               dataSource={favourites}
-              renderRow={this.renderFav.bind(this)}
+              renderRow={this.renderFav}
               />
           </View>
         </View>
