@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware,combineReducers, compose } from 'redux';
-import {routerReducer} from 'react-native-redux-router';
 import thunk from 'redux-thunk';
 import * as reducers from '../reducers';
 import globals from './globals';
