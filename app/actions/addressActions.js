@@ -14,6 +14,11 @@ function receivePosts(results) {
   };
 }
 
+function receiveEmpty() {
+    return {
+        type: types.RECEIVE_EMPTY
+    };
+}
 
 
 function updateSearchText(searchString){
@@ -71,15 +76,28 @@ module.exports.changeSearchText = function (searchString){
     };
 }
 
+module.exports.checkAllFav = function(addresses, database, dispatch) {
+  newAddresses = [];
+  var promises = [];
+      for(i in addresses) {
+        var address = addresses[i].formatted_address;
+        promises.push(checkFav(database, address, i, addresses, newAddresses));
+      }
 
-function checkFav(database, address, index, json, jsonData) {
+      Promise.all(promises).then(() => {
+          console.log("CHECKED FAVS: " + newAddresses);
+            dispatch(receivePosts(newAddresses));
+      });
+}
+
+function checkFav(database, address, index, addresses, newAddresses) {
   return new Promise((resolve, reject) => {
               database.isFav(address)
               .then((results) => {
                   if(results[0].rows.length > 0) {
-                    jsonData.push(Object.assign({}, json.results[index], {isFav: true}));
+                    newAddresses.push(Object.assign({}, addresses[index], {isFav: true}));
                   } else {
-                    jsonData.push(Object.assign({}, json.results[index], {isFav: false}));
+                    newAddresses.push(Object.assign({}, addresses[index], {isFav: false}));
                   }
                   resolve();
                 })
@@ -101,19 +119,14 @@ module.exports.fetchAddresses = function(searchString, database){
             response.json()
           )
       .then((json) => {
-        jsonData = [];
-        var promises = [];
-        for(i in json.results) {
-          var address = json.results[i].formatted_address;
-          promises.push(checkFav(database, address, i, json, jsonData));
+        if(json.status == "OK"){
+            module.exports.checkAllFav(json.results, database, dispatch);
+        } else {
+            dispatch(receiveEmpty());
         }
-        Promise.all(promises).then(() => {
-              dispatch(receivePosts(jsonData));
-        });
       })
       .catch((error) => {
-        console.error("Action - FETCH ERROR " + error);
-
+          console.log("Action - FETCH ERROR " + error);
       })
     };
 }

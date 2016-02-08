@@ -45,58 +45,33 @@ class Favourites extends View {
       .done();*/
   }
 
-
-  onRowPressed(rowData){
-      //console.log(this.props);
-      this.props.navActions.details({data:rowData});
-  }
-
-  onRemovePressed(addressID) {
-    Database.removeAddress(addressID)
+  onRemovePressed(addressID, i) {
+    /*Database.removeAddress(addressID)
     .then(() => {
       console.log("DELETED.  LOADING FAVS");
         this.props.actions.fetchFavourites(Database);
-    });
+    });*/
+      console.log("DELETED.  LOADING FAVS");
+    this.props.actions.removeFavourite(Database, addressID, i, this.props.addresses._dataBlob.s1);
   }
 
-  renderRow(rowData){
-    var address = rowData.formatted_address;
-    var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
+  renderFav(rowData, i, j) {
     return(
-      <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
-          underlayColor='#dddddd'>
           <View>
-                <View style={styles.row}>
-                    <Text style={styles.address}>{address}</Text>
-                    <Image style = {styles.thumb} source = {{uri: imageURI}}/>
-                    <Text style={styles.button}
-                            onPress={this.onFavPressed.bind(this, address)}>
-                            Add to Favourites
-                    </Text>
+            <View style={styles.rowAddress}>
+            <View style={styles.addressWrap}>
+                <Text style={styles.address}>
+                {rowData.id}: {rowData.address}</Text>
                 </View>
-                <View style={styles.separator}/>
-          </View>
-      </TouchableHighlight>
-    )
-  }
-
-  renderFav(rowData) {
-    return(
-      <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
-          underlayColor='#dddddd'>
-          <View>
-            <View>
-                <Text style={styles.address}>{rowData.id}: {rowData.address}</Text>
-
-                <Text style={styles.button}
-                        onPress={this.onRemovePressed.bind(this, rowData.id)}>
-                        Remove From Favourites
-                        </Text>
+                <TouchableHighlight onPress={this.onRemovePressed.bind(this, rowData.id, j)} underlayColor='#fff'>
+                  <Image style={styles.button}
+                         source={require('../../assets/ic_stat_delete.png')}
+                  />
+                </TouchableHighlight>
             </View>
             <View style={styles.separator}/>
 
       </View>
-  </TouchableHighlight>
    );
   }
 
@@ -126,56 +101,36 @@ class Favourites extends View {
     height: 600,
   },
   container: {
-      marginTop:80,
+      marginTop:70,
   },
     listContainer: {
-      marginTop:10,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch',
     },
-    searchInput: {
-      flex: 1,
-      height: 36,
-      padding: 4,
-      marginLeft : 10,
-      marginRight: 10,
-      fontSize: 18,
-      color: 'gray',
-      borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 8,
-      backgroundColor: '#F5FCFF'
-    },
-    button:{
-      margin : 5,
-      padding :5,
-      height: 30,
-      borderWidth: 1,
-      borderColor: '#48BBEC',
-      borderRadius: 8,
-      backgroundColor:'#48BBEC',
-      alignSelf:'stretch',
-      justifyContent:'center'
-    },
-    buttonText:{
-      fontSize:18,
-      color:'white'
-    },
-    row:{
-      padding :10,
-      flexDirection: 'column'
-
-    },separator:{
+    separator:{
       height:1,
       backgroundColor:'gray'
   },
-  thumb: {
-        height: 100,
-        marginTop: 10
+  addressWrap: {
+    flexWrap: 'wrap',
+    flex: 9
+  },
+  rowAddress:{
+      padding: 5,
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'space-between',
+
     },
     address: {
-        fontSize: 14
-    }
+        fontSize: 14,
+    },
+    button: {
+      alignSelf: 'center',
+      width: 20,
+      height: 20,
+      flex: 1
+  },
   });
 module.exports = Favourites

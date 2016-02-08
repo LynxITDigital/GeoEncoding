@@ -97,32 +97,27 @@ class AddressList extends Component {
       this.props.navActions.details({data:rowData});
   }
 
-  onFavPressed(rowData) {
+  onFavPressed(rowData, i) {
       if(Platform.OS ==='ios') {
           this.setState({isVisible: true});
       }
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
       }
-      Database.insertAddress(rowData.formatted_address).then(() => {
-        this.updateList();
-      });
+      this.props.actions.insertFavourites(Database, rowData.formatted_address, i);
 
       //rowData.isFav = true;
 
   }
 
 
-  onRemovePressed(rowData) {
-      Database.removeFavourite(rowData.formatted_address)
-      .then(() => {
-        console.log("DELETED.  LOADING FAVS");
-          this.updateList();
-      });
-    }
+
+  onRemovePressed(rowData, i) {
+    this.props.actions.unFavourite(Database, rowData.formatted_address, i);
+  }
 
 
-  renderRow(rowData, i){
+  renderRow(rowData, i, j){
     var address = rowData.formatted_address;
     var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
     return(
@@ -133,11 +128,12 @@ class AddressList extends Component {
                     <View style={styles.rowAddress}>
                         <Text style={styles.address}>{address}</Text>
 
-                          <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
-                        <Image style={styles.fav}
-                               source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
-                               />
-                               </TouchableHighlight>
+
+                        <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData, j) : this.onFavPressed.bind(this, rowData, j)} underlayColor='#fff'>
+                            <Image style={styles.fav}
+                            source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
+                            />
+                        </TouchableHighlight>
                     </View>
                     <Image style = {styles.thumb}
                            source = {{uri: imageURI}}
