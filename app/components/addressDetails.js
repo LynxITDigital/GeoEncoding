@@ -24,6 +24,15 @@ const SPACE = 0.01;
 */
 
 class AddressDetails extends Component {
+
+  constructor(props) {
+    super(props);
+
+    // Early binding
+    this.onTitlePress = this.onTitlePress.bind(this)
+    this.onDirectionPressed = this.onDirectionPressed.bind(this)
+  }
+
   onTitlePress(){
     // console.log("onTitlePress : "  + this.props.route);
     this.props.routes.pop();
@@ -58,7 +67,7 @@ class AddressDetails extends Component {
     return (
      <View style={styles.container}>
        <View style={styles.heading}>
-         <Text style={styles.title} onPress={this.onTitlePress.bind(this)}>{title}</Text>
+         <Text style={styles.title} onPress={this.onTitlePress}>{title}</Text>
          <View style={styles.separator}></View>
        </View>
        <Text style={styles.description}>{latLong}</Text>
@@ -75,7 +84,7 @@ class AddressDetails extends Component {
 
          <TouchableHighlight style = {styles.button}
                     underlayColor = '#99d9f4'
-                    onPress = {this.onDirectionPressed.bind(this)}>
+                    onPress = {this.onDirectionPressed}>
                     <Text style = {styles.buttonText}>Direction</Text>
           </TouchableHighlight>
 

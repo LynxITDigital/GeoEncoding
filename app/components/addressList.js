@@ -33,7 +33,17 @@ class AddressList extends Component {
     Database.loadDB();
 
     // Local state to show/hide Toast box
-    this.state = {isVisible: false};
+    this.state = {toastText: '',isVisible: false};
+
+    // Early binding
+    this.onSearchTextChanged = this.onSearchTextChanged.bind(this)
+    this.hideTopToast = this.hideTopToast.bind(this)
+    this.onRowPressed = this.onRowPressed.bind(this)
+    this.onRemovePressed = this.onRemovePressed.bind(this)
+    this.hideTopToast = this.hideTopToast.bind(this)
+    this.onFavPressed = this.onFavPressed.bind(this)
+    this.renderRow = this.renderRow.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   componentDidMount() {
@@ -51,7 +61,9 @@ class AddressList extends Component {
   }
 
   hideTopToast() {
-      this.setState({isVisible: false});
+      if(this.props.routerState[0] == 'launch'){
+          this.setState({isVisible: false});
+      }
   }
 
   onSearchTextChanged(event){
@@ -99,33 +111,33 @@ class AddressList extends Component {
       this.props.navActions.details({data:rowData});
   }
 
-  onFavPressed(rowData) {
+  onFavPressed(rowData, i) {
       if(Platform.OS ==='ios') {
+          this.setState({toastText: "Added to favourites"});
           this.setState({isVisible: true});
-          setTimeout(this.hideTopToast.bind(this), 2000);
+          setTimeout(this.hideTopToast, 2000);
       }
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
       }
-      Database.insertAddress(rowData.formatted_address).then(() => {
-
-      });
-
-      //rowData.isFav = true;
+      this.props.actions.insertFavourites(Database, rowData.formatted_address, i);
 
   }
 
+  onRemovePressed(rowData, i) {
+      if(Platform.OS ==='ios') {
+          this.setState({toastText: "Removed from favourites"});
+          this.setState({isVisible: true});
+          setTimeout(this.hideTopToast, 2000);
+      }
+      else {
+          ToastAndroid.show('Removed from favourites', ToastAndroid.SHORT);
+      }
+      this.props.actions.unFavourite(Database, rowData.formatted_address, i);
+  }
 
-  onRemovePressed(rowData) {
-      Database.removeFavourite(rowData.formatted_address)
-      .then(() => {
-        console.log("DELETED.  LOADING FAVS");
 
-      });
-    }
-
-
-  renderRow(rowData, i){
+  renderRow(rowData, i, j){
     var address = rowData.formatted_address;
     var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
     return(
@@ -136,7 +148,9 @@ class AddressList extends Component {
                     <View style={styles.rowAddress}>
                         <Text style={styles.address}>{address}</Text>
 
-                        <TouchableHighlight onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData) : this.onFavPressed.bind(this, rowData)} underlayColor='#fff'>
+
+                        <TouchableHighlight style = {styles.favTouchable}  onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData, j) : this.onFavPressed.bind(this, rowData, j)} underlayColor='#fff'>
+
                             <Image style={styles.fav}
                             source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
                             />
@@ -168,8 +182,8 @@ class AddressList extends Component {
     (<ScrollView style={styles.listContainer}>
                 <RefreshableListView
                     dataSource={addresses}
-                    renderRow={this.renderRow.bind(this)}
-                    loadData={this.updateList.bind(this)}
+                    renderRow={this.renderRow}
+                    loadData={this.updateList}
                     refreshDescription="Refreshing articles"
                     automaticallyAdjustContentInsets = {false}
                 />
@@ -184,36 +198,39 @@ class AddressList extends Component {
 
     if(Platform.OS ==='ios') {
         var spinner = this.props.isLoading ?
-        ( <Spinner
-            style = {styles.spinner}
+        ( <View style = {styles.spinner}>
+            <Spinner
             isVisible = {true}
             size = {50}
             type = 'Pulse'
-            color = '#4da6ff' />):
+            color = '#4da6ff' />
+          </View>):
         ( <View/> );
     } else {
         var spinner = this.props.isLoading ?
-        ( <Spinner
+        ( <View style = {styles.spinner}>
+            <Spinner
             style = {styles.spinner}
             isVisible = {true}
             size = {50}
             type = 'ThreeBounce'
-            color = '#4da6ff' />):
+            color = '#4da6ff' />
+          </View>):
         ( <View/> );
     }
-    console.log(this.props.isEmpty);
+    //console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
-            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast.bind(this)} position = 'top'>
+            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast} position = 'top'>
                 <View>
-                    <Text style = {styles.toastText}>Added to favourites</Text>
+                    <Text style = {styles.toastText}>{this.state.toastText}</Text>
                 </View>
             </Toast>
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.searchInput}
                     value= {searchString}
-                    onChange={this.onSearchTextChanged.bind(this)}
+                    onChange={this.onSearchTextChanged}
                     placeholder="Search location"/>
             </View>
             {spinner}
@@ -307,7 +324,10 @@ class AddressList extends Component {
     },
     address: {
         fontSize: 14,
-        alignSelf: 'center'
+        flex: 9
+    },
+    favTouchable: {
+        flex: 1
     },
     fav: {
       alignSelf: 'center',
