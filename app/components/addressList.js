@@ -1,7 +1,6 @@
 import React, {
   StyleSheet,
   Component,
-  ScrollView,
   Text,
   TextInput,
   TouchableHighlight,
@@ -21,7 +20,8 @@ var Overlay = require('react-native-overlay');
 import Toast from './toast.ios';
 const STORAGE_KEY = '@GeoEncoding:address'
 
-
+// var CustomScrollView = require('./customScrollView').default;
+import CustomScrollView from './customScrollView';
 import Database from '../database/database';
 
 import globals from '../store/globals';
@@ -76,6 +76,8 @@ class AddressList extends Component {
     } catch (error){
         // console.log(error.message);
     }
+
+    // console.log(this);
 
     // Call debounced function
     event.persist()
@@ -176,10 +178,11 @@ class AddressList extends Component {
   }
 
   render() {
+
     const { searchString,addresses } = this.props;
 
     var scroll = !this.props.isLoading && !this.props.isEmpty ?
-    (<ScrollView style={styles.listContainer}>
+    (<CustomScrollView style={styles.listContainer}>
                 <RefreshableListView
                     dataSource={addresses}
                     renderRow={this.renderRow}
@@ -187,7 +190,7 @@ class AddressList extends Component {
                     refreshDescription="Refreshing articles"
                     automaticallyAdjustContentInsets = {false}
                 />
-            </ScrollView>):
+        </CustomScrollView>):
     ( <View/> );
 
     var empty = !this.props.isLoading && this.props.isEmpty ?
