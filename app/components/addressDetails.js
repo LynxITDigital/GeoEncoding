@@ -32,7 +32,6 @@ class AddressDetails extends Component {
     this.state = {appleMaps: false, googleMaps: false};
 
     // Early binding
-    this.onTitlePress = this.onTitlePress.bind(this)
     this.onApplePressed = this.onApplePressed.bind(this)
     this.onGooglePressed = this.onGooglePressed.bind(this)
     this.componentWillMount = this.componentWillMount.bind(this)
@@ -58,11 +57,6 @@ class AddressDetails extends Component {
               }
           });
       }
-  }
-
-  onTitlePress(){
-    // console.log("onTitlePress : "  + this.props.route);
-    this.props.routes.pop();
   }
 
   onApplePressed(){
@@ -115,7 +109,7 @@ class AddressDetails extends Component {
     return (
      <View style={styles.container}>
        <View style={styles.heading}>
-         <Text style={styles.title} onPress={this.onTitlePress}>{title}</Text>
+         <Text style={styles.title}>{title}</Text>
          <View style={styles.separator}></View>
        </View>
        <Text style={styles.description}>{latLong}</Text>
