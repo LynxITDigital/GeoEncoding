@@ -117,29 +117,29 @@ class AddressList extends Component {
       this.props.navActions.details({data:rowData});
   }
 
-  onFavPressed(rowData, i) {
+  onFavPressed(rowData, i, isFav) {
+      var message = 'placeholder';
+      if(isFav) {
+          message = "Removed from favourites";
+      } else {
+          message = "Added to favourites";
+      }
+      
       if(Platform.OS ==='ios') {
-          this.setState({toastText: "Added to favourites"});
+          this.setState({toastText: message});
           this.setState({isVisible: true});
           setTimeout(this.hideTopToast, 2000);
       }
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
       }
-      this.props.actions.insertFavourites(Database, rowData.formatted_address, i);
 
-  }
+      if(isFav) {
+          this.props.actions.unFavourite(Database, rowData.formatted_address, i);
+      } else {
+          this.props.actions.insertFavourites(Database, rowData.formatted_address, i);
+      }
 
-  onRemovePressed(rowData, i) {
-      if(Platform.OS ==='ios') {
-          this.setState({toastText: "Removed from favourites"});
-          this.setState({isVisible: true});
-          setTimeout(this.hideTopToast, 2000);
-      }
-      else {
-          ToastAndroid.show('Removed from favourites', ToastAndroid.SHORT);
-      }
-      this.props.actions.unFavourite(Database, rowData.formatted_address, i);
   }
 
 
@@ -155,7 +155,7 @@ class AddressList extends Component {
                         <Text style={styles.address}>{address}</Text>
 
 
-                        <TouchableHighlight style = {styles.favTouchable}  onPress={(rowData.isFav) ?  this.onRemovePressed.bind(this, rowData, j) : this.onFavPressed.bind(this, rowData, j)} underlayColor='#fff'>
+                        <TouchableHighlight style = {styles.favTouchable}  onPress={(rowData.isFav) ?  this.onFavPressed.bind(this, rowData, j, true) : this.onFavPressed.bind(this, rowData, j, false)} underlayColor='#fff'>
 
                             <Image style={styles.fav}
                             source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
