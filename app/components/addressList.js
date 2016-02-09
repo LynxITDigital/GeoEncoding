@@ -7,6 +7,7 @@ import React, {
   ListView,
   PropTypes,
   Image,
+  ScrollView,
   AsyncStorage,
   TouchableOpacity,
   ToastAndroid,
@@ -20,8 +21,6 @@ var Overlay = require('react-native-overlay');
 import Toast from './toast.ios';
 const STORAGE_KEY = '@GeoEncoding:address'
 
-// var CustomScrollView = require('./customScrollView').default;
-import CustomScrollView from './customScrollView';
 import Database from '../database/database';
 
 import globals from '../store/globals';
@@ -39,7 +38,6 @@ class AddressList extends Component {
     this.onSearchTextChanged = this.onSearchTextChanged.bind(this)
     this.hideTopToast = this.hideTopToast.bind(this)
     this.onRowPressed = this.onRowPressed.bind(this)
-    this.onRemovePressed = this.onRemovePressed.bind(this)
     this.hideTopToast = this.hideTopToast.bind(this)
     this.onFavPressed = this.onFavPressed.bind(this)
     this.renderRow = this.renderRow.bind(this)
@@ -124,7 +122,7 @@ class AddressList extends Component {
       } else {
           message = "Added to favourites";
       }
-      
+
       if(Platform.OS ==='ios') {
           this.setState({toastText: message});
           this.setState({isVisible: true});
@@ -186,7 +184,7 @@ class AddressList extends Component {
     const { searchString,addresses } = this.props;
 
     var scroll = !this.props.isLoading && !this.props.isEmpty ?
-    (<CustomScrollView style={styles.listContainer}>
+    (<ScrollView style={styles.listContainer}>
                 <RefreshableListView
                     dataSource={addresses}
                     renderRow={this.renderRow}
@@ -194,7 +192,7 @@ class AddressList extends Component {
                     refreshDescription="Refreshing articles"
                     automaticallyAdjustContentInsets = {false}
                 />
-        </CustomScrollView>):
+        </ScrollView>):
     ( <View/> );
 
     var empty = !this.props.isLoading && this.props.isEmpty ?
