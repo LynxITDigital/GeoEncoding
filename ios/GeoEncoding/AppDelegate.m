@@ -11,6 +11,7 @@
 #import "RCTRootView.h"
 #import "CodePush.h"
 #import "RCTSplashScreen.h"
+#import "RCTPushNotificationManager.h"
 
 @implementation AppDelegate
 
@@ -49,6 +50,26 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+
+#pragma mark - Push Notifications
+// Required to register for notifications
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+  [RCTPushNotificationManager application:application didRegisterUserNotificationSettings:notificationSettings];
+}
+
+// Required for the register event.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+  [RCTPushNotificationManager application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+// Required for the notification event.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)notification
+{
+  [RCTPushNotificationManager application:application didReceiveRemoteNotification:notification];
 }
 
 @end

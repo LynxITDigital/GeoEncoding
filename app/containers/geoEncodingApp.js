@@ -16,17 +16,20 @@ import {Router, Route, Schema, Animations, TabBar, Actions} from 'react-native-r
 
 import * as addressActions from '../actions/addressActions';
 import * as databaseActions from '../actions/databaseActions';
+import * as downloadActions from '../actions/downloadActions';
 import * as routerActions from '../actions/routerActions';
 import AddressList from '../components/addressList';
 import Favourites from '../components/favourites';
 import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
+import DownloadList from '../components/downloadList';
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
   favourites : state.addressesByGeoEncoding.favourites,
   searchString : state.addressesByGeoEncoding.searchString,
+  downloaded : state.downloadState.downloaded,
   routes : state.routes,
   routerState: state.router.routerState,
   isLoading: state.addressesByGeoEncoding.isLoading,
@@ -36,7 +39,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     ...addressActions,
-    ...databaseActions
+    ...databaseActions,
+    ...downloadActions
   }, dispatch),
   routerActions:  bindActionCreators({
     ...routerActions,
@@ -54,6 +58,7 @@ const defaultSchema = {
 
 const favComp = connect(mapStateToProps,mapDispatchToProps)(Favourites);
 const addrComp = connect(mapStateToProps,mapDispatchToProps)(AddressList);
+const dlComp = connect(mapStateToProps,mapDispatchToProps)(DownloadList);
 
 class TabIcon extends React.Component {
     render(){
@@ -68,8 +73,8 @@ class GeoEncodingApp extends Component {
   constructor(props) {
     super(props);
   }
+
    render(){
-     // console.log("HERE");
      return(<Router hideNavBar={true}
        onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
        onPop={()=>{this.props.routerActions.onPop(); return true}}
@@ -89,9 +94,11 @@ class GeoEncodingApp extends Component {
                <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" hideNavBar={false} initial={true}/>
                <Route name="favourites" schema="tab" component={favComp} title="Favourites" hideNavBar={false}  />
                <Route name="video" schema="tab" component={VideoPage} hideNavBar={false} title="Video"/>
+               <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download"/>
              </Router>
           </Route>
           <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
+          <Route name="dlvideo" schema="modal" component={VideoPage} hideNavBar={false} title="Downloaded Video"/>
 
 
      </Router>

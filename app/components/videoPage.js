@@ -10,12 +10,13 @@ import Video from 'react-native-video';
 class VideoPage extends Component {
     constructor(props) {
         super(props);
+        this.uri = props.uri ? props.uri : "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4";
     }
 
     render() {
         return (
             <View style = {styles.container}>
-                <Video source = {{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
+                <Video source = {{uri: this.uri}}
                     rate = {1.0}
                     volume = {0.0}
                     muted = {false}
