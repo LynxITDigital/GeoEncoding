@@ -18,7 +18,7 @@ const getTabBarStyle = props => ({
   borderTopWidth: 1,
   borderBottomColor: '#D8D8D8',
   borderBottomWidth: 1,
-  height: 51,
+  height: 55,
 });
 
 module.exports = {

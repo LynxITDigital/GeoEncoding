@@ -23,17 +23,20 @@ import * as assets from '../../assets';
 
 import * as addressActions from '../actions/addressActions';
 import * as databaseActions from '../actions/databaseActions';
+import * as downloadActions from '../actions/downloadActions';
 import * as routerActions from '../actions/routerActions';
 import AddressList from '../components/addressList';
 import Favourites from '../components/favourites';
 import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
+import DownloadList from '../components/downloadList';
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
   favourites : state.addressesByGeoEncoding.favourites,
   searchString : state.addressesByGeoEncoding.searchString,
+  downloaded : state.downloadState.downloaded,
   routes : state.routes,
   routerState: state.router.routerState,
   isLoading: state.addressesByGeoEncoding.isLoading,
@@ -43,7 +46,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     ...addressActions,
-    ...databaseActions
+    ...databaseActions,
+    ...downloadActions
   }, dispatch),
   routerActions:  bindActionCreators({
     ...routerActions,
@@ -57,6 +61,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const favComp = connect(mapStateToProps,mapDispatchToProps)(Favourites);
 const addrComp = connect(mapStateToProps,mapDispatchToProps)(AddressList);
+const dlComp = connect(mapStateToProps,mapDispatchToProps)(DownloadList);
 
 
 
@@ -64,6 +69,7 @@ class GeoEncodingApp extends Component {
   constructor(props) {
     super(props);
   }
+
    render(){
      return(<Router hideNavBar={true}
        onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
@@ -81,12 +87,15 @@ class GeoEncodingApp extends Component {
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
              >
+
                <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets.home, title: 'Geo Encoding'}}  initial={true} />
                <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets.favourites, title: 'Favourites'}} />
                <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets.video, title: 'Video'}}/>
+               <Route name="download" schema="tab" component={dlComp} hideNavBar={false} tabBarItem={{icon: assets.download, title: 'Download'}}/>
              </Router>
           </Route>
           <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
+          <Route name="dlvideo" schema="modal" component={VideoPage} hideNavBar={false} title="Downloaded Video"/>
 
 
      </Router>

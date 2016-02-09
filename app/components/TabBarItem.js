@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   tabContainerStyle: {
     alignItems: 'center',
     justifyContent: 'center',
+    height: 50,
   },
 });
 
@@ -22,6 +23,7 @@ const getTabImageStyle = props => ({
   resizeMode: 'contain',
   tintColor: props.selected ? '#4da6ff' : '#929292',
   width: 30,
+  marginTop: 5
 });
 
 const getTabTextStyle = props => ({
@@ -29,7 +31,7 @@ const getTabTextStyle = props => ({
   fontSize: (Platform.OS ==='ios') ? 10 : 14,
   letterSpacing: 0.2,
   marginBottom: 2,
-  marginTop: 4,
+  marginTop: 5,
 });
 
 
