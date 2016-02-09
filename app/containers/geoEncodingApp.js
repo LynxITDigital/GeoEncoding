@@ -1,5 +1,9 @@
 'use strict';
-import React, { Component,Navigator,Text,StyleSheet } from 'react-native';
+
+import React, {
+  Component,
+  Navigator
+} from 'react-native';
 import {bindActionCreators} from 'redux';
 
 import { connect } from 'react-redux/native';
@@ -11,6 +15,9 @@ import { connect } from 'react-redux/native';
 // } from 'react-native-router-redux';
 
 import {Router, Route, Schema, Animations, TabBar, Actions} from 'react-native-router-flux'
+import * as styles from './RouterContainerStyles';
+import TabBarItem from '../components/TabBarItem';
+import * as assets from '../../assets';
 
 //import TabBar from '../components/tabBar';
 
@@ -44,24 +51,13 @@ const mapDispatchToProps = (dispatch) => ({
   navActions: Actions
 });
 
-
-
-
-
-const defaultSchema = {
-  statusStyle: 'light-content',
-};
+// const defaultSchema = {
+//   statusStyle: 'light-content',
+// };
 
 const favComp = connect(mapStateToProps,mapDispatchToProps)(Favourites);
 const addrComp = connect(mapStateToProps,mapDispatchToProps)(AddressList);
 
-class TabIcon extends React.Component {
-    render(){
-        return (
-            <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
-        );
-    }
-}
 
 
 class GeoEncodingApp extends Component {
@@ -69,7 +65,6 @@ class GeoEncodingApp extends Component {
     super(props);
   }
    render(){
-     // console.log("HERE");
      return(<Router hideNavBar={true}
        onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
        onPop={()=>{this.props.routerActions.onPop(); return true}}
@@ -77,18 +72,18 @@ class GeoEncodingApp extends Component {
        >
          <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight}/>
          <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
-         <Schema name="tab" icon={TabIcon} type="replace" hideNavBar={true} />
+         <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
          <Schema name="withoutAnimation"/>
 
          <Route name="tabbar" hideNavBar={true}>
-             <Router hideNavBar={true} footer={TabBar} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}
+             <Router hideNavBar={true} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
                      onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
              >
-               <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" hideNavBar={false} initial={true}/>
-               <Route name="favourites" schema="tab" component={favComp} title="Favourites" hideNavBar={false}  />
-               <Route name="video" schema="tab" component={VideoPage} hideNavBar={false} title="Video"/>
+               <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets.home, title: 'Geo Encoding'}}  initial={true} />
+               <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets.favourites, title: 'Favourites'}} />
+               <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets.video, title: 'Video'}}/>
              </Router>
           </Route>
           <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
