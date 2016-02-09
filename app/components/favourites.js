@@ -17,6 +17,7 @@ var RefreshableListView = require('react-native-refreshable-listview')
 import Database from '../database/database';
 
 import globals from '../store/globals';
+import * as assets from '../../assets';
 
 class Favourites extends Component {
 
@@ -57,7 +58,7 @@ class Favourites extends Component {
                 </View>
                 <TouchableHighlight onPress={this.onRemovePressed.bind(this, rowData.id, j)} underlayColor='#fff'>
                   <Image style={styles.button}
-                         source={require('../../assets/ic_stat_delete.png')}
+                         source={ assets.toDelete }
                   />
                 </TouchableHighlight>
             </View>

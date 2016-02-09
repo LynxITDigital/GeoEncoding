@@ -24,6 +24,7 @@ const STORAGE_KEY = '@GeoEncoding:address'
 import Database from '../database/database';
 
 import globals from '../store/globals';
+import * as assets from '../../assets';
 
 class AddressList extends Component {
 
@@ -156,7 +157,7 @@ class AddressList extends Component {
                         <TouchableHighlight style = {styles.favTouchable}  onPress={(rowData.isFav) ?  this.onFavPressed.bind(this, rowData, j, true) : this.onFavPressed.bind(this, rowData, j, false)} underlayColor='#fff'>
 
                             <Image style={styles.fav}
-                            source= {(rowData.isFav) ? require('../../assets/ic_stat_fav.png') : require('../../assets/ic_stat_notfav.png')}
+                            source= {(rowData.isFav) ? assets.isFav : assets.notFav}
                             />
                         </TouchableHighlight>
                     </View>
