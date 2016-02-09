@@ -63,10 +63,19 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file(System.console().readLine("\n\$ Enter keystore path: "))
+            storePassword new String(System.console().readPassword("\n\$ Enter keystore password: "))
+            keyAlias System.console().readLine("\n\$ Enter key alias: ")
+            keyPassword new String(System.console().readPassword("\n\$ Enter key password: "))
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false  // Set this to true to enable Proguard
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
 }
