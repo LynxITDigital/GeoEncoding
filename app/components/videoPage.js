@@ -3,27 +3,34 @@
 import React, {
     StyleSheet,
     Component,
-    View
+    View,
+    TouchableOpacity
 } from 'react-native';
 import Video from 'react-native-video';
 
 class VideoPage extends Component {
     constructor(props) {
         super(props);
+        this.paused = true;
     }
+
 
     render() {
         return (
+
             <View style = {styles.container}>
                 <Video source = {{uri: "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"}}
                     rate = {1.0}
                     volume = {0.0}
                     muted = {false}
-                    paused = {false}
-                    resizeMode = "cover"
+                    paused = {this.paused}
+                    resizeMode = "contain"
                     repeat = {true}
-                    style = {styles.backgroundVideo} />
+                    style = {styles.fullScreen}
+                    controls = {true}/>
             </View>
+
+
         )
     }
 }
@@ -38,7 +45,16 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1
-    }
+
+    },
+    fullScreen: {
+      position: 'absolute',
+      top: 50,
+      left: 0,
+      bottom: 50,
+      right: 0
+
+    },
 });
 
 module.exports = VideoPage
