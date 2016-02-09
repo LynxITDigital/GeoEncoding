@@ -5,9 +5,9 @@
 	<key>App Store</key>
 	<dict>
 		<key>HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 		<key>USER_HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
@@ -41,9 +41,9 @@
 	<key>Run_Device</key>
 	<dict>
 		<key>HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 		<key>USER_HEADER_SEARCH_PATHS</key>
-		<string>"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)"/**</string>
+		<string>&quot;$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)&quot;/**</string>
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -59,5 +59,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+	</array>
 </dict>
 </plist>
