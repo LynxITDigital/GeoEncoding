@@ -22,6 +22,8 @@ import android.support.v4.app.FragmentActivity;
 import com.remobile.splashscreen.*;
 import com.rnfs.RNFSPackage;
 
+import com.brentvatne.react.ReactVideoPackage;
+
 
 public class MainActivity extends FragmentActivity implements DefaultHardwareBackBtnHandler {
 
@@ -42,6 +44,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     .addPackage(new MainReactPackage())
     .addPackage(new AirPackage())
     .addPackage(new SQLitePluginPackage(this))   // register SQLite Plugin here
+    .addPackage(new ReactVideoPackage())
     .addPackage(new RNFSPackage())
     .addPackage(new RCTSplashScreenPackage(this))
     .addPackage(codePush.getReactPackage())
