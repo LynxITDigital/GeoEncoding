@@ -1,4 +1,5 @@
 'use strict';
+
 import React, {
   Component,
   Navigator
@@ -16,6 +17,7 @@ import { connect } from 'react-redux/native';
 import {Router, Route, Schema, Animations, TabBar, Actions} from 'react-native-router-flux'
 import * as styles from './RouterContainerStyles';
 import TabBarItem from '../components/TabBarItem';
+import * as assets from '../../assets';
 //import {Router, Route, Animations, Schema, TabBar, Actions} from 'react-native-redux-router';
 var {NavBar,NavBarBack, NavBarModal} = require('../components/navBar');
 
@@ -50,22 +52,12 @@ const mapDispatchToProps = (dispatch) => ({
   navActions: Actions
 });
 
-
-
-
-
-const defaultSchema = {
-  statusStyle: 'light-content',
-};
+// const defaultSchema = {
+//   statusStyle: 'light-content',
+// };
 
 const favComp = connect(mapStateToProps,mapDispatchToProps)(Favourites);
 const addrComp = connect(mapStateToProps,mapDispatchToProps)(AddressList);
-
-const assets = {
-  'home': require('../../assets/thin-0046_home_house.png'),
-  'profile': require('../../assets/thin-0091_file_profile_user_personal.png'),
-  'video': require('../../assets/thin-0592_tv_televison_movie_news.png'),
-};
 
 
 class GeoEncodingApp extends Component {
@@ -90,9 +82,9 @@ class GeoEncodingApp extends Component {
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
              >
-               <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets['home'], title: 'Geo Encoding'}}  initial={true} />
-               <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets['profile'], title: 'Favourites'}} />
-               <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets['video'], title: 'Video'}}/>
+               <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets.home, title: 'Geo Encoding'}}  initial={true} />
+               <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets.favourites, title: 'Favourites'}} />
+               <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets.video, title: 'Video'}}/>
              </Router>
           </Route>
           <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
