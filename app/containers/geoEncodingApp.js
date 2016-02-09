@@ -1,5 +1,13 @@
 'use strict';
-import React, { Component,Navigator,Text,StyleSheet, View, Image } from 'react-native';
+import React, {
+  Component,
+  Navigator,
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  Platform
+} from 'react-native';
 import {bindActionCreators} from 'redux';
 
 import { connect } from 'react-redux/native';
@@ -58,20 +66,30 @@ const addrComp = connect(mapStateToProps,mapDispatchToProps)(AddressList);
 
 
 const styles = StyleSheet.create({
-  tabBarStyle: {
-    backgroundColor: '#F9F9F9',
-    borderTopColor: '#D8D8D8',
-    borderTopWidth: 1,
-  },
   tabContainerStyle: {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  sceneStyle: {
+    marginTop: (Platform.OS ==='ios') ? 0 : 56,
+  }
+});
+
+const tabBarStyle = props => ({
+  backgroundColor: '#F9F9F9',
+
+  top: (Platform.OS ==='ios') ? undefined : 56,
+
+  borderTopColor: '#D8D8D8',
+  borderTopWidth: 1,
+  borderBottomColor: '#D8D8D8',
+  borderBottomWidth: 1,
+  height: 51,
 });
 
 const tabTextStyle = props => ({
   color: props.selected ? '#4da6ff' : '#929292',
-  fontSize: 10,
+  fontSize: (Platform.OS ==='ios') ? 10 : 14,
   letterSpacing: 0.2,
   marginBottom: 2,
   marginTop: 4,
@@ -84,8 +102,11 @@ const tabImageStyle = props => ({
   width: 30,
 });
 
+const sceneStyle = props => ({
+  marginTop: Platform.OS ==='ios' ? 65 : 48,
+});
+
 const assets = {
-  'calendar': require('../../assets/thin-0021_calendar_month_day_planner.png'),
   'home': require('../../assets/thin-0046_home_house.png'),
   'profile': require('../../assets/thin-0091_file_profile_user_personal.png'),
   'video': require('../../assets/thin-0592_tv_televison_movie_news.png'),
@@ -101,11 +122,12 @@ const assets = {
 
 class TabIcon extends Component {
   render() {
-    const { name, tabItem } = this.props;
+    const { tabItem } = this.props;
 
     return (
-      <View name={name} style={styles.tabContainerStyle}>
-        {tabItem.icon &&
+      <View style={styles.tabContainerStyle}>
+        {(Platform.OS ==='ios') &&
+          tabItem.icon &&
           <Image
             source={tabItem.icon}
             style={tabImageStyle(this.props)}
@@ -125,7 +147,6 @@ class GeoEncodingApp extends Component {
     super(props);
   }
    render(){
-     // console.log("HERE");
      return(<Router hideNavBar={true}
        onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
        onPop={()=>{this.props.routerActions.onPop(); return true}}
@@ -134,18 +155,18 @@ class GeoEncodingApp extends Component {
        >
          <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBarModal}/>
          <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
-         <Schema name="tab" icon={TabIcon} type="replace" hideNavBar={true} />
+         <Schema name="tab" icon={TabIcon} type="replace" hideNavBar={false} />
          <Schema name="withoutAnimation"/>
 
          <Route name="tabbar" hideNavBar={true}>
-             <Router hideNavBar={true} footer={TabBar} tabBarStyle={styles.tabBarStyle}
+             <Router hideNavBar={true} footer={TabBar} tabBarStyle={tabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
                      onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
              >
-               <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" hideNavBar={false} tabItem={{icon: assets['home'], title: 'Geo Encoding'}}  initial={true} />
-               <Route name="favourites" schema="tab" component={favComp} title="Favourites" hideNavBar={false} tabItem={{icon: assets['profile'], title: 'Favourites'}} />
-               <Route name="video" schema="tab" component={VideoPage} title="Video" hideNavBar={false} tabItem={{icon: assets['video'], title: 'Video'}}/>
+               <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabItem={{icon: assets['home'], title: 'Geo Encoding'}}  initial={true} />
+               <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabItem={{icon: assets['profile'], title: 'Favourites'}} />
+               <Route name="video" schema="tab" component={VideoPage} title="Video" tabItem={{icon: assets['video'], title: 'Video'}}/>
              </Router>
           </Route>
           <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
