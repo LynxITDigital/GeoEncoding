@@ -85,7 +85,7 @@ module.exports.checkAllFav = function(addresses, database, dispatch) {
       }
 
       Promise.all(promises).then(() => {
-          // console.log("CHECKED FAVS: " + newAddresses);
+          // // console.log("CHECKED FAVS: " + newAddresses);
             dispatch(receivePosts(newAddresses));
       });
 }
@@ -126,7 +126,7 @@ module.exports.fetchAddresses = function(searchString, database){
         }
       })
       .catch((error) => {
-          // console.log("Action - FETCH ERROR " + error);
+          // // console.log("Action - FETCH ERROR " + error);
       })
     };
 }

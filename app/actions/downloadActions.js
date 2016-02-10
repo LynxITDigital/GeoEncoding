@@ -5,10 +5,10 @@ var path = require('path');
 
 PushNotification.configure({
   onRegister: function(token) {
-    console.log("REGISTER: "  + token);
+    // console.log("REGISTER: "  + token);
   },
   getNotifications: function(notification) {
-    console.log("NOTIFICATION: " + notification);
+    // console.log("NOTIFICATION: " + notification);
   },
   permissions: {
       alert: true
@@ -121,18 +121,18 @@ Fetch download records from DB
 **/
 module.exports.fetchDownloads = function() {
 
-  console.log("GETTING FILES");
+  // console.log("GETTING FILES");
     return dispatch=>{
       dispatch(requestDownloadList())
       Database.loadDB()
       .then(Database.getDownloads()
       .then((files) => {
-          console.log("GOT FILES");
-          console.log(files);
+          // console.log("GOT FILES");
+          // console.log(files);
           dispatch(receiveDownloadList(files));
       }))
       .catch((error) => {
-         console.log("Fetch Download - DB ERROR: " + error);
+         // console.log("Fetch Download - DB ERROR: " + error);
       })
     };
 }
@@ -142,18 +142,18 @@ Note Currently used - an example of printing directory listing
 **/
 module.exports.fetchDownloadFiles = function(){
 
-  console.log("GETTING FILES");
+  // console.log("GETTING FILES");
     return dispatch=>{
       dispatch(requestDownloadList())
 
       return RNFS.readDir(dlPath).then((files) => {
           allFiles = files.map(file => file.name + ' (' + Math.round(file.size / 1024 / 1024, 2) + 'Mb) ');
-          console.log("GOT FILES");
-          console.log(allFiles);
+          // console.log("GOT FILES");
+          // console.log(allFiles);
           dispatch(receiveDownloadList(allFiles));
       })
       .catch((error) => {
-        // console.log("Action - DB ERROR " + error);
+        // // console.log("Action - DB ERROR " + error);
       })
     };
 }

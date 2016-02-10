@@ -60,7 +60,7 @@ class AddressList extends Component {
             this.debouncedFetch(this.props.searchString, Database);
           }
       } catch(error) {
-          // console.log(error);
+          // // console.log(error);
       }
   }
 
@@ -78,10 +78,10 @@ class AddressList extends Component {
     try {
         AsyncStorage.setItem(STORAGE_KEY, event.nativeEvent.text);
     } catch (error){
-        // console.log(error.message);
+        // // console.log(error.message);
     }
 
-    // console.log(this);
+    // // console.log(this);
 
     // Call debounced function
     event.persist()
@@ -112,22 +112,22 @@ class AddressList extends Component {
   }
 
   onRowPressed(rowData){
-      //// console.log(this.props);
+      // console.log(this.props);
       this.props.navActions.details({data:rowData});
   }
 
   onFavPressed(rowData, i, isFav) {
       var message = 'placeholder';
       if(isFav) {
-          message = "Removed from favourites";
+          message = "Removed";
       } else {
-          message = "Added to favourites";
+          message = "Added";
       }
 
       if(Platform.OS ==='ios') {
           this.setState({toastText: message});
           this.setState({isVisible: true});
-          setTimeout(this.hideTopToast, 2000);
+          setTimeout(this.hideTopToast, 800);
       }
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
@@ -174,14 +174,13 @@ class AddressList extends Component {
 
   renderFav(rowData) {
     return(
-    <View>
-        <Text style={styles.address}>{rowData.address}</Text>
-    </View>
-   );
+        <View>
+            <Text style={styles.address}>{rowData.address}</Text>
+        </View>
+    );
   }
 
   render() {
-
     const { searchString,addresses } = this.props;
 
     var scroll = !this.props.isLoading && !this.props.isEmpty ?
@@ -224,7 +223,7 @@ class AddressList extends Component {
           </View>):
         ( <View/> );
     }
-    //console.log(this.props.isEmpty);
+    //// console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast} position = 'top'>
@@ -246,13 +245,8 @@ class AddressList extends Component {
     );
   }
 }
-// AddressList.propTypes = {
-//   searchString : PropTypes.string,
-//   addresses : PropTypes.object,
-//   actions : PropTypes.objectOf(PropTypes.func)
-// }
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     pageContainer: {
         flex: 1,
         flexDirection: 'column'
@@ -277,7 +271,7 @@ class AddressList extends Component {
       flex:1,
       marginTop:20,
       flexDirection:'column',
-      marginBottom:50
+      marginBottom: (Platform.OS ==='ios') ? 55 : 0,
     },
     emptyContainer: {
       flex: 1,
@@ -317,8 +311,8 @@ class AddressList extends Component {
     },separator:{
       height:1,
       backgroundColor:'gray'
-  },
-  thumb: {
+    },
+    thumb: {
         height: 100,
         marginTop: 10
     },
@@ -339,10 +333,10 @@ class AddressList extends Component {
       alignSelf: 'center',
       width: 25,
       height: 25
-  },
-  noResultText: {
+    },
+    noResultText: {
       fontSize: 24,
       color: 'gray'
   }
-  });
+});
 module.exports = AddressList

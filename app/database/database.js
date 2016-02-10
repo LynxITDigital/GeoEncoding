@@ -23,7 +23,7 @@ var Database = {
   },
 
   errorCB(err) {
-      // console.log("error: ",err);
+      // // console.log("error: ",err);
   },
 
   checkDB() {
@@ -75,7 +75,7 @@ var Database = {
       .then((DB) => {
         db = DB;
         that = this;
-         console.log(db);
+         // console.log(db);
          that.checkDB().then(exists => {
            if(!exists) {
              db.transaction(that.initDB);
@@ -84,11 +84,11 @@ var Database = {
              resolve(db);
            }
          });
-        // console.log("Opened Database!");
+        // // console.log("Opened Database!");
         //Init DB
       })
       .catch((error) => {
-        // console.log(error);
+        // // console.log(error);
         reject(error);
     });
   });
@@ -125,8 +125,8 @@ var Database = {
               resolve();
             })
             .catch((error) => {
-              // console.log("CAUGHT ERROR");
-              // console.log(error);
+              // // console.log("CAUGHT ERROR");
+              // // console.log(error);
               reject();
             });
         });
@@ -134,7 +134,7 @@ var Database = {
 
 
   getFavourites() {
-      // console.log('QUERYING FAVS');
+      // // console.log('QUERYING FAVS');
       return new Promise((resolve, reject) => {
         db.executeSql('SELECT id, address FROM favourites')
           .then((results) => {
@@ -142,12 +142,12 @@ var Database = {
               favourites = [];
               for (let i = 0; i < len; i++) {
                   let row = results[0].rows.item(i);
-                  // console.log(`Address: ${row.address}`);
+                  // // console.log(`Address: ${row.address}`);
                   favourites.push({id: row.id, address: row.address});
               }
               resolve(favourites);
         }).catch((error) => {
-            // console.log(error);
+            // // console.log(error);
             reject(error);
         });
     });
@@ -160,7 +160,7 @@ var Database = {
 
   /*** Downloads ***/
   getDownloads() {
-      // console.log('QUERYING FAVS');
+      // // console.log('QUERYING FAVS');
       return new Promise((resolve, reject) => {
         db.executeSql('SELECT id, url, filepath, displayname, jobId, status FROM Downloads')
           .then((results) => {
@@ -168,26 +168,26 @@ var Database = {
               downloads = [];
               for (let i = 0; i < len; i++) {
                   let row = results[0].rows.item(i);
-                  // console.log(`Address: ${row.address}`);
+                  // // console.log(`Address: ${row.address}`);
                   downloads.push(row);
               }
               resolve(downloads);
         }).catch((error) => {
-            // console.log(error);
+            // // console.log(error);
             reject(error);
         });
     });
   },
 
     insertDownload(url) {
-        // console.log('QUERYING FAVS');
+        // // console.log('QUERYING FAVS');
         var basename = path.basename(url.substring(url.indexOf('?')));
         return new Promise((resolve, reject) => {
           db.executeSql('INSERT INTO Downloads (url, filepath, displayname, status) VALUES (?, ?, ?, 2)', [url, dlPath + '/' + basename, basename])
             .then((results) => {
                 resolve(results.id);
           }).catch((error) => {
-              // console.log(error);
+              // // console.log(error);
               reject(error);
           });
       });
@@ -195,13 +195,13 @@ var Database = {
 
 
     updateDownloadStatus(id, status) {
-            // console.log('QUERYING FAVS');
+            // // console.log('QUERYING FAVS');
             return new Promise((resolve, reject) => {
               db.executeSql('UPDATE Downloads SET status = ?, jobId = NULL WHERE id = ?', [status, id])
                 .then((results) => {
                     resolve();
               }).catch((error) => {
-                  // console.log(error);
+                  // // console.log(error);
                   reject(error);
               });
           });
@@ -209,39 +209,39 @@ var Database = {
 
 
       startDownload(id, jobId) {
-              // console.log('QUERYING FAVS');
+              // // console.log('QUERYING FAVS');
               return new Promise((resolve, reject) => {
                 db.executeSql('UPDATE Downloads SET status = 2, jobId = ? WHERE id = ?', [jobId, id])
                   .then((results) => {
                       resolve();
                 }).catch((error) => {
-                    // console.log(error);
+                    // // console.log(error);
                     reject(error);
                 });
             });
           },
 
     downloadComplete(id, success) {
-        // console.log('QUERYING FAVS');
+        // // console.log('QUERYING FAVS');
         return new Promise((resolve, reject) => {
           db.executeSql('UPDATE Downloads SET status = 3, jobId = NULL WHERE id = ?', [id])
             .then((results) => {
                 resolve();
           }).catch((error) => {
-              // console.log(error);
+              // // console.log(error);
               reject(error);
           });
       });
     },
 
       removeDownload(id) {
-          // console.log('QUERYING FAVS');
+          // // console.log('QUERYING FAVS');
           return new Promise((resolve, reject) => {
             db.executeSql('DELETE FROM Downloads WHERE id = ?', [id])
               .then((results) => {
                   resolve();
             }).catch((error) => {
-                // console.log(error);
+                // // console.log(error);
                 reject(error);
             });
         });

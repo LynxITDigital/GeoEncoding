@@ -4,10 +4,12 @@ import React, {
     StyleSheet,
     TouchableOpacity,
     Text,
-    Component
+    Component,
+    Dimensions
 } from 'react-native';
 var Overlay = require('react-native-overlay');
 var BlurView = require('react-native-blur').BlurView;
+var Icon = require('react-native-vector-icons/FontAwesome');
 
 class Toast extends Component {
     render() {
@@ -17,14 +19,23 @@ class Toast extends Component {
         } else {
             positionStyle = styles.bottom;
         }
-        // console.log(this.props);
 
+        var top = (Dimensions.get('window').height/2) - 75;
+        // console.log(top);
+        var added = false;
+        if(this.props.children.props.children.props.children == "Added"){
+            added = true;
+        }
+        var icon = added ?
+        ( <Icon name = "check-circle-o" size = {80} color = "rgba(255,255,255,0.8)" style = {styles.icon}/> ):
+        ( <Icon name = "times-circle-o" size = {80} color = "rgba(255,255,255,0.8)" style = {styles.icon}/> );
         return (
             <Overlay isVisible = {this.props.isVisible} aboveStatusBar = {false}>
-                <BlurView style = {positionStyle} blurType = "light">
-                    <View style = {styles.content}>
-                        {this.props.children}
-                    </View>
+                <BlurView style = {[positionStyle, {top: top}]} blurType = "dark">
+                        {icon}
+                        <View style = {styles.content}>
+                            {this.props.children}
+                        </View>
                 </BlurView>
             </Overlay>
         );
@@ -33,11 +44,18 @@ class Toast extends Component {
 
 var styles = StyleSheet.create({
     top: {
-        paddingTop: 15,
-        flexDirection: 'row',
-        alignItems: 'center'
+        width: 150,
+        height: 150,
+        borderRadius: 20,
+        flexDirection: 'column',
+        overflow: 'hidden',
+        alignItems: 'center',
+        alignSelf: 'center'
     },
-
+    icon: {
+        flex: 9,
+        marginTop: 25
+    },
     bottom: {
         position: 'absolute',
         bottom: 0,
@@ -48,22 +66,8 @@ var styles = StyleSheet.create({
         alignItems: 'center'
     },
     content: {
-        flex: 9
-    },
-    dismissButton: {
-        flex: 1,
-        backgroundColor: '#eeeeee',
-        paddingLeft: 10,
-        paddingRight: 10,
-        borderRadius: 5,
-        justifyContent: 'center',
-        height: 30,
-        marginRight: 15,
-        alignItems: 'center'
-    },
-    dismissButtonText: {
-        color: '#888888',
-        fontSize: 12
+        flex: 3,
+        marginBottom: 20
     }
 });
 
