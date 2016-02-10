@@ -208,7 +208,7 @@ class AddressList extends Component {
             isVisible = {true}
             size = {50}
             type = 'Pulse'
-            color = '#4da6ff' />
+            color = '#ffbb99' />
           </View>):
         ( <View/> );
     } else {
@@ -219,7 +219,7 @@ class AddressList extends Component {
             isVisible = {true}
             size = {50}
             type = 'ThreeBounce'
-            color = '#4da6ff' />
+            color = '#ffbb99' />
           </View>):
         ( <View/> );
     }
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: 'gray',
       borderRadius: 8,
-      backgroundColor: '#F5FCFF'
+      backgroundColor: '#fff5e6'
     },
     button:{
       padding :5,
