@@ -40,7 +40,7 @@ class VideoPage extends Component {
               isVisible = {true}
               size = {50}
               type = 'ThreeBounce'
-              color = '#4da6ff' />
+              color = '#ffbb99' />
             </View>);
       }
 
