@@ -88,7 +88,7 @@ class GeoEncodingApp extends Component {
              onPop={()=>{this.props.routerActions.onPop(); return true}}
              onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
          >
-            <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight}/>
+            <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom}/>
             <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
             <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
             <Schema name="withoutAnimation"/>
@@ -105,7 +105,7 @@ class GeoEncodingApp extends Component {
                     <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{icon: assets.download, title: 'Download'}}/>
                 </Router>
             </Route>
-            <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
+            <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="default"/>
             <Route name="dlvideo" schema="modal" component={VideoPage} hideNavBar={false} title="Downloaded Video"/>
         </Router>
    );
