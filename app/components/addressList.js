@@ -119,15 +119,15 @@ class AddressList extends Component {
   onFavPressed(rowData, i, isFav) {
       var message = 'placeholder';
       if(isFav) {
-          message = "Removed from favourites";
+          message = "Removed";
       } else {
-          message = "Added to favourites";
+          message = "Added";
       }
 
       if(Platform.OS ==='ios') {
           this.setState({toastText: message});
           this.setState({isVisible: true});
-          setTimeout(this.hideTopToast, 2000);
+          setTimeout(this.hideTopToast, 800);
       }
       else {
           ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
