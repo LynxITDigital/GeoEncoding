@@ -2,8 +2,9 @@ const React = require('react-native');
 const { View } = React;
 const utils = require('react-addons-test-utils');
 
-jest.dontMock('../app/components/addressList');
-var AddressList = require('../app/components/addressList');
+// jest.dontMock('../../app/components/addressList');
+// var AddressList = require('../../app/components/addressList');
+const AddressList = require.requireActual('../../app/components/addressList');
 
 // const AddressList = require.requireActual('../app/components/addressList');
 // const shallowHelpers = require('react-shallow-renderer-helpers');
@@ -25,7 +26,7 @@ describe('AddressList', function() {
     const props = {
     };
     const output = renderAddressList(props);
-    expect(output.props.children[1].props.children.props.placeholder).toEqual('Search location1');
+    expect(output.props.children[1].props.children.props.placeholder).toEqual('Search location');
   });
 
   it('should render searchString property', () => {
