@@ -7,16 +7,16 @@ var initialState = {isLoading:false, downloaded:ds.cloneWithRows([])};
 
 
 export default function downloadState(state = initialState, action = {}){
-  // console.log("Receiver executed for action : " + action.type);
+  // // console.log("Receiver executed for action : " + action.type);
   switch (action.type) {
     case types.REQUEST_DOWNLOAD_LIST:
         return Object.assign({},state, { isLoading:true});
     case types.RECEIVE_DOWNLOAD_LIST:
-      console.log("RECEIVE DOWNLOAD REDUCER: ");
-      console.log(action.downloads);
+      // console.log("RECEIVE DOWNLOAD REDUCER: ");
+      // console.log(action.downloads);
       return Object.assign({},state, { isLoading:false, downloaded: ds.cloneWithRows(action.downloads)});
     case types.UPDATE_DOWNLOAD_ITEM:
-        console.log("RECEIVE DOWNLOAD ITEM REDUCER: ");
+        // console.log("RECEIVE DOWNLOAD ITEM REDUCER: ");
         var newDownloads = _.clone(state.downloaded._dataBlob.s1);
         newDownloads[action.idx].status = action.status;
         newDownloads[action.idx].jobId = action.jobId;

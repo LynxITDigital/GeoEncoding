@@ -34,7 +34,7 @@ class Favourites extends Component {
   componentDidMount() {
     Database.loadDB().then((db) => {
       //this.loadFavourites();
-      // console.log(Database);
+      // // console.log(Database);
         this.props.actions.fetchFavourites(Database);
     });
   }

@@ -60,7 +60,7 @@ class AddressList extends Component {
             this.debouncedFetch(this.props.searchString, Database);
           }
       } catch(error) {
-          // console.log(error);
+          // // console.log(error);
       }
   }
 
@@ -78,10 +78,10 @@ class AddressList extends Component {
     try {
         AsyncStorage.setItem(STORAGE_KEY, event.nativeEvent.text);
     } catch (error){
-        // console.log(error.message);
+        // // console.log(error.message);
     }
 
-    // console.log(this);
+    // // console.log(this);
 
     // Call debounced function
     event.persist()
@@ -112,7 +112,7 @@ class AddressList extends Component {
   }
 
   onRowPressed(rowData){
-      //// console.log(this.props);
+      //// // console.log(this.props);
       this.props.navActions.details({data:rowData});
   }
 
@@ -224,7 +224,7 @@ class AddressList extends Component {
           </View>):
         ( <View/> );
     }
-    //console.log(this.props.isEmpty);
+    //// console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast} position = 'top'>

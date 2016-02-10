@@ -21,7 +21,7 @@ class Toast extends Component {
         }
 
         var top = (Dimensions.get('window').height/2) - 75;
-        console.log(top);
+        // console.log(top);
         var added = false;
         if(this.props.children.props.children.props.children == "Added"){
             added = true;
