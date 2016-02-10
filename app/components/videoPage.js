@@ -3,50 +3,85 @@
 import React, {
     StyleSheet,
     Component,
-    View,
-    TouchableOpacity
+    Platform,
+    View
 } from 'react-native';
 import Video from 'react-native-video';
+import Spinner from 'react-native-spinkit';
+
 
 class VideoPage extends Component {
     constructor(props) {
         super(props);
-        this.uri = props.uri ? props.uri : "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4";
-        this.paused = true;
+        this.state = {paused: true, loading: true, uri: props.uri ? props.uri : "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"};
     }
 
-
     render() {
-        return (
+      if(Platform.OS ==='ios') {
+        // on iOS there is already visual feedback that there is a video loading,
+        // so do not require a spinner
+          var spinner =
+          ( <View/> );
+      } else {
+          var spinner =
+          ( <View style = {styles.spinner}>
+              <Spinner
+              style = {styles.spinner}
+              isVisible = {true}
+              size = {50}
+              type = 'ThreeBounce'
+              color = '#4da6ff' />
+            </View>);
+      }
 
-            <View style = {styles.container}>
-                <Video source = {{uri: this.uri}}
+
+      var isLoading = this.state.loading ?
+      ( <View>
+          {spinner}
+        </View>):
+      (<View/>);
+
+
+      var videoForPlatform = Platform.OS === 'ios' ?
+        (<View style = {styles.container}>
+            <Video source = {{uri: this.state.uri}}
                     rate = {1.0}
                     volume = {0.0}
                     muted = {false}
-                    paused = {this.paused}
+                    paused = {this.state.paused}
                     resizeMode = "contain"
                     repeat = {true}
                     style = {styles.fullScreen}
                     controls = {true}/>
-            </View>
+          </View>):
+        (<View style = {styles.container}>
+            <Video source = {{uri: this.state.uri}}
+                    rate = {1.0}
+                    volume = {0.0}
+                    muted = {false}
+                    paused = {false}
+                    resizeMode = "contain"
+                    repeat = {true}
+                    style = {styles.fullScreen}
+                    onLoad = {() => this.setState({loading: false})}
+                    />
+          </View>);
 
-
+        return (
+          <View style={styles.container}>
+            { isLoading }
+            { videoForPlatform }
+          </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    backgroundVideo: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0
-    },
     container: {
         flex: 1
-
+        // flexDirection:'row',
+        // alignItems:'center',
+        // justifyContent:'center'
     },
     fullScreen: {
       position: 'absolute',
@@ -54,7 +89,10 @@ const styles = StyleSheet.create({
       left: 0,
       bottom: 50,
       right: 0
-
+    },
+    spinner: {
+      marginTop: 50,
+      alignSelf: 'center'
     },
 });
 
