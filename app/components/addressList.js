@@ -277,7 +277,7 @@ class AddressList extends Component {
       flex:1,
       marginTop:20,
       flexDirection:'column',
-      marginBottom:50
+      marginBottom: (Platform.OS ==='ios') ? 55 : 0,
     },
     emptyContainer: {
       flex: 1,
