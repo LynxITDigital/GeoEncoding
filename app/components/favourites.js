@@ -50,11 +50,12 @@ class Favourites extends Component {
 
   renderFav(rowData, i, j) {
     return(
-          <View>
+        <View>
             <View style={styles.rowAddress}>
-            <View style={styles.addressWrap}>
-                <Text style={styles.address}>
-                {rowData.id}: {rowData.address}</Text>
+                <View style={styles.addressWrap}>
+                    <Text style={styles.address}>
+                        {rowData.address}
+                    </Text>
                 </View>
                 <TouchableHighlight onPress={this.onRemovePressed.bind(this, rowData.id, j)} underlayColor='#fff'>
                   <Image style={styles.button}
@@ -63,8 +64,7 @@ class Favourites extends Component {
                 </TouchableHighlight>
             </View>
             <View style={styles.separator}/>
-
-      </View>
+        </View>
    );
   }
 
@@ -89,41 +89,38 @@ class Favourites extends Component {
 //   actions : PropTypes.objectOf(PropTypes.func)
 // }
 
-  const styles = StyleSheet.create({
-    scrollView: {
-    height: 600,
-  },
-  container: {
-      marginTop:70,
-  },
+const styles = StyleSheet.create({
+    container: {
+        marginTop:70,
+    },
     listContainer: {
-      flexDirection:'row',
-      alignItems: 'center',
-      alignSelf:'stretch',
+        flexDirection:'row',
+        alignItems: 'center',
+        alignSelf:'stretch',
     },
     separator:{
-      height:1,
-      backgroundColor:'gray'
-  },
-  addressWrap: {
-    flexWrap: 'wrap',
-    flex: 9
-  },
-  rowAddress:{
-      padding: 5,
-      flexDirection: 'row',
-      alignItems: 'stretch',
-      justifyContent: 'space-between',
-
+        height:2,
+        backgroundColor:'gray'
+    },
+    addressWrap: {
+        flex: 9
+    },
+    rowAddress:{
+        padding: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 5,
+        marginBottom: 5,
     },
     address: {
         fontSize: 14,
     },
     button: {
-      alignSelf: 'center',
-      width: 20,
-      height: 20,
-      flex: 1
-  },
-  });
+        alignSelf: 'center',
+        width: 20,
+        height: 20,
+        flex: 1
+    },
+});
 module.exports = Favourites
