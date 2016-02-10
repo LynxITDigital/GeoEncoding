@@ -83,11 +83,6 @@ class Favourites extends Component {
     );
   }
 }
-// AddressList.propTypes = {
-//   searchString : PropTypes.string,
-//   addresses : PropTypes.object,
-//   actions : PropTypes.objectOf(PropTypes.func)
-// }
 
 const styles = StyleSheet.create({
     container: {
@@ -99,7 +94,7 @@ const styles = StyleSheet.create({
         alignSelf:'stretch',
     },
     separator:{
-        height:2,
+        height:1,
         backgroundColor:'gray'
     },
     addressWrap: {

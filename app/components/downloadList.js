@@ -93,120 +93,85 @@ class DownloadList extends Component {
 
     return (
         <TouchableHighlight onPress={onClick} underlayColor="#FFF">
-    <View>
-        <View style={styles.rowAddress}>
-          <Text style={styles.url}>{rowData.displayname}</Text>
+            <View>
+                <View style={styles.rowAddress}>
+                    <Text style={styles.url}>{rowData.displayname}</Text>
 
-          <TouchableHighlight onPress={this.resetDownload.bind(this, rowData, row)} underlayColor="#FFF">
-            <Image source={require('../../assets/ic_stat_refresh.png')}
-                    style={styles.imgButton}
-             />
-          </TouchableHighlight>
-        </View>
-        <View style={styles.rowAddress}>
-          <Text style={style}>{status}</Text>
-        </View>
-        <View style={styles.rowAddress}>
+                    <TouchableHighlight onPress={this.resetDownload.bind(this, rowData, row)} underlayColor="#FFF">
+                        <Image source={require('../../assets/ic_stat_refresh.png')}
+                            style={styles.imgButton}
+                        />
+                    </TouchableHighlight>
+                </View>
+                <View style={styles.rowAddress}>
+                    <Text style={style}>{status}</Text>
+                </View>
+                <View style={styles.rowAddress}/>
 
-
-        </View>
-
-      <View style={styles.separator}/>
-    </View>
-    </TouchableHighlight>
-  );
+                <View style={styles.separator}/>
+            </View>
+        </TouchableHighlight>
+    );
   }
 
   render() {
-    const { downloaded } = this.props;
-    const url = "https://www.dropbox.com/s/gzf7bel1a1nyyof/Sample480.mov?dl=1";
-    return (
-      <View style={styles.container}>
-        <View style={styles.listContainer}>
-          <ListView
-          style={styles.ListView}
-            dataSource={downloaded}
-            renderRow={this.renderDownload}
-            />
-        </View>
-      </View>
-    )
-    // return (
-    //     <View style={styles.container}>
-    //       <View style={styles.listContainer}>
-    //         <ListView
-    //           dataSource={downloads}
-    //           renderRow={this.renderFav.bind(this)}
-    //           />
-    //       </View>
-    //     </View>
-    // );
+      const { downloaded } = this.props;
+      const url = "https://www.dropbox.com/s/gzf7bel1a1nyyof/Sample480.mov?dl=1";
+      return (
+          <View style={styles.container}>
+              <View style={styles.listContainer}>
+                  <ListView
+                      style={styles.ListView}
+                      dataSource={downloaded}
+                      renderRow={this.renderDownload}
+                  />
+              </View>
+          </View>
+      )
   }
 }
-// AddressList.propTypes = {
-//   searchString : PropTypes.string,
-//   addresses : PropTypes.object,
-//   actions : PropTypes.objectOf(PropTypes.func)
-// }
 
-  const styles = StyleSheet.create({
-    scrollView: {
-    height: 600,
-  },
+const styles = StyleSheet.create({
   container: {
-      marginTop:70,
-        flexDirection:'column',
+    marginTop:70,
+    flexDirection:'column',
   },
-    listContainer: {
-      flexDirection:'row',
-      alignItems: 'center',
-      alignSelf:'stretch',
-      flex: 1
-    },
-    separator:{
-      height:1,
-      backgroundColor:'gray'
+  listContainer: {
+    flexDirection:'row',
+    alignItems: 'center',
+    alignSelf:'stretch',
+    flex: 1
+  },
+  separator:{
+    height:1,
+    backgroundColor:'gray'
   },
   addressWrap: {
-    flexWrap: 'wrap',
     flex: 9
   },
   rowAddress:{
-      padding: 3,
-      flexDirection: 'row',
-      alignItems: 'stretch',
-      justifyContent: 'space-between',
-
-    },
-    url: {
-        fontSize: 14,
-    },
-    new: {
-      color: '#000'
-    },
-    inProgress: {
-      color: '#AA4'
-    },
-    complete: {
-      color: '#090'
-    },
-    imgButton: {
-      alignSelf: 'center',
-      width: 20,
-      height: 20,
-      flex: 1
-    },
-    button: {
-      backgroundColor: "#A00",
-      color: "#FFF",
-      alignItems: "center",
-      justifyContent:'center',
-      alignSelf: "center",
-      flex: 1,
-      margin: 1,
-      height: 20,
-      fontSize: 14
-
-    }
-  });
+    padding: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  url: {
+    fontSize: 14,
+  },
+  new: {
+    color: '#000'
+  },
+  inProgress: {
+    color: '#AA4'
+  },
+  complete: {
+    color: '#090'
+  },
+  imgButton: {
+    alignSelf: 'center',
+    width: 20,
+    height: 20,
+    flex: 1
+  }
+});
 module.exports = DownloadList;

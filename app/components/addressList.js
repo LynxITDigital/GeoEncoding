@@ -174,14 +174,13 @@ class AddressList extends Component {
 
   renderFav(rowData) {
     return(
-    <View>
-        <Text style={styles.address}>{rowData.address}</Text>
-    </View>
-   );
+        <View>
+            <Text style={styles.address}>{rowData.address}</Text>
+        </View>
+    );
   }
 
   render() {
-
     const { searchString,addresses } = this.props;
 
     var scroll = !this.props.isLoading && !this.props.isEmpty ?
@@ -246,13 +245,8 @@ class AddressList extends Component {
     );
   }
 }
-// AddressList.propTypes = {
-//   searchString : PropTypes.string,
-//   addresses : PropTypes.object,
-//   actions : PropTypes.objectOf(PropTypes.func)
-// }
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     pageContainer: {
         flex: 1,
         flexDirection: 'column'
@@ -317,8 +311,8 @@ class AddressList extends Component {
     },separator:{
       height:1,
       backgroundColor:'gray'
-  },
-  thumb: {
+    },
+    thumb: {
         height: 100,
         marginTop: 10
     },
@@ -339,10 +333,10 @@ class AddressList extends Component {
       alignSelf: 'center',
       width: 25,
       height: 25
-  },
-  noResultText: {
+    },
+    noResultText: {
       fontSize: 24,
       color: 'gray'
   }
-  });
+});
 module.exports = AddressList
