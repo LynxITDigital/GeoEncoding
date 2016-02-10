@@ -2,7 +2,8 @@
 
 import React, {
   Component,
-  Navigator
+  Navigator,
+  BackAndroid
 } from 'react-native';
 import {bindActionCreators} from 'redux';
 
@@ -71,34 +72,42 @@ class GeoEncodingApp extends Component {
   }
 
    render(){
-     return(<Router hideNavBar={true}
-       onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
-       onPop={()=>{this.props.routerActions.onPop(); return true}}
-       onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
-       >
-         <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight}/>
-         <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
-         <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
-         <Schema name="withoutAnimation"/>
+     BackAndroid.addEventListener('hardwareBackPress', () => {
+            try {
+              return Actions.pop();
+            }
+            catch (err) {
+                return false;
+            }
+        });
 
-         <Route name="tabbar" hideNavBar={true}>
-             <Router hideNavBar={true} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
+
+     return(
+         <Router hideNavBar={true}
+             onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
+             onPop={()=>{this.props.routerActions.onPop(); return true}}
+             onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
+         >
+            <Schema name="modal" sceneConfig={Animations.FlatFloatFromRight}/>
+            <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
+            <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
+            <Schema name="withoutAnimation"/>
+
+            <Route name="tabbar" hideNavBar={true}>
+                <Router hideNavBar={true} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
                      onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
-             >
-
-               <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets.home, title: 'Geo Encoding'}}  initial={true} />
-               <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets.favourites, title: 'Favourites'}} />
-               <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets.video, title: 'Video'}}/>
-               <Route name="download" schema="tab" component={dlComp} hideNavBar={false} tabBarItem={{icon: assets.download, title: 'Download'}}/>
-             </Router>
-          </Route>
-          <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
-          <Route name="dlvideo" schema="modal" component={VideoPage} hideNavBar={false} title="Downloaded Video"/>
-
-
-     </Router>
+                >
+                    <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets.home, title: 'Geo Encoding'}}  initial={true} />
+                    <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets.favourites, title: 'Favourites'}} />
+                    <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets.video, title: 'Video'}}/>
+                    <Route name="download" schema="tab" component={dlComp} hideNavBar={false} tabBarItem={{icon: assets.download, title: 'Download'}}/>
+                </Router>
+            </Route>
+            <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
+            <Route name="dlvideo" schema="modal" component={VideoPage} hideNavBar={false} title="Downloaded Video"/>
+        </Router>
    );
    }
 

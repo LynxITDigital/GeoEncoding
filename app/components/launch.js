@@ -7,7 +7,7 @@ var Button = require('react-native-button');
 class Launch extends React.Component {
     render(){
         var Actions = this.props.routes;
-        // console.log("Launc : " + this.props)
+        // // console.log("Launc : " + this.props)
         return (
             <View style={styles.container}>
                 <Text>Launch page</Text>

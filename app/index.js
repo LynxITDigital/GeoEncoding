@@ -87,7 +87,7 @@ class GeoEncoding extends React.Component{
   }
 
   encodeLocation(){
-    // console.log('SearchString : ' + this.state.searchString);
+    // // console.log('SearchString : ' + this.state.searchString);
     var query = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(this.state.searchString);
     this._executeQuery(query);
   }

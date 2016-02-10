@@ -48,7 +48,7 @@ module.exports.insertFavourites = function(db, address, index){
               dispatch(insertFavDB(index));
             })
             .catch((error) => {
-                // console.log("Action - DB ERROR " + error);
+                // // console.log("Action - DB ERROR " + error);
             })
     };
 }
@@ -62,7 +62,7 @@ module.exports.unFavourite = function(db, address, index){
               dispatch(unFav(index));
             })
             .catch((error) => {
-                // console.log("Action - DB ERROR " + error);
+                // // console.log("Action - DB ERROR " + error);
             })
     };
 }
@@ -75,7 +75,7 @@ Called from Favourites - needs to remove from DB and 'favourites' array
 */
 module.exports.removeFavourite = function(db, id, index, searchAddresses){
 
-// console.log("REMOVING FAVS");
+// // console.log("REMOVING FAVS");
     return dispatch=>{
 
         return db.removeAddress(id)
@@ -86,7 +86,7 @@ module.exports.removeFavourite = function(db, id, index, searchAddresses){
             }
           })
           .catch((error) => {
-            // console.log("Action - DB REMOVE ERROR " + error);
+            // // console.log("Action - DB REMOVE ERROR " + error);
           })
     };
 }
@@ -96,7 +96,7 @@ module.exports.removeFavourite = function(db, id, index, searchAddresses){
 
 module.exports.fetchFavourites = function(db){
 
-// console.log("FETCHING FAVS");
+// // console.log("FETCHING FAVS");
     return dispatch=>{
       dispatch(requestFavDB())
 
@@ -104,7 +104,7 @@ module.exports.fetchFavourites = function(db){
           dispatch(receiveFavDB(favourites));
       })
       .catch((error) => {
-        // console.log("Action - DB ERROR " + error);
+        // // console.log("Action - DB ERROR " + error);
       })
     };
 }
