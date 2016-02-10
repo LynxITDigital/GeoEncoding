@@ -23,7 +23,7 @@ const getTabBarStyle = props => ({
 
 const navBarStyle = (Platform.OS == 'ios') ? {backgroundColor: "#E94"} : { alignItems: "stretch", justifyContent: "center", marginLeft: 0, paddingTop: 10, backgroundColor: "#E94", height: 55}
 
-const navTextStyle = (Platform.OS == 'ios') ? {} : {alignSelf: "center", marginLeft: -80, marginBottom: -50, fontSize: 20, fontWeight: "bold", color: "#000"}
+const navTextStyle = (Platform.OS == 'ios') ? {color: "#000"} : {alignSelf: "center", marginLeft: -80, marginBottom: -50, fontSize: 20, fontWeight: "bold", color: "#000"}
 
 const barButtonIcon = {color: "#000"};
 

@@ -35,7 +35,6 @@ import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
 import DownloadList from '../components/downloadList';
 
-import NavigationBar from '../components/navBar';
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
