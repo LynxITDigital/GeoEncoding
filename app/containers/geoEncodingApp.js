@@ -96,7 +96,7 @@ class GeoEncodingApp extends Component {
              onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
          >
             <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} hideNavBar={false}/>
-            <Schema name="default" sceneConfig={Animations.FlatFloatFromRight}/>
+            <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} hideNavBar={false}/>
             <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
             <Schema name="withoutAnimation"/>
 
