@@ -23,9 +23,9 @@ const getTabBarStyle = props => ({
 
 const navBarStyle = (Platform.OS == 'ios') ? {backgroundColor: "#F98B30"} : { alignItems: "stretch", justifyContent: "center", marginLeft: 0, paddingTop: 10, backgroundColor: "#F98B30", height: 55}
 
-const navTextStyle = (Platform.OS == 'ios') ? {color: "#000"} : {alignSelf: "center", marginLeft: -80, marginBottom: -50, fontSize: 20, fontWeight: "bold", color: "#000"}
+const navTextStyle = (Platform.OS == 'ios') ? {color: "#FFF"} : {alignSelf: "center", marginLeft: -80, marginBottom: -50, fontSize: 20, fontWeight: "bold", color: "#FFF"}
 
-const barButtonIcon = {color: "#000"};
+const barButtonIconStyle =  { tintColor: "#FFF" }; //, backgroundColor: "#F00"} ;
 
 
 module.exports = {
@@ -33,5 +33,5 @@ module.exports = {
   getTabBarStyle,
   navBarStyle,
   navTextStyle,
-  barButtonIcon
+  barButtonIconStyle
 };
