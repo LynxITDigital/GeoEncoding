@@ -3,7 +3,7 @@ var path = require('path');
 var RNFS = require('react-native-fs');
 const dlPath = RNFS.DocumentDirectoryPath + '/downloads/';
 
-SQLite.DEBUG(true);
+SQLite.DEBUG(false);
 SQLite.enablePromise(true);
 
 
