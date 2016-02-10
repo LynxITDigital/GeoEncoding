@@ -21,7 +21,7 @@ function receiveEmpty() {
 }
 
 
-function updateSearchText(searchString){
+export function changeSearchText(searchString){
   return{
     type: types.CHANGE_SEARCH_TEXT,
     searchString: searchString
@@ -68,12 +68,6 @@ module.exports.onRoutePop = function(fnPop, num){
   return dispatch=>{
     dispatch(routePop(fnPop, num))
   }
-}
-
-module.exports.changeSearchText = function (searchString){
-    return dispatch=>{
-      dispatch(updateSearchText(searchString))
-    };
 }
 
 module.exports.checkAllFav = function(addresses, database, dispatch) {
