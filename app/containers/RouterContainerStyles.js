@@ -21,9 +21,10 @@ const getTabBarStyle = props => ({
   height: 55
 });
 
-const navBarStyle = (Platform.OS == 'ios') ? {backgroundColor: "#F98B30"} : { alignItems: "stretch", justifyContent: "center", marginLeft: 0, paddingTop: 10, backgroundColor: "#F98B30", height: 55}
+const navBarStyle = (Platform.OS == 'ios') ? {backgroundColor: "#ff9900"} : { alignItems: "stretch", justifyContent: "center", marginLeft: 0, paddingTop: 10, backgroundColor: "#ff9900", height: 55}
 
 const navTextStyle = (Platform.OS == 'ios') ? {color: "#FFF"} : {alignSelf: "center", marginLeft: -80, marginBottom: -50, fontSize: 20, fontWeight: "bold", color: "#FFF"}
+
 
 const barButtonIconStyle =  { tintColor: "#FFF" }; //, backgroundColor: "#F00"} ;
 

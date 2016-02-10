@@ -92,7 +92,7 @@ class AddressDetails extends Component {
 
     var appleButton = this.state.appleMaps ?
     (<TouchableHighlight style = {styles.button}
-               underlayColor = '#99d9f4'
+               underlayColor = '#ffc266'
                onPress = {this.onApplePressed}>
                <Text style = {styles.buttonText}>Apple</Text>
      </TouchableHighlight>):
@@ -100,7 +100,7 @@ class AddressDetails extends Component {
 
     var googleButton = this.state.googleMaps ?
     (<TouchableHighlight style = {styles.button}
-               underlayColor = '#99d9f4'
+               underlayColor = '#ffc266'
                onPress = {this.onGooglePressed}>
                <Text style = {styles.buttonText}>Google</Text>
      </TouchableHighlight>):
@@ -183,9 +183,7 @@ var styles = StyleSheet.create({
     height: 36,
     flexDirection: 'row',
     flex: 1,
-    backgroundColor: '#48BBEC',
-    borderColor: '48BBEC',
-    borderWidth: 1,
+    backgroundColor: '#ffad33',
     borderRadius: 8,
     marginLeft: 10,
     marginRight: 10,

@@ -21,13 +21,13 @@ const styles = StyleSheet.create({
 const getTabImageStyle = props => ({
   height: 25,
   resizeMode: 'contain',
-  tintColor: props.selected ? '#4da6ff' : '#929292',
+  tintColor: props.selected ? '#ffc266' : '#929292',
   width: 30,
   marginTop: 5
 });
 
 const getTabTextStyle = props => ({
-  color: props.selected ? '#4da6ff' : '#929292',
+  color: props.selected ? '#ffc266' : '#929292',
   fontSize: (Platform.OS ==='ios') ? 10 : 14,
   letterSpacing: 0.2,
   marginBottom: 2,
