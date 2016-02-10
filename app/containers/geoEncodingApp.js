@@ -2,7 +2,8 @@
 
 import React, {
   Component,
-  Navigator
+  Navigator,
+  BackAndroid
 } from 'react-native';
 import {bindActionCreators} from 'redux';
 
@@ -71,6 +72,16 @@ class GeoEncodingApp extends Component {
   }
 
    render(){
+     BackAndroid.addEventListener('hardwareBackPress', () => {
+            try {
+              return Actions.pop();
+            }
+            catch (err) {
+                return false;
+            }
+        });
+
+
      return(<Router hideNavBar={true}
        onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
        onPop={()=>{this.props.routerActions.onPop(); return true}}
