@@ -112,7 +112,7 @@ class AddressList extends Component {
   }
 
   onRowPressed(rowData){
-      //// // console.log(this.props);
+      // console.log(this.props);
       this.props.navActions.details({data:rowData});
   }
 
