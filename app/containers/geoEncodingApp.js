@@ -102,7 +102,7 @@ class GeoEncodingApp extends Component {
                     <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets.home, title: 'Geo Encoding'}}  initial={true} />
                     <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets.favourites, title: 'Favourites'}} />
                     <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets.video, title: 'Video'}}/>
-                    <Route name="download" schema="tab" component={dlComp} hideNavBar={false} tabBarItem={{icon: assets.download, title: 'Download'}}/>
+                    <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{icon: assets.download, title: 'Download'}}/>
                 </Router>
             </Route>
             <Route name="details" component={AddressDetails} hideNavBar={false}  title="Details" schema="modal"/>
