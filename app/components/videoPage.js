@@ -6,7 +6,7 @@ import React, {
     Platform,
     View
 } from 'react-native';
-import Video from 'react-native-video';
+import Video from '../lib/Video';
 import Spinner from 'react-native-spinkit';
 
 
@@ -69,9 +69,10 @@ class VideoPage extends Component {
                     rate = {1.0}
                     volume = {0.0}
                     muted = {false}
+                    isNetwork = {true}
                     paused = {false}
                     resizeMode = "contain"
-                    repeat = {true}
+                    repeat = {false}
                     style = {styles.fullScreen}
                     onLoad = {() => this.setState({loading: false})}
                     />
