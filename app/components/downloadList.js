@@ -99,7 +99,7 @@ class DownloadList extends Component {
                     <Text style={styles.url}>{rowData.displayname}</Text>
 
                     <TouchableHighlight onPress={this.resetDownload.bind(this, rowData, row)} underlayColor="#FFF">
-                        <Icon name = "repeat" size = {20} color = "rgba(100,100,100,1)" style = {styles.imgButton} />
+                        <Icon name = "repeat" size = {20} color = "rgba(100,100,100,1)" style = {styles.imgButton} allowFontScaling={false}/>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.rowAddress}>

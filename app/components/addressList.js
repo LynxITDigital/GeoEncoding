@@ -146,8 +146,8 @@ class AddressList extends Component {
     var address = rowData.formatted_address;
     var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
     var favIcon = rowData.isFav ?
-    (<IonIcon name = "ios-star" size = {28} color = "ffde00" style = {styles.fav}/>):
-    (<IonIcon name = "ios-star-outline" size = {28} color = "ff9900" style = {styles.fav}/>);
+    (<IonIcon name = "ios-star" size = {28} color = "ffde00" style = {styles.fav} allowFontScaling={false}/>):
+    (<IonIcon name = "ios-star-outline" size = {28} color = "ff9900" style = {styles.fav} allowFontScaling={false}/>);
     return(
       <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
           underlayColor='#dddddd'>

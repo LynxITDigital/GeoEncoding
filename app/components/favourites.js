@@ -84,7 +84,7 @@ class Favourites extends Component {
                     </Text>
                 </View>
                 <TouchableHighlight onPress={this.onRemovePressed.bind(this, rowData.id, j)} underlayColor='#fff'>
-                    <Icon name = "times" size = {20} color = "rgba(200,0,0,1)" style = {styles.button} />
+                    <Icon name = "times" size = {20} color = "rgba(200,0,0,1)" style = {styles.button} allowFontScaling={false}/>
                 </TouchableHighlight>
             </View>
             <View style={styles.separator}/>
