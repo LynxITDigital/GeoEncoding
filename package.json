@@ -42,6 +42,7 @@
     "indent": "0.0.1",
     "inspect-react-element": "1.0.1",
     "isomorphic-fetch": "2.2.1",
+    "nock": "5.5.0",
     "jest-cli": "0.8.2",
     "object-matches": "1.0.0",
     "react": "0.14.7",
@@ -51,6 +52,11 @@
   "jest": {
     "scriptPreprocessor": "jestSupport/scriptPreprocess.js",
     "unmockedModulePathPatterns": [
+      "__mocks__",
+      "isomorphic-fetch",
+      "nock",
+      "redux",
+      "redux-thunk",
       "react-addons-test-utils",
       "react"
     ],
