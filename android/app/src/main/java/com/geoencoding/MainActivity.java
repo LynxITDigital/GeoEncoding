@@ -24,6 +24,8 @@ import com.rnfs.RNFSPackage;
 
 import com.brentvatne.react.ReactVideoPackage;
 
+import com.oblador.vectoricons.VectorIconsPackage;
+
 
 public class MainActivity extends FragmentActivity implements DefaultHardwareBackBtnHandler {
 
@@ -46,6 +48,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     .addPackage(new SQLitePluginPackage(this))   // register SQLite Plugin here
     .addPackage(new ReactVideoPackage())
     .addPackage(new RNFSPackage())
+    .addPackage(new VectorIconsPackage())
     .addPackage(new RCTSplashScreenPackage(this))
     .addPackage(codePush.getReactPackage())
     .setUseDeveloperSupport(BuildConfig.DEBUG)

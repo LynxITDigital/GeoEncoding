@@ -19,6 +19,7 @@ var RNFS = require('react-native-fs');
 
 import Toast from './toast.ios';
 import globals from '../store/globals';
+var Icon = require('react-native-vector-icons/FontAwesome');
 
 //const dlPath = RNFS.DocumentDirectoryPath + '/downloads/';
 
@@ -98,9 +99,7 @@ class DownloadList extends Component {
                     <Text style={styles.url}>{rowData.displayname}</Text>
 
                     <TouchableHighlight onPress={this.resetDownload.bind(this, rowData, row)} underlayColor="#FFF">
-                        <Image source={require('../../assets/ic_stat_refresh.png')}
-                            style={styles.imgButton}
-                        />
+                        <Icon name = "repeat" size = {20} color = "rgba(100,100,100,1)" style = {styles.imgButton} />
                     </TouchableHighlight>
                 </View>
                 <View style={styles.rowAddress}>

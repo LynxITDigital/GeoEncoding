@@ -183,7 +183,7 @@ var styles = StyleSheet.create({
     height: 36,
     flexDirection: 'row',
     flex: 1,
-    backgroundColor: '#ffad33',
+    backgroundColor: '#ff9900',
     borderRadius: 8,
     marginLeft: 10,
     marginRight: 10,

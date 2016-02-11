@@ -19,7 +19,6 @@ import {Router, Route, Schema, Animations, TabBar, Actions} from 'react-native-r
 import {ExRouter} from 'react-native-router-flux/ExRouter'
 import * as styles from './RouterContainerStyles';
 import TabBarItem from '../components/TabBarItem';
-import * as assets from '../../assets';
 
 
 //import TabBar from '../components/tabBar';
@@ -106,10 +105,10 @@ class GeoEncodingApp extends Component {
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
                 >
-                    <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{icon: assets.home, title: 'Geo Encoding'}}  initial={true} />
-                    <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{icon: assets.favourites, title: 'Favourites'}} />
-                    <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{icon: assets.video, title: 'Video'}}/>
-                    <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{icon: assets.download, title: 'Download'}}/>
+                    <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{title: 'Geo Encoding'}}  initial={true} />
+                    <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
+                    <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{title: 'Video'}}/>
+                    <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{title: 'Download'}}/>
                 </Router>
             </Route>
             <Route name="details" component={AddressDetails} title="Details" schema="default"/>

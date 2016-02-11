@@ -92,4 +92,5 @@ dependencies {
     compile project(':react-native-splashscreen')
     compile project(':react-native-fs')
     compile project(':RCTVideo')
+    compile project(':react-native-vector-icons')
 }

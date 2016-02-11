@@ -13,11 +13,9 @@ const styles = StyleSheet.create({
 
 const getTabBarStyle = props => ({
   top: (Platform.OS ==='ios') ? undefined : 50,
-  backgroundColor: '#F9F9F9',
-  borderTopColor: '#D8D8D8',
+  backgroundColor: '#f9f9f9',
+  borderTopColor: '#d8d8d8',
   borderTopWidth: 1,
-  borderBottomColor: '#D8D8D8',
-  borderBottomWidth: 1,
   height: 55
 });
 

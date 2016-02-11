@@ -13,11 +13,11 @@ import React, {
 } from 'react-native';
 // var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
+var Icon = require('react-native-vector-icons/FontAwesome');
 
 import Database from '../database/database';
 
 import globals from '../store/globals';
-import * as assets from '../../assets';
 
 class Favourites extends Component {
 
@@ -58,9 +58,7 @@ class Favourites extends Component {
                     </Text>
                 </View>
                 <TouchableHighlight onPress={this.onRemovePressed.bind(this, rowData.id, j)} underlayColor='#fff'>
-                  <Image style={styles.button}
-                         source={ assets.toDelete }
-                  />
+                    <Icon name = "times" size = {20} color = "rgba(200,0,0,1)" style = {styles.button} />
                 </TouchableHighlight>
             </View>
             <View style={styles.separator}/>
