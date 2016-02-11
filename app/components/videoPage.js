@@ -88,7 +88,8 @@ class VideoPage extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        // marginTop: (Platform.OS ==='ios') ? 50 : 50
         // flexDirection:'row',
         // alignItems:'center',
         // justifyContent:'center'

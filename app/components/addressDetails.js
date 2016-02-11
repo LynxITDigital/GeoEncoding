@@ -143,7 +143,7 @@ AddressDetails.propTypes = {
 var styles = StyleSheet.create({
   container: {
     flex:1,
-    marginTop: 80
+    marginTop: (Platform.OS ==='ios') ? 80 : 120,
     // flexDirection:'column'
   },
   heading: {

@@ -83,7 +83,6 @@ class GeoEncodingApp extends Component {
             }
         });
 
-
      return(
          <Router hideNavBar={true}
              navigationBarStyle={styles.navBarStyle} //Nav Bar Container
@@ -105,13 +104,17 @@ class GeoEncodingApp extends Component {
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
                 >
-                    <Route name="launch"  schema="tab" component={addrComp} title="Geo Encoding" tabBarItem={{title: 'Geo Encoding'}}  initial={true} />
+                    <Route name="geo"  hideNavBar={true} schema="tab" tabBarItem={{title: 'Geo Encoding'}}>
+                      <Router>
+                          <Route name="launch"  hideNavBar={false} title="Geo Encoding" schema="default" component={addrComp} initial={true} />
+                          <Route name="details"  hideNavBar={false} component={AddressDetails} title="Details" schema="default"/>
+                      </Router>
+                    </Route>
                     <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
-                    <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{title: 'Video'}}/>
+                    <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{ title: 'Video'}}/>
                     <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{title: 'Download'}}/>
                 </Router>
             </Route>
-            <Route name="details" component={AddressDetails} title="Details" schema="default"/>
             <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>
         </Router>
 

@@ -254,7 +254,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     inputContainer: {
-      marginTop:80,
+      // marginTop:80,
+      marginTop: (Platform.OS ==='ios') ? 80 : 120,
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch'

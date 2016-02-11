@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop:70,
     flexDirection:'column',
+    marginTop: (Platform.OS ==='ios') ? 70 : 110
   },
   listContainer: {
     flexDirection:'row',

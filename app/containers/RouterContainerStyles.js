@@ -7,7 +7,7 @@ import {
 
 const styles = StyleSheet.create({
   sceneStyle: {
-    marginTop: (Platform.OS ==='ios') ? 0 : 50,
+    // marginTop: (Platform.OS ==='ios') ? 0 : 20,
   },
 });
 
