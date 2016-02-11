@@ -229,7 +229,7 @@ class AddressList extends Component {
         <View style={styles.pageContainer}>
             <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideToast} position = 'top'>
                 <View>
-                    <Text style = {styles.toastText}>{this.state.toastText}</Text>
+                    <Text style = {styles.toastText} allowFontScaling={false}>{this.state.toastText}</Text>
                 </View>
             </Toast>
             <View style={styles.inputContainer}>

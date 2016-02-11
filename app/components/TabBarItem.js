@@ -41,23 +41,39 @@ export default class TabBarItem extends Component {
     const { tabBarItem } = this.props;
     var icon;
     var selected = this.props.selected;
-    if(tabBarItem.title == "Geo Encoding" && selected){
-        icon = <IonIcon name = "ios-home" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
-    } else if (tabBarItem.title == "Geo Encoding" && !selected){
-        icon = <IonIcon name = "ios-home-outline" size = {28} color = "929292" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
-    } else if (tabBarItem.title == "Favourites" && selected){
-        icon = <IonIcon name = "ios-star" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
-    } else if (tabBarItem.title == "Favourites" && !selected){
-        icon = <IonIcon name = "ios-star-outline" size = {28} color = "929292" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
-    } else if (tabBarItem.title == "Video" && selected){
-        icon = <IonIcon name = "social-youtube" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
-    } else if (tabBarItem.title == "Video" && !selected){
-        icon = <IonIcon name = "social-youtube-outline" size = {28} color = "929292" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
-    } else if (tabBarItem.title == "Download" && selected){
-        icon = <IonIcon name = "ios-cloud-download" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
-    } else if (tabBarItem.title == "Download" && !selected){
-        icon = <IonIcon name = "ios-cloud-download-outline" size = {28} color = "929292" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>
+    let title = tabBarItem.title;
+    if (selected){
+        switch (title) {
+            case "Geo Encoding":
+                icon = <IonIcon name = "ios-home" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+            case "Favourites":
+                icon = <IonIcon name = "ios-star" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+            case "Video":
+                icon = <IonIcon name = "social-youtube" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+            case "Download":
+                icon = <IonIcon name = "ios-cloud-download" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+        }
+    } else {
+        switch (title) {
+            case "Geo Encoding":
+                icon = <IonIcon name = "ios-home-outline" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+            case "Favourites":
+                icon = <IonIcon name = "ios-star-outline" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+            case "Video":
+                icon = <IonIcon name = "social-youtube-outline" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+            case "Download":
+                icon = <IonIcon name = "ios-cloud-download-outline" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+        }
     }
+
     return (
       <View style={styles.tabContainerStyle}>
         {icon}

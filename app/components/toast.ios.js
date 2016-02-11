@@ -27,8 +27,8 @@ class Toast extends Component {
             added = true;
         }
         var icon = added ?
-        ( <Icon name = "check-circle-o" size = {80} color = "rgba(0,150,0,0.8)" style = {styles.icon}/> ):
-        ( <Icon name = "times-circle-o" size = {80} color = "rgba(200,0,0,0.8)" style = {styles.icon}/> );
+        ( <Icon name = "check-circle-o" size = {80} color = "rgba(0,150,0,0.8)" style = {styles.icon} allowFontScaling={false}/> ):
+        ( <Icon name = "times-circle-o" size = {80} color = "rgba(200,0,0,0.8)" style = {styles.icon} allowFontScaling={false}/> );
         return (
             <Overlay isVisible = {this.props.isVisible} aboveStatusBar = {false}>
                 <BlurView style = {[positionStyle, {top: top}]} blurType = "light">
