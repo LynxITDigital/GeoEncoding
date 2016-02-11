@@ -9,7 +9,8 @@ import React, {
   ScrollView,
   PropTypes,
   Image,
-  Button
+  Button,
+  Platform
 } from 'react-native';
 // var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
@@ -70,21 +71,23 @@ class Favourites extends Component {
   render() {
     const { favourites } = this.props;
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           <View style={styles.listContainer}>
             <ListView
               dataSource={favourites}
               renderRow={this.renderFav}
               />
           </View>
-        </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginTop:70,
+        flex: 1,
+        marginTop: 70,
+        marginBottom: (Platform.OS ==='ios') ? 55 : 0,
     },
     listContainer: {
         flexDirection:'row',
