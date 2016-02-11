@@ -32,7 +32,18 @@ ReactNative.TouchableOpacity = TouchableOpacity;
 ReactNative.ActivityIndicatorIOS = ActivityIndicatorIOS;
 ReactNative.Text = Text;
 ReactNative.TextInput = TextInput;
+
+// mocks for ListView
 ReactNative.ListView = ListView;
+class ListViewDataSource {
+  cloneWithRows() {
+    return new ListViewDataSource();
+  }
+}
+ReactNative.ListView.DataSource = () => {
+  return new ListViewDataSource();
+};
+
 ReactNative.Easing = Easing;
 ReactNative.Easing.in = () => {};
 ReactNative.Easing.out = () => {};

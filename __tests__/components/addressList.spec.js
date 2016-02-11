@@ -1,5 +1,4 @@
 const React = require('react-native');
-const { View } = React;
 const utils = require('react-addons-test-utils');
 
 // jest.dontMock('../../app/components/addressList');

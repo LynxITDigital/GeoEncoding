@@ -2,9 +2,9 @@ import * as types from '../actions/actionTypes';
 import {ListView} from 'react-native';
 import _ from 'underscore';
 
+// TODO: a logic layer redux store should be UI independent
 var ds = new ListView.DataSource({ rowHasChanged:(r1,r2) => r1.place_id !== r2.place_id });
 var initialState = {isLoading:false, isLoadingDB: false, isEmpty: false, searchString: '', addresses:ds.cloneWithRows([]), favourites:ds.cloneWithRows([])};
-
 
 
 export default function addressesByGeoEncoding(state = initialState, action = {}){
