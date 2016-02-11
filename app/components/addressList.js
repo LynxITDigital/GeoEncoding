@@ -38,9 +38,8 @@ class AddressList extends Component {
 
     // Early binding
     this.onSearchTextChanged = this.onSearchTextChanged.bind(this)
-    this.hideTopToast = this.hideTopToast.bind(this)
+    this.hideToast = this.hideToast.bind(this)
     this.onRowPressed = this.onRowPressed.bind(this)
-    this.hideTopToast = this.hideTopToast.bind(this)
     this.onFavPressed = this.onFavPressed.bind(this)
     this.renderRow = this.renderRow.bind(this)
     this.updateList = this.updateList.bind(this)
@@ -65,7 +64,7 @@ class AddressList extends Component {
       }
   }
 
-  hideTopToast() {
+  hideToast() {
       if(this.props.routerState[0] == 'launch'){
           this.setState({isVisible: false});
       }
@@ -128,10 +127,10 @@ class AddressList extends Component {
       if(Platform.OS ==='ios') {
           this.setState({toastText: message});
           this.setState({isVisible: true});
-          setTimeout(this.hideTopToast, 800);
+          setTimeout(this.hideToast, 800);
       }
       else {
-          ToastAndroid.show('Added to favourites', ToastAndroid.SHORT);
+          ToastAndroid.show(message, ToastAndroid.SHORT);
       }
 
       if(isFav) {
@@ -228,7 +227,7 @@ class AddressList extends Component {
     //// console.log(this.props.isEmpty);
     return (
         <View style={styles.pageContainer}>
-            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast} position = 'top'>
+            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideToast} position = 'top'>
                 <View>
                     <Text style = {styles.toastText}>{this.state.toastText}</Text>
                 </View>

@@ -10,11 +10,13 @@ import React, {
   PropTypes,
   Image,
   Button,
-  Platform
+  Platform,
+  ToastAndroid
 } from 'react-native';
 // var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
 var Icon = require('react-native-vector-icons/FontAwesome');
+import Toast from './toast.ios';
 
 import Database from '../database/database';
 
@@ -28,8 +30,11 @@ class Favourites extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2
     });
 
+    this.state = {toastText: '',isVisible: false};
+
     // Early binding
     this.renderFav = this.renderFav.bind(this)
+    this.hideToast = this.hideToast.bind(this)
   }
 
   componentDidMount() {
@@ -46,12 +51,32 @@ class Favourites extends Component {
   }
 
   onRemovePressed(addressID, i) {
+    let message = "Removed";
+    if(Platform.OS ==='ios') {
+        this.setState({toastText: message});
+        this.setState({isVisible: true});
+        setTimeout(this.hideToast, 800);
+    }
+    else {
+        ToastAndroid.show(message, ToastAndroid.SHORT);
+    }
     this.props.actions.removeFavourite(Database, addressID, i, this.props.addresses._dataBlob.s1);
+  }
+
+  hideToast() {
+      if(this.props.routerState[0] == 'favourites'){
+          this.setState({isVisible: false});
+      }
   }
 
   renderFav(rowData, i, j) {
     return(
         <View>
+            <Toast isVisible = {this.state.isVisible} onDismiss = {this.hideTopToast} position = 'top'>
+                <View>
+                    <Text style = {styles.toastText}>{this.state.toastText}</Text>
+                </View>
+            </Toast>
             <View style={styles.rowAddress}>
                 <View style={styles.addressWrap}>
                     <Text style={styles.address}>
