@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
       right: 0
     },
     spinner: {
-      marginTop: 100,
+      marginTop: 200,
       alignSelf: 'center'
     },
 });
