@@ -28,7 +28,6 @@
 		553A46E61C641A9B00E57EC5 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE3F81B1C59DA4B00F711F7 /* libAirMaps.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AA4139DA1C60549400F46F0D /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4139CE1C60545900F46F0D /* libCodePush.a */; };
-		AA83BDC91C6833520021BF70 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA83BDC81C6833520021BF70 /* Images-2.xcassets */; };
 		AE2989A51C62C73C0052E0FD /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE29899C1C62C72B0052E0FD /* libRCTSplashScreen.a */; };
 		AE298A7D1C6423DA0052E0FD /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE298A7C1C6423CF0052E0FD /* libRNSpinkit.a */; };
 		AEB5B0831C6029E90008344F /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEB5B0801C6029CD0008344F /* libRCTVideo.a */; };
@@ -221,7 +220,6 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		AA4139C81C60545900F46F0D /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/CodePush.xcodeproj"; sourceTree = "<group>"; };
-		AA83BDC81C6833520021BF70 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "GeoEncoding/Images-2.xcassets"; sourceTree = "<group>"; };
 		AE29898F1C62C72B0052E0FD /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSplashScreen.xcodeproj; path = "../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		AE298A771C6423CE0052E0FD /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSpinkit.xcodeproj; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; };
 		AEB5B0721C6029CD0008344F /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
@@ -358,7 +356,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				AA83BDC81C6833520021BF70 /* Images-2.xcassets */,
 			);
 			name = GeoEncoding;
 			sourceTree = "<group>";
@@ -847,7 +844,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEDAA6CE1C6AA7C600B3C459 /* Octicons.ttf in Resources */,
-				AA83BDC91C6833520021BF70 /* Images-2.xcassets in Resources */,
 				AEDAA6CB1C6AA7C600B3C459 /* Foundation.ttf in Resources */,
 				AEDAA6CC1C6AA7C600B3C459 /* Ionicons.ttf in Resources */,
 				AEDAA6C81C6AA7C600B3C459 /* Entypo.ttf in Resources */,
