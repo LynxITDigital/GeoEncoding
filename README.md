@@ -55,8 +55,15 @@ and you will LOSE the ability to debug in Chrome
 ![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Search.gif)
 
 ## Toast
-###iOS
+### iOS
 ![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Toast.gif)
 
-###Android
+### Android
 ![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Toast_Android.gif)
+
+## Tab Bar
+### iOS
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Tabbar_iOS.gif)
+
+### Android
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Tabbar_Android.gif)
