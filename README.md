@@ -50,6 +50,5 @@ Under this mode, jsbundle within GeoEncoding.app is generated during "Bundle Rea
 and you will LOSE the ability to debug in Chrome
 
 #Screenshots
-![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/HomePage.png)
-![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/DetailPage.png)
-![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/VideoPlayer.png)
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Search.gif)
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Toast.gif)
