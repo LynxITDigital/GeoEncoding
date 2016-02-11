@@ -51,7 +51,9 @@ and you will LOSE the ability to debug in Chrome
 
 #Screenshots
 * Search
+
 ![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Search.gif)
 
-*Toast
+* Toast
+
 ![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/Toast.gif)
