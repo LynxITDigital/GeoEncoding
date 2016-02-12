@@ -13,7 +13,8 @@ var {
     TouchableHighlight,
     PropTypes,
     LinkingIOS,
-    Platform
+    Platform,
+    ScrollView
 } = React
 
 /*
@@ -107,29 +108,29 @@ class AddressDetails extends Component {
     ( <View/> );
 
     return (
-     <View style={styles.container}>
-       <View style={styles.heading}>
-         <Text style={styles.title}>{title}</Text>
-         <View style={styles.separator}></View>
-       </View>
-       <Text style={styles.description}>{latLong}</Text>
+        <ScrollView style={styles.container}>
+            <View style={styles.heading}>
+                <Text style={styles.title}>{title}</Text>
+                <View style={styles.separator}></View>
+            </View>
+            <Text style={styles.description}>{latLong}</Text>
 
-         <MapView
-           ref="map"
-           style={styles.map}
-           initialRegion={region}
-         >
-           <MapView.Marker
-               coordinate = {latlng}
-               title = {title}/>
-         </MapView>
+            <MapView
+                ref="map"
+                style={styles.map}
+                initialRegion={region}
+            >
+            <MapView.Marker
+                coordinate = {latlng}
+                title = {title}/>
+            </MapView>
 
-      <View style = {styles.buttonContainer}>
-          {appleButton}
-          {googleButton}
-      </View>
+            <View style = {styles.buttonContainer}>
+                {appleButton}
+                {googleButton}
+            </View>
 
-     </View>
+        </ScrollView>
    );
 
    }
@@ -144,7 +145,7 @@ var styles = StyleSheet.create({
   container: {
     flex:1,
     marginTop: (Platform.OS ==='ios') ? 80 : 120,
-    // flexDirection:'column'
+    marginBottom: (Platform.OS ==='ios') ? 55 : 0
   },
   heading: {
   },
@@ -159,11 +160,14 @@ var styles = StyleSheet.create({
     color: '#656565'
   },
   buttonContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 10
   },
   description: {
     fontSize: 16,
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
     color: '#656565'
   },
   map: {
