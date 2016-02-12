@@ -57,7 +57,7 @@ class VideoPage extends Component {
         (<View style = {styles.container}>
             <Video source = {{uri: this.uri}}
                     rate = {1.0}
-                    volume = {0.0}
+                    volume = {1.0}
                     muted = {false}
                     paused = {this.state.paused}
                     resizeMode = "contain"
@@ -68,7 +68,7 @@ class VideoPage extends Component {
         (<View style = {styles.container}>
             <Video source = {{uri: this.uri}}
                     rate = {1.0}
-                    volume = {0.0}
+                    volume = {1.0}
                     muted = {false}
                     isNetwork = {true}
                     paused = {false}
