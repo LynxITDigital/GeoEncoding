@@ -16,13 +16,14 @@ class VideoPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {paused: true, loading: true};
+        this.state = {paused: true, loading: true, isTab: true};
 
         if(props.uri) {
           this.uri = props.uri;
-          isTab = false;
+          this.state.isTab = false
         } else {
           this.uri = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4";
+          this.state.isTab = true
         }
     }
 
@@ -61,7 +62,7 @@ class VideoPage extends Component {
                     paused = {this.state.paused}
                     resizeMode = "contain"
                     repeat = {true}
-                    style = { isTab ? styles.fullScreenTab : styles.fullScreen }
+                    style = { this.state.isTab ? styles.fullScreenTab : styles.fullScreen }
                     controls = {true}/>
           </View>):
         (<View style = {styles.container}>
