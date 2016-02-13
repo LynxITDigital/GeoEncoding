@@ -7,7 +7,12 @@ import fetch from 'isomorphic-fetch';
 const mockResponse = require('../../__mocks__/mockResponse');
 
 import * as actionTypes from '../../app/actions/actionTypes';
-const actions = require.requireActual('../../app/actions/addressActions');
+
+// use dontMock+require syntax to fix coverage disappearing bug
+jest.dontMock('../../app/actions/addressActions');
+const actions = require('../../app/actions/addressActions');
+// require.requireActual works fine for tests, however it makes test coverage disappearing currently
+// const actions = require.requireActual('../../app/actions/addressActions');
 
 describe('addressActions', () => {
   let searchString;

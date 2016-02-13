@@ -34,3 +34,6 @@ local.properties
 node_modules/
 npm-debug.log
 main.jsbundle
+
+# jest
+coverage/

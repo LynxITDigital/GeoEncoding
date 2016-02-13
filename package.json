@@ -6,6 +6,7 @@
     "start": "react-native start",
     "clean": "cd node_modules; find . -name .babelrc | grep -v packager | xargs rm",
     "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest --verbose",
+    "coverage": "rm -rf ./node_modules/jest-cli/.haste_cache && jest --verbose --coverage",
     "xxxtest": "mocha --reporter spec --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",

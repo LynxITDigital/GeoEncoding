@@ -1,11 +1,12 @@
 const React = require('react-native');
 const utils = require('react-addons-test-utils');
 
-// jest.dontMock('../../app/components/addressList');
-// var AddressList = require('../../app/components/addressList');
-const AddressList = require.requireActual('../../app/components/addressList');
+// use dontMock+require syntax to fix coverage disappearing bug
+jest.dontMock('../../app/components/addressList');
+var AddressList = require('../../app/components/addressList');
+// require.requireActual works fine for tests, however it makes test coverage disappearing currently
+// const AddressList = require.requireActual('../../app/components/addressList');
 
-// const AddressList = require.requireActual('../app/components/addressList');
 // const shallowHelpers = require('react-shallow-renderer-helpers');
 // const shallowRenderer = shallowHelpers.createRenderer();
 

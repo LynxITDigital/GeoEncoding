@@ -1,7 +1,12 @@
 'use strict';
 
 import * as actionTypes from '../../app/actions/actionTypes';
-const addressReducer = require.requireActual('../../app/reducers/address').default;
+
+// use dontMock+require syntax to fix coverage disappearing bug
+jest.dontMock('../../app/reducers/address');
+const addressReducer = require('../../app/reducers/address').default;
+// require.requireActual works fine for tests, however it makes test coverage disappearing currently
+// const addressReducer = require.requireActual('../../app/reducers/address').default;
 
 // TODO: a logic layer redux store should be UI independent
 import {ListView} from 'react-native';
