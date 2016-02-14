@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "clean": "cd node_modules; find . -name .babelrc | grep -v packager | xargs rm",
+    "simpletest": "rm -rf ./node_modules/jest-cli/.haste_cache && jest",
     "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest --verbose",
     "coverage": "rm -rf ./node_modules/jest-cli/.haste_cache && jest --verbose --coverage",
     "xxxtest": "mocha --reporter spec --compilers js:babel-core/register --recursive",
