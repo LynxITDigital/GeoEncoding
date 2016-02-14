@@ -16,6 +16,7 @@ before_install:
   - brew update
   - brew reinstall xctool
   - brew reinstall watchman
+  - npm install rnpm -g
   - npm install
 
 script:
