@@ -52,6 +52,21 @@
   },
   "jest": {
     "scriptPreprocessor": "jestSupport/scriptPreprocess.js",
+    "testPathDirs": [
+      "app/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "spec.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
     "unmockedModulePathPatterns": [
       "__mocks__",
       "isomorphic-fetch",
@@ -60,13 +75,6 @@
       "redux-thunk",
       "react-addons-test-utils",
       "react"
-    ],
-    "moduleNameMapper": {
-      "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
-      "^[./a-zA-Z0-9$_-]+.png$": "RelativeImageStub"
-    },
-    "testFileExtensions": [
-      "spec.js"
     ]
   }
 }

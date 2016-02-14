@@ -1,10 +1,10 @@
 'use strict';
 
-import * as actionTypes from '../../app/actions/actionTypes';
+import * as actionTypes from '../../actions/actionTypes';
 
 // use dontMock+require syntax to fix coverage disappearing bug
-jest.dontMock('../../app/reducers/address');
-const addressReducer = require('../../app/reducers/address').default;
+jest.dontMock('../address');
+const addressReducer = require('../address').default;
 // require.requireActual works fine for tests, however it makes test coverage disappearing currently
 // const addressReducer = require.requireActual('../../app/reducers/address').default;
 
