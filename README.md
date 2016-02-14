@@ -42,12 +42,13 @@ code-push release GeoEncoding main.jsbundle 1.0.0 --deploymentName Production
 ```
 # Jest Tests
 * run the tests
-Run "npm test <test suit name>" to test a special suit; or simply run "npm test" to get through all test suits in verbose mode.
+  * Run "npm test <test suit name>" to test a special suit;
+  * or simply run "npm test" to get through all test suits in verbose mode.
 
 * generate test coverage
-Run "npm run coverage" to generate both a simple coverage chart within console and html coverage report under /coverage/
+  * Run "npm run coverage" to generate both a simple coverage chart within console and html coverage report under /coverage/
 
-![alt tag](https://github.com/LynxITDigital/GeoEncoding/tree/master/assets/test_coverage.png)
+![alt tag](https://github.com/LynxITDigital/Screenshots/blob/master/test_coverage.png)
 
 
 #Screenshots
