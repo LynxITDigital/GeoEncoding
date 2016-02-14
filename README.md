@@ -17,10 +17,15 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [x] Network request
 - [x] Toast notification (When adding an address to Favourites)
 - [x] Custom splash screen
-- [ ] Network download
+- [x] Network download
 - [ ] Network upload
 - [ ] Barcode scanner
 - [ ] Location update (background)
+- [ ] Push notification
+- [ ] Expandable listview
+- [ ] Thumbnail view with preview
+- [ ] Sidebar drawer
+- [ ] Performance testing for listview (load a few thousands record to our listview)
 
 
 Install node modeules
