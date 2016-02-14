@@ -10,7 +10,8 @@
     "xxxtest": "mocha --reporter spec --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
-    "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache"
+    "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache",
+    "postinstall": "rnpm link"
   },
   "dependencies": {
     "@remobile/react-native-splashscreen": "1.0.3",

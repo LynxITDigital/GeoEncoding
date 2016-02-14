@@ -3,6 +3,9 @@ package com.geoencoding;
 import com.AirMaps.AirPackage;
 
 import android.app.Activity;
+import com.brentvatne.RCTVideo.ReactVideoPackage;
+import com.AirMaps.AirPackage;
+import com.remobile.splashscreen.RCTSplashScreenPackage;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
@@ -44,6 +47,9 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
     .setJSMainModuleName("index.android")
     .addPackage(new MainReactPackage())
+                .addPackage(new ReactVideoPackage())
+                .addPackage(new AirPackage())
+                .addPackage(new RCTSplashScreenPackage())
     .addPackage(new AirPackage())
     .addPackage(new SQLitePluginPackage(this))   // register SQLite Plugin here
     .addPackage(new ReactVideoPackage())
