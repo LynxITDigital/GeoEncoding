@@ -40,14 +40,15 @@ To release
 ```shell
 code-push release GeoEncoding main.jsbundle 1.0.0 --deploymentName Production
 ```
-# Run Scheme and debug in Chrome
-* OPTION 1
-Run with Scheme "GeoEncoding DEBUG" to load jscode from Packager and be able to debug in Chrome
+# Jest Tests
+* run the tests
+Run "npm test <test suit name>" to test a special suit; or simply run "npm test" to get through all test suits in verbose mode.
 
-* OPTION 2
-Run with Scheme "GeoEncoding RELEASE" to load jscode from optimised/minified jsbundle on disk (performed by CodePush)
-Under this mode, jsbundle within GeoEncoding.app is generated during "Bundle React Native code and images" build phase;
-and you will LOSE the ability to debug in Chrome
+* generate test coverage
+Run "npm run coverage" to generate both a simple coverage chart within console and html coverage report under /coverage/
+
+![alt tag](https://github.com/LynxITDigital/GeoEncoding/tree/master/assets/test_coverage.png)
+
 
 #Screenshots
 ## Search
