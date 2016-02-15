@@ -1,12 +1,15 @@
 package com.geoencoding;
 
 import android.app.Activity;
+import com.github.yamill.orientation.OrientationPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.AirMaps.AirPackage;
 import com.remobile.splashscreen.RCTSplashScreenPackage;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
+import android.content.Intent;
+import android.content.res.Configuration;
 
 import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
@@ -42,6 +45,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
     .setJSMainModuleName("index.android")
     .addPackage(new MainReactPackage())
+    .addPackage(new OrientationPackage(this))
     .addPackage(new ReactVideoPackage())
     .addPackage(new AirPackage())
     .addPackage(new RCTSplashScreenPackage(this))
@@ -97,5 +101,13 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     if (mReactInstanceManager != null) {
       mReactInstanceManager.onResume(this, this);
     }
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    Intent intent = new Intent("onConfigurationChanged");
+    intent.putExtra("newConfig", newConfig);
+    this.sendBroadcast(intent);
   }
 }

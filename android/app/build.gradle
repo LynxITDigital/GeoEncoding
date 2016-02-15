@@ -83,6 +83,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-orientation')
     compile project(':react-native-video')
     compile project(':react-native-maps')
     compile project(':@remobile/react-native-splashscreen')

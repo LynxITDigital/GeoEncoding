@@ -34,6 +34,8 @@ import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
 import DownloadList from '../components/downloadList';
 
+var Orientation = require('react-native-orientation');
+
 
 const mapStateToProps = state => ({
   addresses : state.addressesByGeoEncoding.addresses,
@@ -69,9 +71,13 @@ const dlComp = connect(mapStateToProps,mapDispatchToProps)(DownloadList);
 
 
 class GeoEncodingApp extends Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        Orientation.lockToPortrait();
+    }
 
    render(){
      BackAndroid.addEventListener('hardwareBackPress', () => {
