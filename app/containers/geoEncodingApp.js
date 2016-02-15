@@ -95,7 +95,7 @@ class GeoEncodingApp extends Component {
          >
             <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} hideNavBar={false}/>
             <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} hideNavBar={false}/>
-            <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
+            <Schema name="tab" icon={TabBarItem} type="switch" hideNavBar={false} />
             <Schema name="withoutAnimation"/>
 
             <Route name="tabbar" hideNavBar={true}>
@@ -112,7 +112,7 @@ class GeoEncodingApp extends Component {
                     </Route>
                     <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
                     <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{ title: 'Video'}}/>
-                    <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{title: 'Download'}}/>
+                    <Route name="download" schema="tab" component={dlComp} title="Download" tabBarItem={{title: 'Download'}}/>
                 </Router>
             </Route>
             <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>

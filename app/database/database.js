@@ -98,8 +98,9 @@ var Database = {
   /*** Favourites ***/
   insertAddress(address) {
       return new Promise((resolve, reject) => {
-          db.executeSql("INSERT INTO Favourites(address) VALUES(?)", [address]).then(() => {
-              resolve();
+          db.executeSql("INSERT INTO Favourites(address) VALUES(?)", [address]).then((results) => {
+              console.log('inserted' + results);
+              resolve(results[0].insertId);
           }
           );
         });

@@ -15,17 +15,19 @@ function receiveFavDB(results) {
   };
 }
 
-function insertFavDB(index) {
+function insertFavDB(index, id) {
   return {
     type: types.DB_FAV_ADDED,
-    index
+    index,
+    id
   };
 }
 
-function unFav(index) {
+function unFav(index, address) {
   return {
     type: types.DB_UNFAV,
-    index
+    index,
+    address
   };
 }
 
@@ -44,8 +46,8 @@ function dbUpdated(results) {
 
 module.exports.insertFavourites = function(db, address, index){
     return dispatch=>{
-      return db.insertAddress(address).then(() => {
-              dispatch(insertFavDB(index));
+      return db.insertAddress(address).then((id) => {
+              dispatch(insertFavDB(index, id));
             })
             .catch((error) => {
                 // // console.log("Action - DB ERROR " + error);
@@ -59,7 +61,10 @@ module.exports.insertFavourites = function(db, address, index){
 module.exports.unFavourite = function(db, address, index){
     return dispatch=>{
       return db.removeFavourite(address).then(() => {
-              dispatch(unFav(index));
+              dispatch(unFav(index, address));
+            })
+            .then(() => {
+              //re-fetch favourites?
             })
             .catch((error) => {
                 // // console.log("Action - DB ERROR " + error);
