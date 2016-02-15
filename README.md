@@ -18,7 +18,7 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [x] Toast notification (When adding an address to Favourites)
 - [x] Custom splash screen
 - [x] Network download
-- [ ] Network upload
+- [x] Network upload - Login / Account Manage feature
 - [ ] Barcode scanner
 - [ ] Location update (background)
 - [ ] Push notification
@@ -26,6 +26,8 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [ ] Thumbnail view with preview
 - [ ] Sidebar drawer
 - [ ] Performance testing for listview (load a few thousands record to our listview)
+- [ ] 'Share' functionality
+- [ ] Custom Video controls
 
 
 Install node modeules
