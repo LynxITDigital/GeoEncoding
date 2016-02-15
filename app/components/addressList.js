@@ -50,6 +50,10 @@ class AddressList extends Component {
       this.debouncedFetch = _.debounce(this.props.actions.fetchAddresses, 500);
   }
 
+  componentWillUnmount() {
+      this.hideToast();
+  }
+
   async loadAddress() {
       try {
           let value = await AsyncStorage.getItem(STORAGE_KEY);
