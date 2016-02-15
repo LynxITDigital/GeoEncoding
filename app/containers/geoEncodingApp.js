@@ -3,7 +3,8 @@
 import React, {
   Component,
   Navigator,
-  BackAndroid
+  BackAndroid,
+  View
 } from 'react-native';
 import {bindActionCreators} from 'redux';
 
@@ -19,6 +20,8 @@ import {Router, Route, Schema, Animations, TabBar, Actions} from 'react-native-r
 import {ExRouter} from 'react-native-router-flux/ExRouter'
 import * as styles from './RouterContainerStyles';
 import TabBarItem from '../components/TabBarItem';
+import Drawer from 'react-native-drawer'
+
 
 
 //import TabBar from '../components/tabBar';
@@ -33,6 +36,7 @@ import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
 import DownloadList from '../components/downloadList';
+import AddressDrawer from '../components/addressDrawer';
 
 
 const mapStateToProps = state => ({
@@ -73,6 +77,13 @@ class GeoEncodingApp extends Component {
     super(props);
   }
 
+  closeControlPanel() {
+    this.drawer.close()
+  }
+  openControlPanel() {
+    this.drawer.open()
+  }
+
    render(){
      BackAndroid.addEventListener('hardwareBackPress', () => {
             try {
@@ -84,40 +95,47 @@ class GeoEncodingApp extends Component {
         });
 
      return(
-         <Router hideNavBar={true}
-             navigationBarStyle={styles.navBarStyle} //Nav Bar Container
-             barButtonTextStyle={{color: "#000"}} //No Effect?
-             titleStyle={styles.navTextStyle} //Main Title Text
-             barButtonIconStyle={styles.barButtonIconStyle} // E.g. Back button
-             onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
-             onPop={()=>{this.props.routerActions.onPop(); return true}}
-             onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
-         >
-            <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} hideNavBar={false}/>
-            <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} hideNavBar={false}/>
-            <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
-            <Schema name="withoutAnimation"/>
+       <Drawer
+        ref="drawer"
+        content={<AddressDrawer/>}
+        openDrawerOffset={150}
+        styles={{main: {shadowColor: "#000000", shadowOpacity: 0.4, shadowRadius: 3}}}
+        tweenHandler={Drawer.tweenPresets.parallax}
+        >
+           <Router hideNavBar={true}
+               navigationBarStyle={styles.navBarStyle} //Nav Bar Container
+               barButtonTextStyle={{color: "#000"}} //No Effect?
+               titleStyle={styles.navTextStyle} //Main Title Text
+               barButtonIconStyle={styles.barButtonIconStyle} // E.g. Back button
+               onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
+               onPop={()=>{this.props.routerActions.onPop(); return true}}
+               onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
+           >
+              <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} hideNavBar={false}/>
+              <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} hideNavBar={false}/>
+              <Schema name="tab" icon={TabBarItem} type="replace" hideNavBar={false} />
+              <Schema name="withoutAnimation"/>
 
-            <Route name="tabbar" hideNavBar={true}>
-                <Router hideNavBar={true} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
-                     onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
-                     onPop={()=>{this.props.routerActions.onPop(); return true}}
-                     onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
-                >
-                    <Route name="geo"  hideNavBar={true} schema="tab" tabBarItem={{title: 'Geo Encoding'}}>
-                      <Router>
-                          <Route name="launch"  hideNavBar={false} title="Geo Encoding" schema="default" component={addrComp} initial={true} />
-                          <Route name="details"  hideNavBar={false} component={AddressDetails} title="Details" schema="default"/>
-                      </Router>
-                    </Route>
-                    <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
-                    <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{ title: 'Video'}}/>
-                    <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{title: 'Download'}}/>
-                </Router>
-            </Route>
-            <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>
-        </Router>
-
+              <Route name="tabbar" hideNavBar={true}>
+                  <Router hideNavBar={true} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
+                       onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
+                       onPop={()=>{this.props.routerActions.onPop(); return true}}
+                       onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
+                  >
+                      <Route name="geo"  hideNavBar={true} schema="tab" tabBarItem={{title: 'Geo Encoding'}}>
+                        <Router>
+                            <Route name="launch"  hideNavBar={false} title="Geo Encoding" schema="default" component={addrComp} initial={true} />
+                            <Route name="details"  hideNavBar={false} component={AddressDetails} title="Details" schema="default"/>
+                        </Router>
+                      </Route>
+                      <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
+                      <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{ title: 'Video'}}/>
+                      <Route name="download" schema="tab" component={dlComp} hideNavBar={false} title="Download" tabBarItem={{title: 'Download'}}/>
+                  </Router>
+              </Route>
+              <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>
+          </Router>
+      </Drawer>
    );
    }
 

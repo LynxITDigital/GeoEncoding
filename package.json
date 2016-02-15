@@ -23,6 +23,7 @@
     "react-native-blur": "0.7.10",
     "react-native-button": "1.2.1",
     "react-native-code-push": "1.6.0-beta",
+    "react-native-drawer": "1.16.6",
     "react-native-fs": "^1.2.0",
     "react-native-maps": "0.2.3",
     "react-native-overlay": "0.4.1",
