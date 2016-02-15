@@ -48,6 +48,7 @@ class AddressList extends Component {
   componentDidMount() {
       this.loadAddress().done();
       this.debouncedFetch = _.debounce(this.props.actions.fetchAddresses, 500);
+      this.debouncedHide = _.debounce(this.hideToast, 1000);
   }
 
   componentWillUnmount() {
@@ -131,7 +132,7 @@ class AddressList extends Component {
       if(Platform.OS ==='ios') {
           this.setState({toastText: message});
           this.setState({isVisible: true});
-          setTimeout(this.hideToast, 800);
+          setTimeout(this.debouncedHide, 800);
       }
       else {
           ToastAndroid.show(message, ToastAndroid.SHORT);
