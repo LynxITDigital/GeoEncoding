@@ -99,7 +99,7 @@ class GeoEncodingApp extends Component {
             <Schema name="withoutAnimation"/>
 
             <Route name="tabbar" hideNavBar={true}>
-                <Router hideNavBar={true} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
+                <Router hideNavBar={true} showNavigationBar={false} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
                      onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
