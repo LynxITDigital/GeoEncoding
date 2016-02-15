@@ -83,14 +83,14 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-video')
+    compile project(':react-native-maps')
+    compile project(':@remobile/react-native-splashscreen')
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.facebook.react:react-native:0.17.+'
-    compile project(':AirMaps')
     compile project(':react-native-sqlite-storage')
     compile project(':react-native-code-push')
-    compile project(':react-native-splashscreen')
     compile project(':react-native-fs')
-    compile project(':RCTVideo')
     compile project(':react-native-vector-icons')
 }
