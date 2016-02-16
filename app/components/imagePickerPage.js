@@ -16,6 +16,8 @@ class ImagePicker extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {imgSource: {}};
         this.onPickPressed = this.onPickPressed.bind(this);
     }
 
@@ -24,19 +26,17 @@ class ImagePicker extends Component {
         let options = {
             title: 'Select Image', // specify null or empty string to remove the title
             cancelButtonTitle: 'Cancel',
-            takePhotoButtonTitle: 'Take Photo...', // specify null or empty string to remove this button
-            chooseFromLibraryButtonTitle: 'Choose from Library...', // specify null or empty string to remove this button
+            takePhotoButtonTitle: 'Take Photo', // specify null or empty string to remove this button
+            chooseFromLibraryButtonTitle: 'Choose from Library', // specify null or empty string to remove this button
             cameraType: 'back', // 'front' or 'back'
             mediaType: 'photo', // 'photo' or 'video'
             videoQuality: 'high', // 'low', 'medium', or 'high'
-            maxWidth: 100, // photos only
-            maxHeight: 100, // photos only
-            aspectX: 2, // aspectX:aspectY, the cropping image's ratio of width to height
+            aspectX: 1, // aspectX:aspectY, the cropping image's ratio of width to height
             aspectY: 1, // aspectX:aspectY, the cropping image's ratio of width to height
-            quality: 0.2, // photos only
+            quality: 100, // photos only
             angle: 0, // photos only
             allowsEditing: false, // Built in functionality to resize/reposition the image
-            noData: false, // photos only - disables the base64 `data` field from being generated (greatly improves performance on large photos)
+            noData: true, // photos only - disables the base64 `data` field from being generated (greatly improves performance on large photos)
             storageOptions: { // if this key is provided, the image will get saved in the documents/pictures directory (rather than a temporary directory)
                 skipBackup: true, // image will NOT be backed up to icloud
                 path: 'images' // will save image at /Documents/images rather than the root
@@ -51,9 +51,17 @@ class ImagePicker extends Component {
             }
             else if (response.error) {
                 console.log('UIImagePickerManager Error: ', response.error);
-            }
-            else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
+            } else {
+                var source;
+                if(Platform.OS === 'ios'){
+                    source = {uri: response.uri.replace('file://', ''), isStatic: true};
+                } else {
+                    const source = {uri: response.uri, isStatic: true};
+                }
+
+                this.setState({
+                    imgSource: source
+                });
             }
         });
     }
@@ -64,6 +72,7 @@ class ImagePicker extends Component {
                 <TouchableHighlight style = {styles.button} underlayColor='#ffc266' onPress = {this.onPickPressed}>
                     <Text style = {styles.buttonText}>Select Image</Text>
                 </TouchableHighlight>
+                <Image source = {this.state.imgSource} style = {styles.image} />
             </View>
         );
     }
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 70,
         marginBottom: (Platform.OS ==='ios') ? 55 : 0,
-        marginTop: (Platform.OS ==='ios') ? 80 : 100
+        marginTop: (Platform.OS ==='ios') ? 80 : 120,
     },
     buttonText: {
            fontSize: 18,
@@ -90,6 +99,15 @@ const styles = StyleSheet.create({
        marginRight: 10,
        alignSelf: 'stretch',
        justifyContent: 'center'
-   }
+   },
+   image: {
+    flex: 1,
+    marginRight: 10,
+    marginLeft: 10,
+    marginBottom: 10,
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: '#000000',
+  },
 });
 module.exports = ImagePicker
