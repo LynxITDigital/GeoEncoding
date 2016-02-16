@@ -98,7 +98,8 @@ class GeoEncodingApp extends Component {
        <Drawer
         ref="drawer"
         content={<AddressDrawer/>}
-        openDrawerOffset={200}
+        openDrawerOffset={.55}
+        panCloseMask={.55}
         styles={{main: {shadowColor: "#000000", shadowOpacity: 0.4, shadowRadius: 3}}}
         tweenHandler={Drawer.tweenPresets.parallax}
         negotiatePan={true}

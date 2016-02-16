@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
       paddingRight: 10,
     },
     menuRow: {
-      paddingTop: 10,
-      paddingBottom: 10,
+      paddingTop: 15,
+      paddingBottom: 15,
       justifyContent: 'center'
     }
 });
