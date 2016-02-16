@@ -87,13 +87,6 @@ class GeoEncodingApp extends Component {
         Orientation.lockToPortrait();
     }
 
-  closeControlPanel() {
-    this.drawer.close()
-  }
-  openControlPanel() {
-    this.drawer.open()
-  }
-
    render(){
      BackAndroid.addEventListener('hardwareBackPress', () => {
             try {
