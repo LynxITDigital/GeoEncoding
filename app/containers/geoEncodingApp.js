@@ -33,6 +33,7 @@ import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
 import DownloadList from '../components/downloadList';
+import ImagePicker from '../components/imagePickerPage';
 //import CameraPage from '../components/cameraPage';
 
 var Orientation = require('react-native-orientation');
@@ -120,6 +121,7 @@ class GeoEncodingApp extends Component {
                     <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
                     <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{ title: 'Video'}}/>
                     <Route name="download" schema="tab" component={dlComp} title="Download" tabBarItem={{title: 'Download'}}/>
+                    <Route name="picker" schema="tab" component={ImagePicker} title="Image Picker" tabBarItem={{title: 'Image'}}/>
                 </Router>
             </Route>
             <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>
