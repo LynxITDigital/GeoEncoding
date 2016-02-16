@@ -49,13 +49,13 @@ class AddressDrawer extends Component {
               renderRow={this.renderRow}
           />
           <View style={styles.horizRowContainer}>
-            <TouchableHighlight style={styles.menuRow} underlayColor="3a3843">
+            <TouchableHighlight style={styles.horizMenuRow} underlayColor="3a3843">
               { facebook }
             </TouchableHighlight>
-            <TouchableHighlight style={styles.menuRow} underlayColor="3a3843">
+            <TouchableHighlight style={styles.horizMenuRow} underlayColor="3a3843">
               { google }
             </TouchableHighlight>
-            <TouchableHighlight style={styles.menuRow} underlayColor="3a3843">
+            <TouchableHighlight style={styles.horizMenuRow} underlayColor="3a3843">
               { linkedin }
             </TouchableHighlight>
           </View>
@@ -68,35 +68,40 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#484953',
+      paddingTop: 30,
     },
     header: {
       fontWeight: 'bold',
       fontSize: 20,
       textAlign: 'center',
-      paddingTop: 30,
       paddingBottom: 30,
       color: '#ffffff'
     },
     horizRowContainer: {
       flexDirection:'row',
-      justifyContent: 'center'
+      justifyContent: 'center',
+    },
+    horizMenuRow: {
+      paddingTop: 15,
+      paddingBottom: 15,
     },
     menu: {
       color:'#ffffff',
       fontSize: 14,
-      paddingLeft: 10,
     },
     menuContainer: {
       borderBottomWidth: 1,
       borderColor:"#54535d"
     },
     menuItem: {
-      paddingLeft: 10,
       paddingRight: 10,
+      paddingLeft: 10,
+      textAlign: 'center'
     },
     menuRow: {
       paddingTop: 15,
       paddingBottom: 15,
+      paddingLeft: 5,
       justifyContent: 'center'
     }
 });
