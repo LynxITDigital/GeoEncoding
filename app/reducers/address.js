@@ -23,15 +23,31 @@ export default function addressesByGeoEncoding(state = initialState, action = {}
       var newAddresses = _.clone(state.addresses._dataBlob.s1);
       //Update favourite for row
       newAddresses[action.index].isFav = true;
-    //update list provider
-      return Object.assign({}, state, { addresses: ds.cloneWithRows(newAddresses)});
+      //Add to favourites list as well, in case tab is switched
+      var newFavourites = _.clone(state.favourites._dataBlob.s1);
+      if(newFavourites != undefined) {
+        newFavourites.push({id: action.id, address: newAddresses[action.index].formatted_address});
+      }
+      //update list provider
+      return Object.assign({}, state, { addresses: ds.cloneWithRows(newAddresses), favourites: ds.cloneWithRows(newFavourites)});
     case types.DB_UNFAV:
         //copy current address list
         var newAddresses = _.clone(state.addresses._dataBlob.s1);
         //Update favourite for row
         newAddresses[action.index].isFav = false;
-      //update list provider
-        return Object.assign({}, state, { addresses: ds.cloneWithRows(newAddresses)});
+        //Remove from favourites list as well, in case tab is switched
+        var newFavourites = _.clone(state.favourites._dataBlob.s1);
+        if(newFavourites != undefined) {
+          //Find in favourites list and remove
+          for(i in newFavourites) {
+            if(newFavourites[i].address == action.address) {
+                newFavourites.splice(i, 1);
+                break;
+            }
+          }
+        }
+        //update list provider
+        return Object.assign({}, state, { addresses: ds.cloneWithRows(newAddresses), favourites: ds.cloneWithRows(newFavourites)});
     case types.DB_FAV_REMOVED:
         var newFavourites = _.clone(state.favourites._dataBlob.s1);
         newFavourites.splice(action.index, 1);

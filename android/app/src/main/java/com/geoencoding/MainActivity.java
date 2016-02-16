@@ -1,14 +1,15 @@
 package com.geoencoding;
 
-import com.AirMaps.AirPackage;
-
 import android.app.Activity;
-import com.brentvatne.RCTVideo.ReactVideoPackage;
+import com.github.yamill.orientation.OrientationPackage;
+import com.brentvatne.react.ReactVideoPackage;
 import com.AirMaps.AirPackage;
 import com.remobile.splashscreen.RCTSplashScreenPackage;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
+import android.content.Intent;
+import android.content.res.Configuration;
 
 import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
@@ -22,10 +23,7 @@ import org.pgsqlite.SQLitePluginPackage;
 import com.microsoft.codepush.react.CodePush;
 import android.support.v4.app.FragmentActivity;
 
-import com.remobile.splashscreen.*;
 import com.rnfs.RNFSPackage;
-
-import com.brentvatne.react.ReactVideoPackage;
 
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -47,15 +45,13 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
     .setJSMainModuleName("index.android")
     .addPackage(new MainReactPackage())
-                .addPackage(new ReactVideoPackage())
-                .addPackage(new AirPackage())
-                .addPackage(new RCTSplashScreenPackage())
-    .addPackage(new AirPackage())
-    .addPackage(new SQLitePluginPackage(this))   // register SQLite Plugin here
+    .addPackage(new OrientationPackage(this))
     .addPackage(new ReactVideoPackage())
+    .addPackage(new AirPackage())
+    .addPackage(new RCTSplashScreenPackage(this))
+    .addPackage(new SQLitePluginPackage(this))   // register SQLite Plugin here
     .addPackage(new RNFSPackage())
     .addPackage(new VectorIconsPackage())
-    .addPackage(new RCTSplashScreenPackage(this))
     .addPackage(codePush.getReactPackage())
     .setUseDeveloperSupport(BuildConfig.DEBUG)
     .setInitialLifecycleState(LifecycleState.RESUMED)
@@ -105,5 +101,13 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     if (mReactInstanceManager != null) {
       mReactInstanceManager.onResume(this, this);
     }
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    Intent intent = new Intent("onConfigurationChanged");
+    intent.putExtra("newConfig", newConfig);
+    this.sendBroadcast(intent);
   }
 }

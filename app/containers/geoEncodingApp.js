@@ -37,6 +37,9 @@ import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
 import DownloadList from '../components/downloadList';
 import AddressDrawer from '../components/addressDrawer';
+//import CameraPage from '../components/cameraPage';
+
+var Orientation = require('react-native-orientation');
 
 
 const mapStateToProps = state => ({
@@ -73,9 +76,13 @@ const dlComp = connect(mapStateToProps,mapDispatchToProps)(DownloadList);
 
 
 class GeoEncodingApp extends Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        Orientation.lockToPortrait();
+    }
 
   closeControlPanel() {
     this.drawer.close()

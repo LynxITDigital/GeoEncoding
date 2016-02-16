@@ -28,6 +28,7 @@ A react-native example for ListView, MapView, ImageView, NavigationBar, react-re
 - [ ] Performance testing for listview (load a few thousands record to our listview)
 - [ ] 'Share' functionality
 - [ ] Custom Video controls
+- [ ] Whiteboard? - demonstrate touch tracking and graphics libraries
 
 
 Install node modeules
