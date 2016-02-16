@@ -20,4 +20,3 @@ before_install:
   - npm install
 
 script:
-  - npm run simpletest
