@@ -12,17 +12,17 @@
     "test:watch": "npm test -- --watch",
     "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
     "resetpkg": "node_modules/react-native/packager/packager.sh —reset-cache",
-    "postinstall": "rnpm link"
+    "postinstall": "rnpm link && scripts/removefbjs.sh"
   },
   "dependencies": {
     "@remobile/react-native-splashscreen": "1.0.3",
     "lodash": "4.1.0",
     "path": "^0.12.7",
-    "react-native": "0.17.0",
+    "react-native": "0.20.0",
     "react-native-animatable": "0.5.0",
     "react-native-blur": "0.7.10",
     "react-native-button": "1.2.1",
-    "react-native-code-push": "1.6.0-beta",
+    "react-native-code-push": "1.7.3-beta",
     "react-native-fs": "^1.2.0",
     "react-native-image-picker": "^0.14.2",
     "react-native-maps": "0.2.3",
@@ -45,14 +45,12 @@
   "devDependencies": {
     "babel-core": "6.4.5",
     "indent": "0.0.1",
-    "inspect-react-element": "1.0.1",
     "isomorphic-fetch": "2.2.1",
     "nock": "5.5.0",
     "jest-cli": "0.8.2",
     "object-matches": "1.0.0",
     "react": "0.14.7",
-    "react-addons-test-utils": "0.14.7",
-    "react-shallow-renderer-helpers": "1.2.0"
+    "react-addons-test-utils": "0.14.7"
   },
   "jest": {
     "scriptPreprocessor": "jestSupport/scriptPreprocess.js",
