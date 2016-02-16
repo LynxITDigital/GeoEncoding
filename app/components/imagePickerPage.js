@@ -81,9 +81,8 @@ class ImagePicker extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 70,
         marginBottom: (Platform.OS ==='ios') ? 55 : 0,
-        marginTop: (Platform.OS ==='ios') ? 80 : 120,
+        marginTop: (Platform.OS ==='ios') ? 80 : 120
     },
     buttonText: {
            fontSize: 18,
