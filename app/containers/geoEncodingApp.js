@@ -78,6 +78,9 @@ const dlComp = connect(mapStateToProps,mapDispatchToProps)(DownloadList);
 class GeoEncodingApp extends Component {
     constructor(props) {
         super(props);
+
+        // Drawer state
+        this.state = {drawerOpen: false}
     }
 
     componentDidMount() {
@@ -110,7 +113,9 @@ class GeoEncodingApp extends Component {
         styles={{main: {shadowColor: "#000000", shadowOpacity: 0.4, shadowRadius: 3}}}
         tweenHandler={Drawer.tweenPresets.parallax}
         negotiatePan={true}
-        captureGestures={true}
+        captureGestures={this.state.drawerOpen}
+        onOpen={()=>{this.setState({drawerOpen: true})}}
+        onClose={()=>{this.setState({drawerOpen: false})}}
         >
            <Router hideNavBar={true}
                navigationBarStyle={styles.navBarStyle} //Nav Bar Container
