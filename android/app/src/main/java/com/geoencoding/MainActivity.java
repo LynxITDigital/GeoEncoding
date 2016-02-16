@@ -41,6 +41,12 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     CodePush codePush = new CodePush("9OcY7WuRIwcigP2x6H5z8bTZPLN94yXS9p7Fg", this, BuildConfig.DEBUG);
 
     mReactRootView = new ReactRootView(this);
+
+
+      // instantiate package
+      mImagePicker = new ImagePickerPackage(this);
+
+
     mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 // .setBundleAssetName("index.android.bundle")
@@ -77,7 +83,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
   @Override
   public void onBackPressed() {
     if (mReactInstanceManager != null) {
-      mReactInstanceManager.onBackPressed();
+        mReactInstanceManager.onBackPressed();
     } else {
       super.onBackPressed();
     }
@@ -101,7 +107,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
   protected void onResume() {
     super.onResume();
 
-    if (mReactInstanceManager != null) {
+      if (mReactInstanceManager != null) {
       mReactInstanceManager.onResume(this, this);
     }
   }

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 70,
         marginBottom: (Platform.OS ==='ios') ? 55 : 0,
-        marginTop: (Platform.OS ==='ios') ? 80 : 100
+        marginTop: (Platform.OS ==='ios') ? 80 : 120
     },
     buttonText: {
            fontSize: 18,
