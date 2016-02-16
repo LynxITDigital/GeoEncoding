@@ -33,6 +33,7 @@ import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
 import DownloadList from '../components/downloadList';
+//import CameraPage from '../components/cameraPage';
 
 var Orientation = require('react-native-orientation');
 

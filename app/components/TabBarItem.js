@@ -56,6 +56,12 @@ export default class TabBarItem extends Component {
             case "Download":
                 icon = <IonIcon name = "ios-cloud-download" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
                 break;
+                /*
+            case "Camera":
+                icon = <IonIcon name = "ios-camera" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+                */
+
         }
     } else {
         switch (title) {
@@ -71,6 +77,11 @@ export default class TabBarItem extends Component {
             case "Download":
                 icon = <IonIcon name = "ios-cloud-download-outline" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
                 break;
+                /*
+            case "Camera":
+                icon = <IonIcon name = "ios-camera-outline" size = {28} color = "ff9900" style = {getTabImageStyle(this.props)} allowFontScaling={false}/>;
+                break;
+                */
         }
     }
 
