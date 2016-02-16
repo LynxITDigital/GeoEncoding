@@ -10,6 +10,7 @@ import React, {
 } from 'react-native';
 
 import Spinner from 'react-native-spinkit';
+var EntypoIcon = require('react-native-vector-icons/Entypo');
 
 class AddressDrawer extends Component {
     constructor(props) {
@@ -22,7 +23,6 @@ class AddressDrawer extends Component {
     }
 
     renderRow(rowData){
-
       return (
         <View style={styles.menuContainer}>
           <TouchableHighlight style={styles.menuRow} underlayColor="3a3843">
@@ -35,23 +35,32 @@ class AddressDrawer extends Component {
     }
 
     render() {
-        return (
-          <View style={styles.container}>
-            <Text style={styles.header}>
-              LynxReact
-            </Text>
-            <ListView
-                dataSource={this.menuDataSource.cloneWithRows(this.state.menu)}
-                renderRow={this.renderRow}
-                loadData={this.updateList}
-                refreshDescription="Refreshing articles"
-                automaticallyAdjustContentInsets = {false}
-            />
-            <View style={styles.horizRowContainer}>
+      var facebook = (<EntypoIcon name = "facebook" style={styles.menuItem} size = {20} color = "ffffff" allowFontScaling={false}/>);
+      var google = (<EntypoIcon name = "google-" style={styles.menuItem} size = {20} color = "ffffff" allowFontScaling={false}/>);
+      var linkedin = (<EntypoIcon name = "linkedin" style={styles.menuItem} size = {20} color = "ffffff" allowFontScaling={false}/>);
 
-            </View>
+      return (
+        <View style={styles.container}>
+          <Text style={styles.header}>
+            LynxReact
+          </Text>
+          <ListView
+              dataSource={this.menuDataSource.cloneWithRows(this.state.menu)}
+              renderRow={this.renderRow}
+          />
+          <View style={styles.horizRowContainer}>
+            <TouchableHighlight style={styles.menuRow} underlayColor="3a3843">
+              { facebook }
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.menuRow} underlayColor="3a3843">
+              { google }
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.menuRow} underlayColor="3a3843">
+              { linkedin }
+            </TouchableHighlight>
           </View>
-        )
+        </View>
+      )
     }
 }
 
@@ -69,7 +78,8 @@ const styles = StyleSheet.create({
       color: '#ffffff'
     },
     horizRowContainer: {
-      flexDirection:'row'
+      flexDirection:'row',
+      justifyContent: 'center'
     },
     menu: {
       color:'#ffffff',
@@ -80,9 +90,14 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1,
       borderColor:"#54535d"
     },
+    menuItem: {
+      paddingLeft: 10,
+      paddingRight: 10,
+    },
     menuRow: {
       paddingTop: 10,
       paddingBottom: 10,
+      justifyContent: 'center'
     }
 });
 
