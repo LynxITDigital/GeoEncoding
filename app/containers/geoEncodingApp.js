@@ -27,11 +27,13 @@ import * as addressActions from '../actions/addressActions';
 import * as databaseActions from '../actions/databaseActions';
 import * as downloadActions from '../actions/downloadActions';
 import * as routerActions from '../actions/routerActions';
+import * as accountActions from '../actions/accountActions';
 import AddressList from '../components/addressList';
 import Favourites from '../components/favourites';
 import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
+import LoginPage from '../components/login';
 import DownloadList from '../components/downloadList';
 //import CameraPage from '../components/cameraPage';
 
@@ -46,14 +48,17 @@ const mapStateToProps = state => ({
   routes : state.routes,
   routerState: state.router.routerState,
   isLoading: state.addressesByGeoEncoding.isLoading,
-  isEmpty: state.addressesByGeoEncoding.isEmpty
+  isEmpty: state.addressesByGeoEncoding.isEmpty,
+  userLoading : state.account.isLoading,
+  user : state.account.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     ...addressActions,
     ...databaseActions,
-    ...downloadActions
+    ...downloadActions,
+    ...accountActions,
   }, dispatch),
   routerActions:  bindActionCreators({
     ...routerActions,
@@ -68,6 +73,8 @@ const mapDispatchToProps = (dispatch) => ({
 const favComp = connect(mapStateToProps,mapDispatchToProps)(Favourites);
 const addrComp = connect(mapStateToProps,mapDispatchToProps)(AddressList);
 const dlComp = connect(mapStateToProps,mapDispatchToProps)(DownloadList);
+//const featureComp = connect(mapStateToProps,mapDispatchToProps)(FeatureList);
+const loginComp = connect(mapStateToProps,mapDispatchToProps)(LoginPage);
 
 
 
@@ -105,12 +112,16 @@ class GeoEncodingApp extends Component {
             <Schema name="tab" icon={TabBarItem} type="switch" hideNavBar={false} />
             <Schema name="withoutAnimation"/>
 
+
             <Route name="tabbar" hideNavBar={true}>
                 <Router hideNavBar={true} showNavigationBar={false} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
                      onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
                 >
+
+
+
                     <Route name="geo"  hideNavBar={true} schema="tab" tabBarItem={{title: 'Geo Encoding'}}>
                       <Router>
                           <Route name="launch"  hideNavBar={false} title="Geo Encoding" schema="default" component={addrComp} initial={true} />
@@ -120,8 +131,11 @@ class GeoEncodingApp extends Component {
                     <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
                     <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{ title: 'Video'}}/>
                     <Route name="download" schema="tab" component={dlComp} title="Download" tabBarItem={{title: 'Download'}}/>
+                    <Route name="more" schema="tab" component={dlComp} title="More" tabBarItem={{title: 'More'}}/>
                 </Router>
             </Route>
+
+                        <Route name="account" schema="modal" component={loginComp} title="Login" initial={true}/>
             <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>
         </Router>
 
