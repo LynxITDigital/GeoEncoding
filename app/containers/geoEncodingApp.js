@@ -103,6 +103,7 @@ class GeoEncodingApp extends Component {
         styles={{main: {shadowColor: "#000000", shadowOpacity: 0.4, shadowRadius: 3}}}
         tweenHandler={Drawer.tweenPresets.parallax}
         negotiatePan={true}
+        captureGestures={true}
         >
            <Router hideNavBar={true}
                navigationBarStyle={styles.navBarStyle} //Nav Bar Container
