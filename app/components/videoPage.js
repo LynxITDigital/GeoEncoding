@@ -4,10 +4,10 @@ import React, {
     StyleSheet,
     Component,
     Platform,
-    View
+    View,
+    ProgressBarAndroid
 } from 'react-native';
 import Video from '../lib/Video';
-import Spinner from 'react-native-spinkit';
 
 
 var isTab = true;
@@ -36,12 +36,7 @@ class VideoPage extends Component {
       } else {
           var spinner =
           ( <View style = {styles.spinner}>
-              <Spinner
-              style = {styles.spinner}
-              isVisible = {true}
-              size = {50}
-              type = 'ThreeBounce'
-              color = '#ffbb99' />
+              <ProgressBarAndroid styleAttr="Inverse" color = "ffbb99"/>
             </View>);
       }
 

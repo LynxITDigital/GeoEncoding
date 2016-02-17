@@ -7,8 +7,6 @@ import React, {
     View,
     Text
 } from 'react-native';
-import Video from '../lib/Video';
-import Spinner from 'react-native-spinkit';
 
 
 var isTab = true;
@@ -16,16 +14,6 @@ var isTab = true;
 class FeatureList extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {paused: true, loading: true, isTab: true};
-
-        if(props.uri) {
-          this.uri = props.uri;
-          this.state.isTab = false
-        } else {
-          this.uri = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4";
-          this.state.isTab = true
-        }
     }
 
     render() {
