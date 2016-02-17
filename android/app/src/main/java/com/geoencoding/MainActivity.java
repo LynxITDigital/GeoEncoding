@@ -53,7 +53,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
                 .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
-                .addPackage(new ImagePickerPackage(this))
+                .addPackage(mImagePicker)
                 .addPackage(new OrientationPackage(this))
                 .addPackage(new ReactVideoPackage())
                 .addPackage(new AirPackage())
