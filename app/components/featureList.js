@@ -32,11 +32,17 @@ class FeatureList extends Component {
 
         return (
           <View style={styles.container}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}
-                  onPress={() => { this.props.navActions.loginpage() } }>
-                Account
-            </Text>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}
+                    onPress={() => { this.props.navActions.loginpage() } }>
+                  Account
+              </Text>
+            </View>
+            <View style={styles.button}>
+                <Text style={styles.buttonText}
+                      onPress={() => { this.props.navActions.picker() } }>
+                    Camera / Image Picker
+                </Text>
             </View>
           </View>
         )
@@ -53,10 +59,12 @@ const styles = StyleSheet.create({
     },
     button:{
       padding :5,
-      height: 26,
+      height: 36,
       backgroundColor:'#F90',
       alignSelf:'stretch',
-      justifyContent:'center'
+      justifyContent:'center',
+      borderRadius: 8,
+      margin: 10
     },
     buttonText:{
       fontSize:18,

@@ -16,6 +16,7 @@ import React, {
 // var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview')
 var Icon = require('react-native-vector-icons/FontAwesome');
+var SGListView = require('react-native-sglistview');
 import Toast from './toast.ios';
 
 import Database from '../database/database';
@@ -98,7 +99,7 @@ class Favourites extends Component {
     return (
         <ScrollView style={styles.container}>
           <View style={styles.listContainer}>
-            <ListView
+            <SGListView
               dataSource={favourites}
               renderRow={this.renderFav}
               />

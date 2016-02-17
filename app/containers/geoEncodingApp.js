@@ -38,6 +38,7 @@ import SignUp from '../components/signUp';
 import MyAccount from '../components/myAccount';
 import DownloadList from '../components/downloadList';
 import FeatureList from '../components/featureList';
+import ImagePicker from '../components/imagePickerPage';
 //import CameraPage from '../components/cameraPage';
 
 var Orientation = require('react-native-orientation');
@@ -143,8 +144,10 @@ class GeoEncodingApp extends Component {
                         <Route name="loginpage" schema="default"  component={loginComp} title="Login" hideNavBar={false} />
                         <Route name="signup" schema="default" component={signUpComp} title="Sign Up" />
                         <Route name="account" schema="modal" component={myAccountComp} title="My Account" showNavigationBar={false} type="replace"/>
+                          <Route name="picker" schema="default" component={ImagePicker} title="Image Picker"/>
                     </Router>
                 </Route>
+
                 </Router>
             </Route>
             <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>

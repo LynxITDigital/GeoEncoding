@@ -111,5 +111,6 @@
     <orderEntry type="module" module-name="react-native-sqlite-storage" exported="" />
     <orderEntry type="module" module-name="react-native-fs" exported="" />
     <orderEntry type="module" module-name="react-native-vector-icons" exported="" />
+    <orderEntry type="module" module-name="react-native-image-picker" exported="" />
   </component>
 </module>
