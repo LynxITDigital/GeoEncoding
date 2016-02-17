@@ -11,23 +11,28 @@ import React, {
 } from 'react-native';
 var Button = require('react-native-button');
 
-var fullname = '';
-var email = '';
+var login = 'oliver';
+var password = 'test';
+var pwConfirm = 'test';
+var fullname = 'O J';
+var email = 'oli@oli.com';
 var dob = '';
 
-class MyAccount extends Component {
+class SignUp extends Component {
 
   constructor(props) {
     super(props);
 
     // Early binding
-    //this.onSavePressed = this.onSavePressed.bind(this)
-    this.componentDidUpdate = this.componentDidUpdate.bind(this)
+    this.onSignUpPressed = this.onSignUpPressed.bind(this)
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this)
   }
 
-
-  onSavePressed(user) {
-    this.props.actions.updateAccount({'_id':user._id, 'login':user.login, 'password': user.password, 'fullname': fullname, 'email': email, 'dob': dob});
+  onSignUpPressed() {
+    if(password == pwConfirm) {
+      this.props.actions.signUp({'login':login, 'password':password, 'name': fullname, 'email': email, 'dob': dob});
+        this.props.navActions.account();
+    }
   }
 
 
@@ -43,36 +48,53 @@ class MyAccount extends Component {
     dob = event.nativeEvent.text;
   }
 
-
-
-  componentDidUpdate() {
-      // if(!this.props.user._id && (this.props.routerState.length == 2)) {
-      //   this.props.navActions.pop();
+    componentWillReceiveProps() {
+      // if(this.props.user._id !== undefined) {
+      //   this.props.navActions.account();
       // }
-  }
-
+    }
 
   render(){
-        var account = this.props.user;
+        var Actions = this.props.routes;
         var error = this.props.accountState.error;
-
         // // console.log("Launc : " + this.props)
         return (
-            <View style={styles.container}>
+                <View style={styles.container}>
                   <Text style={styles.error}>{error ? error : ''}</Text>
                   <View style={styles.inputContainer}>
                       <TextInput
                           style={styles.textInput}
+                          autoCapitalize='none'
+                          onChange={(event) => { login = event.nativeEvent.text }}
+                          placeholder="Login"/>
+                  </View>
+                  <View style={styles.inputContainer}>
+                      <TextInput
+                          style={styles.textInput}
+                          autoCapitalize='none'
+                          secureTextEntry={true}
+                          onChange={(event) => { password = event.nativeEvent.text }}
+                          placeholder="password"/>
+                  </View>
+                  <View style={styles.inputContainer}>
+                      <TextInput
+                          style={styles.textInput}
+                          autoCapitalize='none'
+                          secureTextEntry={true}
+                          onChange={(event) => { pwConfirm = event.nativeEvent.text }}
+                          placeholder="confirm password"/>
+                  </View>
+                  <View style={styles.inputContainer}>
+                      <TextInput
+                          style={styles.textInput}
                           onChange={this.onfullnameTextChanged}
-                          defaultValue={account.name}
-                          placeholder="Name"/>
+                          placeholder="Full Name"/>
                   </View>
                   <View style={styles.inputContainer}>
                       <TextInput
                           style={styles.textInput}
                           autoCapitalize='none'
                           onChange={this.onEmailTextChanged}
-                          defaultValue={account.email}
                           placeholder="email"/>
                   </View>
 
@@ -82,15 +104,14 @@ class MyAccount extends Component {
                           style={styles.textInput}
                           autoCapitalize='none'
                           onChange={this.onDOBTextChanged}
-                          defaultValue={account.dob}
                           placeholder="D.O.B dd/mm/yyyy"/>
                   </View>
 
                   <View style = {styles.buttonRow} >
                     <TouchableHighlight style = {styles.button}
                                underlayColor = '#ffc266'
-                               onPress = {this.onSavePressed.bind(this, account)}>
-                               <Text style = {styles.buttonText}>Save</Text>
+                               onPress = {this.onSignUpPressed}>
+                               <Text style = {styles.buttonText}>Sign Up</Text>
                      </TouchableHighlight>
 
                   </View>
@@ -167,4 +188,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = MyAccount
+module.exports = SignUp

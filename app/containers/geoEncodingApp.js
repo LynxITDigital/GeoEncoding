@@ -34,7 +34,10 @@ import AddressDetails from '../components/addressDetails';
 import Launch from '../components/launch';
 import VideoPage from '../components/videoPage';
 import LoginPage from '../components/login';
+import SignUp from '../components/signUp';
+import MyAccount from '../components/myAccount';
 import DownloadList from '../components/downloadList';
+import FeatureList from '../components/featureList';
 //import CameraPage from '../components/cameraPage';
 
 var Orientation = require('react-native-orientation');
@@ -49,7 +52,7 @@ const mapStateToProps = state => ({
   routerState: state.router.routerState,
   isLoading: state.addressesByGeoEncoding.isLoading,
   isEmpty: state.addressesByGeoEncoding.isEmpty,
-  userLoading : state.account.isLoading,
+  accountState : state.account,
   user : state.account.user,
 });
 
@@ -73,8 +76,10 @@ const mapDispatchToProps = (dispatch) => ({
 const favComp = connect(mapStateToProps,mapDispatchToProps)(Favourites);
 const addrComp = connect(mapStateToProps,mapDispatchToProps)(AddressList);
 const dlComp = connect(mapStateToProps,mapDispatchToProps)(DownloadList);
-//const featureComp = connect(mapStateToProps,mapDispatchToProps)(FeatureList);
+const featureComp = connect(mapStateToProps,mapDispatchToProps)(FeatureList);
 const loginComp = connect(mapStateToProps,mapDispatchToProps)(LoginPage);
+const signUpComp = connect(mapStateToProps,mapDispatchToProps)(SignUp);
+const myAccountComp = connect(mapStateToProps,mapDispatchToProps)(MyAccount);
 
 
 
@@ -97,15 +102,18 @@ class GeoEncodingApp extends Component {
             }
         });
 
+      var login = (this.props.user._id == undefined);
+
      return(
          <Router hideNavBar={true}
              navigationBarStyle={styles.navBarStyle} //Nav Bar Container
-             barButtonTextStyle={{color: "#000"}} //No Effect?
+             barButtonTextStyle={{color: "#FFF"}} //Text on button e.g. Back
              titleStyle={styles.navTextStyle} //Main Title Text
-             barButtonIconStyle={styles.barButtonIconStyle} // E.g. Back button
+             barButtonIconStyle={styles.barButtonIconStyle} // E.g. Back button icon
              onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
              onPop={()=>{this.props.routerActions.onPop(); return true}}
              onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
+             renderScene={() => { console.log("RENDER SCNENE LOGIN (TAB)");}}
          >
             <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} hideNavBar={false}/>
             <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} hideNavBar={false}/>
@@ -119,9 +127,6 @@ class GeoEncodingApp extends Component {
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
                 >
-
-
-
                     <Route name="geo"  hideNavBar={true} schema="tab" tabBarItem={{title: 'Geo Encoding'}}>
                       <Router>
                           <Route name="launch"  hideNavBar={false} title="Geo Encoding" schema="default" component={addrComp} initial={true} />
@@ -131,11 +136,17 @@ class GeoEncodingApp extends Component {
                     <Route name="favourites" schema="tab" component={favComp} title="Favourites" tabBarItem={{title: 'Favourites'}} />
                     <Route name="video" schema="tab" component={VideoPage} title="Video" tabBarItem={{ title: 'Video'}}/>
                     <Route name="download" schema="tab" component={dlComp} title="Download" tabBarItem={{title: 'Download'}}/>
-                    <Route name="more" schema="tab" component={dlComp} title="More" tabBarItem={{title: 'More'}}/>
+
+                    <Route name="more" schema="tab" hideNavBar={false}  tabBarItem={{title: 'More'}} >
+                      <Router>
+                        <Route name="morePage" component={featureComp} title="More" initial={true}/>
+                        <Route name="loginpage" schema="default"  component={loginComp} title="Login" hideNavBar={false} />
+                        <Route name="signup" schema="default" component={signUpComp} title="Sign Up" />
+                        <Route name="account" schema="modal" component={myAccountComp} title="My Account" showNavigationBar={false} type="replace"/>
+                    </Router>
+                </Route>
                 </Router>
             </Route>
-
-                        <Route name="account" schema="modal" component={loginComp} title="Login" initial={true}/>
             <Route name="dlvideo" schema="modal" component={VideoPage} title="Downloaded Video"/>
         </Router>
 

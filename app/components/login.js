@@ -22,17 +22,27 @@ class LoginPage extends Component {
     // Early binding
     this.onLoginPressed = this.onLoginPressed.bind(this)
     this.onSignUpPressed = this.onSignUpPressed.bind(this)
-    //this.componentWillMount = this.componentWillMount.bind(this)
+  //  this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+  //  this.componentWillMount = this.componentWillMount.bind(this)
+  }
+
+  componentWillMount() {
+    console.log("CHECKING LOGIN");
+    // if(this.props.state.user._id !== undefined) {
+    //   this.props.navActions.myAccount();
+    // }
   }
 
   onLoginPressed() {
       console.log(login);
       console.log(password);
       this.props.actions.doLogin({'login': login, 'password': password});
+      //this.props.navActions.account();
+
   }
 
   onSignUpPressed() {
-    this.props.navActions.SignUp();
+    this.props.navActions.signup();
   }
 
   onLoginTextChanged(event) {
@@ -44,14 +54,23 @@ class LoginPage extends Component {
   }
 
 
+  componentWillReceiveProps(props) {
+      if(props.user._id && props.routerState.length == 2) {
+        props.navActions.account();
+      }
+  }
+
+
   render(){
         var Actions = this.props.routes;
-        // // console.log("Launc : " + this.props)
+        var account = this.props.accountState;
+
         return (
             <View style={styles.container}>
+
+                  <Text style={styles.error}>{account.error ? account.error : ''}</Text>
                   <View style={styles.inputContainer}>
                       <TextInput
-                          ref="loginText"
                           autoCapitalize='none'
                           style={styles.textInput}
                           onChange={this.onLoginTextChanged}
@@ -76,7 +95,7 @@ class LoginPage extends Component {
                      <TouchableHighlight style = {styles.buttonOther}
                                 underlayColor = '#ffc266'
                                 onPress = {this.onSignUpPressed}>
-                                <Text style = {styles.buttonOtherText}>SignUp</Text>
+                                <Text style = {styles.buttonOtherText}>Sign Up</Text>
                       </TouchableHighlight>
                   </View>
             </View>
@@ -97,6 +116,9 @@ var styles = StyleSheet.create({
       flexDirection:'row',
       alignItems: 'center',
       alignSelf:'stretch'
+    },
+    error: {
+      color: "red"
     },
     textInput: {
       flex: 1,

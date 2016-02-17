@@ -2,21 +2,23 @@ import * as types from '../actions/actionTypes';
 import _ from 'underscore';
 
 
-var initialState = {isLoading:false, user:{}};
+var initialState = {isLoading:false, user:{}, error: false};
 
 
 export default function account(state = initialState, action = {}){
-  // // console.log("Receiver executed for action : " + action.type);
   switch (action.type) {
     case types.REQUEST_ACCOUNT_DATA:
         return Object.assign({},state, { isLoading:true});
     case types.RECEIVE_ACCOUNT_DATA:
-      // console.log("RECEIVE DOWNLOAD REDUCER: ");
-      // console.log(action.downloads);
-      return Object.assign({},state, { isLoading:false, user: action.user});
+  //     console.log("RECEIVE ACCOUNT DATA: ");
+      return Object.assign({},state, { isLoading:false, user: action.response, error: false});
     case types.RECEIVE_LOGIN:
-        // console.log("RECEIVE DOWNLOAD ITEM REDUCER: ");
-        return Object.assign({},state, { user: action.response});
+        if(action.response.error != undefined) {
+            return Object.assign({},state, { isLoading:false, user: [], error: action.response.error});
+        } else {
+            //console.log("LOGIN SUCCESS");
+            return Object.assign({},state, { isLoading:false, user: action.response, error: false});
+        }
     default:
       return state;
   }
