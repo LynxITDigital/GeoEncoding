@@ -3,7 +3,8 @@
 import React, {
   Component,
   Navigator,
-  BackAndroid
+  BackAndroid,
+  Platform
 } from 'react-native';
 import {bindActionCreators} from 'redux';
 
@@ -104,6 +105,7 @@ class GeoEncodingApp extends Component {
         });
 
       var login = (this.props.user._id == undefined);
+      var iOS = (Platform.OS == iOS);
 
      return(
          <Router hideNavBar={true}
@@ -118,17 +120,17 @@ class GeoEncodingApp extends Component {
          >
             <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} hideNavBar={false}/>
             <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} hideNavBar={false}/>
-            <Schema name="tab" icon={TabBarItem} type="switch" hideNavBar={false} />
+            <Schema name="tab" icon={TabBarItem} type={iOS ? "switch" : "replace"} hideNavBar={false} />
             <Schema name="withoutAnimation"/>
 
 
             <Route name="tabbar" hideNavBar={true}>
-                <Router hideNavBar={true} showNavigationBar={false} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
+                <Router hideNavBar={true} showNavigationBar={iOS ? false : true} footer={TabBar} tabBarStyle={styles.getTabBarStyle(this.props)} sceneStyle={styles.sceneStyle}
                      onPush={(route)=>{this.props.routerActions.onPush(route.name); return true}}
                      onPop={()=>{this.props.routerActions.onPop(); return true}}
                      onReplace={(route)=>{this.props.routerActions.onReplace(route.name); return true}}
                 >
-                    <Route name="geo"  hideNavBar={true} schema="tab" tabBarItem={{title: 'Geo Encoding'}}>
+                    <Route name="geo"  hideNavBar={true} schema="tab"  tabBarItem={{title: 'Geo Encoding'}}>
                       <Router>
                           <Route name="launch"  hideNavBar={false} title="Geo Encoding" schema="default" component={addrComp} initial={true} />
                           <Route name="details"  hideNavBar={false} component={AddressDetails} title="Details" schema="default"/>
