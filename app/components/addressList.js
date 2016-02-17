@@ -19,6 +19,7 @@ var { createAnimatableComponent, View } = require('react-native-animatable');
 var Spinner = require('react-native-spinkit');
 var Overlay = require('react-native-overlay');
 var IonIcon = require('react-native-vector-icons/Ionicons');
+var SGListView = require('react-native-sglistview');
 import Toast from './toast.ios';
 const STORAGE_KEY = '@GeoEncoding:address'
 
@@ -191,7 +192,7 @@ class AddressList extends Component {
 
     var scroll = !this.props.isLoading && !this.props.isEmpty ?
     (<ScrollView style={styles.listContainer}>
-                <RefreshableListView
+                <SGListView
                     dataSource={addresses}
                     renderRow={this.renderRow}
                     loadData={this.updateList}
