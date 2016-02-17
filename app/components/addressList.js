@@ -11,7 +11,8 @@ import React, {
   AsyncStorage,
   TouchableOpacity,
   ToastAndroid,
-  Platform
+  Platform,
+  ProgressBarAndroid
 } from 'react-native';
 var _ = require('lodash');
 var RefreshableListView = require('react-native-refreshable-listview');
@@ -221,12 +222,7 @@ class AddressList extends Component {
     } else {
         var spinner = this.props.isLoading ?
         ( <View style = {styles.spinner}>
-            <Spinner
-            style = {styles.spinner}
-            isVisible = {true}
-            size = {50}
-            type = 'ThreeBounce'
-            color = '#ffbb99' />
+             <ProgressBarAndroid styleAttr="Inverse" color = "ffbb99"/>
           </View>):
         ( <View/> );
     }
