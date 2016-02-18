@@ -13,8 +13,6 @@ import React, {
   Platform,
   ToastAndroid
 } from 'react-native';
-// var _ = require('lodash');
-var RefreshableListView = require('react-native-refreshable-listview')
 var Icon = require('react-native-vector-icons/FontAwesome');
 var SGListView = require('react-native-sglistview');
 import Toast from './toast.ios';

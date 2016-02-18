@@ -15,7 +15,6 @@ import React, {
   ProgressBarAndroid
 } from 'react-native';
 var _ = require('lodash');
-var RefreshableListView = require('react-native-refreshable-listview');
 var { createAnimatableComponent, View } = require('react-native-animatable');
 var Spinner = require('react-native-spinkit');
 var Overlay = require('react-native-overlay');
