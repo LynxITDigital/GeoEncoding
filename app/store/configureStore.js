@@ -1,48 +1,9 @@
-import { createStore, applyMiddleware,combineReducers, compose } from 'redux';
-import thunk from 'redux-thunk';
-import * as reducers from '../reducers';
-import globals from './globals';
-import createLogger from 'redux-logger';
-
-const loggerMiddleWare = createLogger();
-
-export default function configureStore(initialState) {
-
-  function logger({ getState }) {
-    return (next) => (action) => {
-
-      if(action){
-        // // console.log('Middleware - will dispatch action :', action)
-
-        // Call the next dispatch method in the middleware chain.
-        let returnValue = next(action)
-
-        // // console.log('Middleware - state after dispatch :', getState())
-
-        var replay = {action:action,next:next};
-        globals.replayCache.push(replay);
-        // This will likely be the action itself, unless
-        // a middleware further in chain changed it.
-        return returnValue
-      }
-      return
-    }
-  }
-
-  const finalCreateStore = compose(
-    applyMiddleware(thunk)
-  )(createStore);
-
-  const reducer = combineReducers(reducers);
-  const store = finalCreateStore(reducer, initialState);
-
-  // if (module.hot) {
-  //   // Enable Webpack hot module replacement for reducers
-  //   module.hot.accept('../reducers', () => {
-  //     const nextReducer = require('../reducers');
-  //     store.replaceReducer(nextReducer);
-  //   });
-  // }
-
-  return store;
+// NODE_ENV is automatically set by RN packager based on the IDE/simulator environment
+// for iOS, use DEBUG scheme/config to enable RN Dev Menu/Debug in Chrome; use &dev=true to set NODE_ENV to development
+// for Android, select JS Dev Mode within RN Dev Menu to set NODE_ENV to development
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./configureStore.prod')
+} else {
+  module.exports = require('./configureStore.dev')
+  console.log("process.env.NODE_ENV = " + process.env.NODE_ENV)
 }
