@@ -105,7 +105,7 @@ class GeoEncodingApp extends Component {
         });
 
       var login = (this.props.user._id == undefined);
-      var iOS = (Platform.OS == iOS);
+      var iOS = (Platform.OS == 'ios');
 
      return(
          <Router hideNavBar={true}
