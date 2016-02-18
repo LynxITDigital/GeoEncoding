@@ -16,7 +16,7 @@ import React, {
 } from 'react-native';
 
 var RNFS = require('react-native-fs');
-
+var SGListView = require('react-native-sglistview');
 import Toast from './toast.ios';
 import globals from '../store/globals';
 var Icon = require('react-native-vector-icons/FontAwesome');
@@ -119,7 +119,7 @@ class DownloadList extends Component {
       return (
           <View style={styles.container}>
               <View style={styles.listContainer}>
-                  <ListView
+                  <SGListView
                       style={styles.ListView}
                       dataSource={downloaded}
                       renderRow={this.renderDownload}

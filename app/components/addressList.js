@@ -11,14 +11,15 @@ import React, {
   AsyncStorage,
   TouchableOpacity,
   ToastAndroid,
-  Platform
+  Platform,
+  ProgressBarAndroid
 } from 'react-native';
 var _ = require('lodash');
-var RefreshableListView = require('react-native-refreshable-listview');
 var { createAnimatableComponent, View } = require('react-native-animatable');
 var Spinner = require('react-native-spinkit');
 var Overlay = require('react-native-overlay');
 var IonIcon = require('react-native-vector-icons/Ionicons');
+var SGListView = require('react-native-sglistview');
 import Toast from './toast.ios';
 const STORAGE_KEY = '@GeoEncoding:address'
 
@@ -151,8 +152,8 @@ class AddressList extends Component {
     var address = rowData.formatted_address;
     var imageURI = 'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=' + rowData.geometry.location.lat + ',' + rowData.geometry.location.lng;
     var favIcon = rowData.isFav ?
-    (<IonIcon name = "ios-star" size = {28} color = "ffde00" style = {styles.fav} allowFontScaling={false}/>):
-    (<IonIcon name = "ios-star-outline" size = {28} color = "ff9900" style = {styles.fav} allowFontScaling={false}/>);
+    (<IonIcon name = "ios-star" size = {28} color = "#ffde00" style = {styles.fav} allowFontScaling={false}/>):
+    (<IonIcon name = "ios-star-outline" size = {28} color = "#ff9900" style = {styles.fav} allowFontScaling={false}/>);
     return(
       <TouchableHighlight onPress={this.onRowPressed.bind(this, rowData)}
           underlayColor='#dddddd'>
@@ -191,7 +192,7 @@ class AddressList extends Component {
 
     var scroll = !this.props.isLoading && !this.props.isEmpty ?
     (<ScrollView style={styles.listContainer}>
-                <RefreshableListView
+                <SGListView
                     dataSource={addresses}
                     renderRow={this.renderRow}
                     loadData={this.updateList}
@@ -220,12 +221,7 @@ class AddressList extends Component {
     } else {
         var spinner = this.props.isLoading ?
         ( <View style = {styles.spinner}>
-            <Spinner
-            style = {styles.spinner}
-            isVisible = {true}
-            size = {50}
-            type = 'ThreeBounce'
-            color = '#ffbb99' />
+             <ProgressBarAndroid styleAttr="Inverse" color = "#ffbb99"/>
           </View>):
         ( <View/> );
     }

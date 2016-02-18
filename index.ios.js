@@ -20,4 +20,4 @@ var {
   AppRegistry
 } = React;
 
-AppRegistry.registerComponent('GeoEncoding', () => App);
+AppRegistry.registerComponent('LynxReact', () => App);

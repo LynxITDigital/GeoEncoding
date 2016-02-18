@@ -33,7 +33,7 @@ class ImagePicker extends Component {
             videoQuality: 'high', // 'low', 'medium', or 'high'
             aspectX: 1, // aspectX:aspectY, the cropping image's ratio of width to height
             aspectY: 1, // aspectX:aspectY, the cropping image's ratio of width to height
-            quality: 100, // photos only
+            quality: (Platform.OS == 'ios' ) ? 100 : 1, // photos only
             angle: 0, // photos only
             allowsEditing: false, // Built in functionality to resize/reposition the image
             noData: true, // photos only - disables the base64 `data` field from being generated (greatly improves performance on large photos)
@@ -42,7 +42,7 @@ class ImagePicker extends Component {
                 path: 'images' // will save image at /Documents/images rather than the root
             }
         };
-
+        
         UIImagePickerManager.showImagePicker(options, (response) => {
             console.log('Response = ', response);
 
@@ -56,9 +56,8 @@ class ImagePicker extends Component {
                 if(Platform.OS === 'ios'){
                     source = {uri: response.uri.replace('file://', ''), isStatic: true};
                 } else {
-                    const source = {uri: response.uri, isStatic: true};
+                    source = {uri: response.uri, isStatic: true};
                 }
-
                 this.setState({
                     imgSource: source
                 });

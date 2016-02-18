@@ -14,6 +14,7 @@ import * as rootReducer from './reducers';
 
 var React = require('react-native');
 var ProgressBar = require('ProgressBarAndroid');
+var SGListView = require('react-native-sglistview');
 
 
 var {
@@ -64,7 +65,7 @@ class GeoEncoding extends React.Component{
         </View>
         <View style={styles.listContainer}>
 
-        <ListView
+        <SGListView
         dataSource={this.state.dataSource}
         renderRow={this.renderRow.bind(this)} />
         </View>

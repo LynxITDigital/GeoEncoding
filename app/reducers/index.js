@@ -1,5 +1,6 @@
 import addressesByGeoEncoding from './address';
 import downloadState from './downloads';
+import account from './account';
 
  //import { reducer as routerReducer } from 'react-native-router-redux';
  import router from './router';
@@ -7,5 +8,6 @@ import downloadState from './downloads';
 export {
     router,
     addressesByGeoEncoding,
-    downloadState
+    downloadState,
+    account
 };
