@@ -28,7 +28,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CodePushDeploymentKey</key>
-	<string>1x3tMgfkfvyfobZMOTVYg4lW7r444yXS9p7Fg</string>
+	<string>$(CODE_PUSH_DEPLOYMENT_KEY)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>comgooglemaps</string>
