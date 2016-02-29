@@ -1,7 +1,7 @@
 var types = require('./actionTypes');
 var RNFS = require('react-native-fs');
 var path = require('path');
-
+/*
 PushNotification.configure({
   onRegister: function(token) {
     // console.log("REGISTER: "  + token);
