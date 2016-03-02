@@ -3,6 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "simpletest": "rm -rf ./node_modules/jest-cli/.haste_cache && jest",
+    "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest --verbose",
+    "coverage": "rm -rf ./node_modules/jest-cli/.haste_cache && jest --verbose --coverage",
+    "test:watch": "npm test -- --watch",
+    "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
@@ -32,6 +37,46 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel-core": "6.4.5"
+    "babel-core": "6.4.5",
+    "babel-preset-react-native": "^1.4.0",
+    "isomorphic-fetch": "2.2.1",
+    "jest-cli": "0.8.2",
+    "nock": "5.5.0",
+    "react": "0.14.7",
+    "react-addons-test-utils": "0.14.7"
+  },
+  "jest": {
+    "scriptPreprocessor": "jestSupport/scriptPreprocess.js",
+    "testPathDirs": [
+      "app/"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "spec.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "unmockedModulePathPatterns": [
+      "__mocks__",
+      "lodash",
+      "bluebird",
+      "isomorphic-fetch",
+      "node-fetch",
+      "encoding",
+      "whatwg-fetch",
+      "nock",
+      "debug",
+      "redux",
+      "redux-thunk",
+      "react-addons-test-utils",
+      "react",
+      "fbjs"
+    ]
   }
 }
